@@ -1,0 +1,32 @@
+/** Import Bootstrap functions */
+@import "~bootstrap/scss/functions";
+
+$theme-colors: (
+  primary: #525ddc
+);
+
+$btn-font: "Montserrat", Arial, sans-serif;
+$default-font: 'Lato', sans-serif;
+
+$emeraldgreen: #47c16d;
+$blue: #00629b;
+$skies: #0093b2;
+$oxfordgreen: #2fa872;
+$pearl: #a2acab;
+$matter: #231f20;
+
+$default-font-color: $matter;
+
+@function calculaterem($size) {
+  $remSize: $size / 18px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size-sass($size) {
+  font-size: $size;
+  font-size: calculaterem($size);
+}
+
+/** Bootstrap navbar fix (https://git.io/fADqW) */
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
