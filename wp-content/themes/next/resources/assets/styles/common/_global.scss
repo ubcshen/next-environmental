@@ -378,7 +378,7 @@ blockquote {
   vertical-align: baseline;
   background: transparent;
   font-family: $default-font;
-  font-weight: 400;
+  font-weight: 300;
   //font-style: normal;
   font-size: 18px;
   color: $default-font-color;
@@ -388,6 +388,7 @@ blockquote {
 }
 
 p {
+  margin-bottom: 30px;
   @include breakpoint(small640-down) {
     @include font-size-sass(14px);
     line-height: 1.57;
@@ -442,16 +443,10 @@ h5 {
 }
 
 h1 {
-  @include font-size-sass(76.8px);
+  @include font-size-sass(64px);
   color: #fff;
-  text-align: center;
-  @include breakpoint(medium1355-down) {
-    @include font-size-sass(80px);
-  }
+  margin-bottom: 30px;
   @include breakpoint(medium1250-down) {
-    @include font-size-sass(65px);
-  }
-  @include breakpoint(medium980-down) {
     @include font-size-sass(45px);
   }
   @include breakpoint(medium700-down) {
@@ -520,10 +515,12 @@ h4 {
 }
 
 a {
-  color: #4a4a4a;
+  color: #fff;
   &:hover {
+    text-decoration: none;
     color: #ba6027;
   }
+  text-decoration: none;
   span,
   strong,
   i,

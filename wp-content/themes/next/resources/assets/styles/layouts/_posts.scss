@@ -1,0 +1,29 @@
+.post-header {
+  height: 670px;
+  .header-content {
+    color: #fff;
+    max-width: 540px;
+    width: 100%;
+  }
+  a {
+    color: #fff;
+    @include font-size-sass(18px);
+    font-weight: 400;
+    &::before {
+      content: "\2190";
+      padding-right: 12px;
+    }
+    padding-top: 40px;
+    padding-bottom: 130px;
+  }
+}
+
+.section-case-study-info {
+  padding: 40px;
+  margin-top: -6vw;
+  background-color: #fff;
+  .casestudy-result {
+    @include font-size-sass(18px);
+    font-weight: 300;
+  }
+}

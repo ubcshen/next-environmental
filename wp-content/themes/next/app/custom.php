@@ -1069,23 +1069,20 @@ function build_post_sections()
     {
         while( has_sub_field("section_builder") )
         {
-            if( get_row_layout() == "section_html" ) // layout: Section Html
+            if( get_row_layout() == "html_section" ) // layout: HTML Section
             {
-              $fullWidth = get_sub_field("enable_full_width");
-              $cssClass = get_sub_field("section_html_class");
+              $cssClass = get_sub_field("custom_class_names");
             ?>
-                <section class="<?php if(!$fullWidth && !preg_match('/\bnoMargin\b/',$cssClass)) { echo 'container'; } ?> section-html <?php echo $cssClass; ?>">
-                    <?php if(!$fullWidth && !preg_match('/\bnoMargin\b/',$cssClass)) { ?><div class="container"><?php } ?>
-                        <?php echo get_sub_field("html_field"); ?>
-                    <?php if(!$fullWidth && !preg_match('/\bnoMargin\b/',$cssClass)) { ?></div><?php } ?>
+                <section class="container section-html <?php echo $cssClass; ?>">
+                    <?php echo get_sub_field("html_field"); ?>
                 </section>
             <?php }
             elseif( get_row_layout() == "post_header_section") // layout: Post Header Section
             {
                 $image = get_sub_field("background_image");
-                if($image):
+                if( $image ) {
                     load_Img(".post-header", "background_image");
-                endif
+                }
                 $bgColor = get_sub_field("background_color");
                 $hero_image = get_sub_field("hero_image");
                 $link = get_sub_field('section_button');
@@ -1096,18 +1093,69 @@ function build_post_sections()
                 endif
             ?>
                 <section class="section-header post-header" style="background-color: <?php echo $bgColor; ?>;">
-                  <div class="row align-items-center d-flex justify-content-center ">
-                    <div class="col-12 col-md-7 col-lg-6 section-chat-content">
-                        <h3><?php echo get_sub_field("section_headerline"); ?></h3>
-                        <?php echo get_sub_field("section_content"); ?>
-                        <div class="section-chat-btn align-items-center d-flex">
-                          <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                    <div class="container">
+                      <div class="row align-items-center d-flex justify-content-left">
+                        <div class="col-12 header-content">
+                            <a href="/case-studies/" class="d-block back-casestudy">CASE STUDIES</a>
+                            <h1><?php echo get_sub_field("page_title"); ?></h1>
+                            <?php echo get_sub_field("page_headerline"); ?>
+                        </div>
+                      </div>
+                    </div>
+                </section>
+            <?php }
+            elseif( get_row_layout() == "case_study_info" ) // layout: Case Study Info
+            {
+            ?>
+                <section class="container section-case-study-info">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-1">
+                            <h4>Year</h4>
+                            <?php echo get_sub_field('case_year'); ?>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <h4>Location</h4>
+                            <?php echo get_sub_field('case_location'); ?>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-6 offset-lg-1">
+                            <h4>The Challenge</h4>
+                            <?php echo get_sub_field('case_challenge'); ?>
                         </div>
                     </div>
-                    <div class="col-4 col-md-5 col-lg-6 ml-auto section-chat-image">
-                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
+                </section>
+            <?php }
+            elseif( get_row_layout() == "detail_section" ) // layout: Detail Section
+            {
+            ?>
+                <section class="container section-details">
+                    <div class="row">
+                        <?php if ( is_singular( 'case_studies' ) ) { ?>
+                        <div class="col-12 justify-content-left casestudy-result">THE RESULT</div>
+                        <?php } ?>
+                        <div class="fliter-btns-group col-12">
+                          <?php $i = 0;
+                            while(has_sub_field('details')):
+                                $tab = strtolower(get_sub_field("detail_type"));
+                                $tab = preg_replace('/\s+/', '_', $tab);
+                          ?>
+                          <div class="inline tab <?php if($i==0) { echo "tab-active"; } ?>" data-filter=".<?php echo $tab; ?>"><?php echo get_sub_field("detail_type"); ?></div>
+                          <?php $i++; endwhile; ?>
+                        </div>
+                        <div class="grid section-content col-12">
+                            <div class="<?php echo $tab; ?> inner-tabs element-item row">
+                                <?php
+                                  while(has_sub_field('details')):
+                                ?>
+                                    <div class="col-12 col-lg-5">
+                                        <h3><?php echo get_sub_field('detail_headline'); ?></h3>
+                                    </div>
+                                    <div class="col-12 col-lg-6 offset-lg-1">
+                                        <?php echo get_sub_field('detail'); ?>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </section>
             <?php }
             elseif( get_row_layout() == "chat_section") // layout: Chat Section
