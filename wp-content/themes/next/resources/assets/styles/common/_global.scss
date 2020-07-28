@@ -515,7 +515,7 @@ h4 {
 }
 
 a {
-  color: #fff;
+  color: #0093b2;
   &:hover {
     text-decoration: none;
     color: #ba6027;
@@ -600,4 +600,54 @@ i {
 
 .img-outof-container {
   margin-top: -8vw;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #a2acab;
+  position: relative;
+  .nav-link {
+    border: none;
+    font-weight: 700;
+    color: #121212;
+    &.active {
+      color: #0093b2;
+    }
+  }
+  hr {
+    height: 6px;
+    width: 49%;
+    position: absolute;
+    margin: 0px;
+    background: #0093b2;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    transition: all 0.3s ease-in-out 0s;
+    bottom: -3px;
+  }
+  .nav-item {
+    margin-bottom: 8px;
+  }
+  .nav-item-0.active ~ hr,
+  .nav-item-0:hover ~ hr,
+  .nav-item-0:hover ~ .nav-item-1.active ~ hr {
+    margin-left: 0;
+  }
+  .nav-item-1.active ~ hr,
+  .nav-item-1:hover ~ hr {
+    margin-left: 50%;
+  }
+}
+
+.tab-content > .active {
+  display: flex;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .banner .nav a.active, .banner .nav .nav-tabs a.active, .nav-tabs .nav-item.show .nav-link, .nav-tabs .banner .nav li.show .nav-link, .banner .nav .nav-tabs li.show .nav-link, .nav-tabs .nav-item.show .banner .nav a, .banner .nav .nav-tabs .nav-item.show a, .nav-tabs .banner .nav li.show a, .banner .nav .nav-tabs li.show a {
+  border-color: transparent transparent #a2acab;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .banner .nav a:hover, .banner .nav .nav-tabs a:hover, .nav-tabs .nav-link:focus, .nav-tabs .banner .nav a:focus, .banner .nav .nav-tabs a:focus {
+  border-color: transparent transparent #a2acab;
 }

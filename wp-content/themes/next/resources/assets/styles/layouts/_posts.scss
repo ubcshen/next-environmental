@@ -27,3 +27,58 @@
     font-weight: 300;
   }
 }
+
+.round-svg {
+  border-radius: 50%;
+  background-color: #00629b;
+  width: 168px;
+  height: 168px;
+}
+
+.section-icon {
+  margin-top: -6vw;
+  .icon-line::before {
+    content: '';
+    width: 0;
+    height: 75%;
+    position: absolute;
+    border: 1px solid black;
+    top: 35%;
+    left: 100px;
+  }
+  .icon-line::after {
+    content: '.';
+    width: 11px;
+    height: 11px;
+    left: 87px;
+    bottom: 12%;
+    position: absolute;
+    font-size: 120px;
+  }
+}
+
+.section-details {
+  margin-top: 10vw;
+  .tab-pane {
+    margin: 80px auto;
+  }
+}
+
+.section-case-study {
+  background-color: #0d4059;
+  padding: 100px;
+  h3, div, p, a {
+    color: #fff;
+  }
+  .green-rectangle {
+    background-color: $emeraldgreen;
+    width: 350px;
+    height: 500px;
+  }
+  .img-outof-border {
+    position: absolute;
+    top: -30%;
+    left: 20%;
+  }
+}
+

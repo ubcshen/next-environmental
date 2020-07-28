@@ -1124,6 +1124,47 @@ function build_post_sections()
                     </div>
                 </section>
             <?php }
+            elseif( get_row_layout() == "icon_section" ) // layout: Icon Section
+            {
+                $icon = get_sub_field("icon");
+                $image = get_sub_field("post_image");
+            ?>
+                <section class="container section-icon">
+                    <div class="row">
+                        <div class="col-12 col-md-2 col-lg-1 icon-line">
+                            <div class="round-svg align-items-center d-flex justify-content-center"><?php output_inline_svg_file($icon); ?></div>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-9 offset-md-2 offset-lg-2">
+                            <?php output_acf_img($image,'lazyImg'); ?>
+                        </div>
+                    </div>
+                </section>
+            <?php }
+            elseif( get_row_layout() == "case_study_section" ) // layout: Case Study Section
+            {
+            ?>
+                <section class="container section-case-study">
+                    <div class="row align-items-center d-flex">
+                        <?php
+                            $post_objects = get_sub_field("pick_a_case_study");
+                            if( $post_objects ):
+                                $headline = get_field('headline',$post_objects);
+                                $brief = get_field('brief',$post_objects);
+                                $image = get_field('image',$post_objects);
+                        ?>
+                            <div class="col-12 col-md-5">
+                                <?php output_acf_img($image,'lazyImg img-outof-border'); ?>
+                                <div class="green-rectangle">&nbsp;</div>
+                            </div>
+                            <div class="col-12 col-md-5 offset-md-2">
+                                <div class="case-study-type">CASE STUDY</div>
+                                <h3><?php echo $headline; ?></h3>
+                                <?php echo $brief; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </section>
+            <?php }
             elseif( get_row_layout() == "detail_section" ) // layout: Detail Section
             {
             ?>
@@ -1132,28 +1173,32 @@ function build_post_sections()
                         <?php if ( is_singular( 'case_studies' ) ) { ?>
                         <div class="col-12 justify-content-left casestudy-result">THE RESULT</div>
                         <?php } ?>
-                        <div class="fliter-btns-group col-12">
+                        <nav class="col-12">
+                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                           <?php $i = 0;
-                            while(has_sub_field('details')):
+                          while(has_sub_field('details')):
                                 $tab = strtolower(get_sub_field("detail_type"));
                                 $tab = preg_replace('/\s+/', '_', $tab);
                           ?>
-                          <div class="inline tab <?php if($i==0) { echo "tab-active"; } ?>" data-filter=".<?php echo $tab; ?>"><?php echo get_sub_field("detail_type"); ?></div>
+                          <a class="nav-item nav-link <?php if($i==0) echo 'active'; ?> nav-item-<?php echo $i; ?>" id="nav-<?php echo $tab; ?>-tab" data-toggle="tab" href="#nav-<?php echo $tab; ?>" role="tab" aria-controls="nav-<?php echo $tab; ?>" aria-selected="<?php if($i==0) echo 'true'; else echo 'false'; ?>"><?php echo get_sub_field("detail_type"); ?></a>
                           <?php $i++; endwhile; ?>
-                        </div>
-                        <div class="grid section-content col-12">
-                            <div class="<?php echo $tab; ?> inner-tabs element-item row">
-                                <?php
-                                  while(has_sub_field('details')):
-                                ?>
-                                    <div class="col-12 col-lg-5">
-                                        <h3><?php echo get_sub_field('detail_headline'); ?></h3>
-                                    </div>
-                                    <div class="col-12 col-lg-6 offset-lg-1">
-                                        <?php echo get_sub_field('detail'); ?>
-                                    </div>
-                                <?php endwhile; ?>
+                          <hr>
+                          </div>
+                        </nav>
+                        <div class="tab-content col-12 container" id="nav-tabContent">
+                            <?php $i = 0;
+                              while(has_sub_field('details')):
+                                $tab = preg_replace('/\s+/', '_', $tab);
+                            ?>
+                            <div class="tab-pane fade <?php if($i==0) echo 'show active'; ?> row" id="nav-<?php echo $tab; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $tab; ?>-tab">
+                                <div class="col-12 col-lg-4">
+                                    <h3><?php echo get_sub_field('detail_headline'); ?></h3>
+                                </div>
+                                <div class="col-12 col-lg-7 offset-lg-1">
+                                    <?php echo get_sub_field('detail'); ?>
+                                </div>
                             </div>
+                            <?php $i++; endwhile; ?>
                         </div>
                     </div>
                 </section>
