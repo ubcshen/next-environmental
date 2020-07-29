@@ -37,3 +37,130 @@
     margin-right: -15px;
   }
 }
+
+.wave-items {
+  padding: 80px 0;
+  .item {
+    margin-bottom: -80px;
+    &.oncenter {
+      margin-top: 80px;
+    }
+    &.onbottom {
+      margin-top: 160px;
+    }
+  }
+  a.item-container {
+    max-width: 340px;
+    height: 530px;
+    padding: 60px 30px;
+    background-color: #00629b;
+    border: 3px solid #00629b;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    &.item-bg-overlay {
+      border: 1px solid #707070;
+      &:hover {
+        color: #fff;
+        filter: grayscale(0) !important;
+        h5 {
+          color: #fff;
+        }
+        .item-icon svg {
+          fill: #fff;
+        }
+      }
+    }
+    .item-icon svg {
+      fill: #fff;
+    }
+    h5 {
+      color: #fff;
+      margin-top: 110px;
+    }
+    &:hover {
+      background-color: transparent;
+      border-color: #231f20;
+      color: #231f20;
+      h5 {
+        color: #231f20;
+      }
+      .item-icon svg {
+        fill: #231f20;
+      }
+    }
+  }
+}
+
+.section-story-gallery {
+  .story-gallery-2 {
+    margin-top: 22px;
+    position: relative;
+    margin-bottom: 100px;
+    .story-gallery-content {
+      position: absolute;
+      bottom: 15%;
+      left: 5%;
+    }
+  }
+  .story-icon svg {
+    width: 36px;
+    height: auto;
+  }
+}
+
+.story {
+  .section-cols {
+    .cols {
+      padding-top: 100px;
+    }
+    .item-2, .item-4, .item-6 {
+      margin-top: 50px;
+    }
+  }
+  .section-core-value {
+    .col-2-adjust {
+      flex: 0 0 20%;
+      max-width: 20%;
+      &:nth-child(3) {
+        .word-item:hover .word {
+          transform: translateX(-400%);
+          transition: all 1500ms ease;
+        }
+      }
+      &:nth-child(4) {
+        .word-item:hover .word {
+          transform: translateX(-360%);
+          transition: all 1500ms ease;
+        }
+      }
+      &:nth-child(5) {
+        .word-item:hover .word {
+          transform: translateX(-580%);
+          transition: all 1500ms ease;
+        }
+      }
+    }
+    .word-item {
+      background-color: #0093b2;
+      height: 300px;
+      overflow: hidden;
+      padding-top: 30px;
+      padding-left: 20px;
+      .word {
+        transform: translateX(0);
+        @include font-size-sass(180px);
+        font-weight: 900;
+        color: #fff;
+        transition: all 1500ms ease;
+      }
+      &:hover {
+        .word {
+          transform: translateX(-300%);
+          transition: all 1500ms ease;
+        }
+      }
+    }
+  }
+}
+

@@ -444,7 +444,6 @@ h5 {
 
 h1 {
   @include font-size-sass(64px);
-  color: #fff;
   margin-bottom: 30px;
   @include breakpoint(medium1250-down) {
     @include font-size-sass(45px);
@@ -486,6 +485,21 @@ h4 {
   @include breakpoint(medium750-down) {
     @include font-size-sass(12px);
   }
+}
+
+h5 {
+  @include font-size-sass(24px);
+  @include breakpoint(medium750-down) {
+    @include font-size-sass(16px);
+  }
+}
+
+small {
+  @include font-size-sass(14px);
+}
+
+.f16 {
+  @include font-size-sass(16px);
 }
 
 .video-btn {
@@ -650,4 +664,12 @@ i {
 
 .nav-tabs .nav-link:hover, .nav-tabs .banner .nav a:hover, .banner .nav .nav-tabs a:hover, .nav-tabs .nav-link:focus, .nav-tabs .banner .nav a:focus, .banner .nav .nav-tabs a:focus {
   border-color: transparent transparent #a2acab;
+}
+
+.back-casestudy {
+  text-transform: uppercase;
+}
+
+.normal-item {
+  padding: 20px 20px 90px;
 }
