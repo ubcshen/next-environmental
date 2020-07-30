@@ -122,6 +122,7 @@
     .col-2-adjust {
       flex: 0 0 20%;
       max-width: 20%;
+      color: #fff;
       &:nth-child(3) {
         .word-item:hover .word {
           transform: translateX(-400%);
@@ -140,6 +141,9 @@
           transition: all 1500ms ease;
         }
       }
+      .f16, h4 {
+        color: #fff;
+      }
     }
     .word-item {
       background-color: #0093b2;
@@ -147,6 +151,7 @@
       overflow: hidden;
       padding-top: 30px;
       padding-left: 20px;
+      color: #fff;
       .word {
         transform: translateX(0);
         @include font-size-sass(180px);
@@ -155,11 +160,34 @@
         transition: all 1500ms ease;
       }
       &:hover {
+        cursor: pointer;
         .word {
           transform: translateX(-300%);
           transition: all 1500ms ease;
         }
       }
+    }
+    .image-content {
+      padding: 400px 0 0;
+      margin-top: -20vw;
+      h2, p {
+        color: #fff;
+      }
+    }
+    .white-bg {
+      background-color: #fff;
+      height: 120px;
+      width: 100%;
+      margin-top: -100px;
+    }
+  }
+}
+
+.case-studies {
+  .item {
+    margin-top: -160px;
+    &.oncenter {
+      margin-top: 160px;
     }
   }
 }

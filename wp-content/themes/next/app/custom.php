@@ -578,7 +578,7 @@ function build_sections()
                         <div class="row">
                             <h1 class="col-12 col-md-<?php echo $titleWidth;?>"><?php echo get_sub_field("page_title"); ?></h1>
                             <?php if($titleWidth!==12): ?>
-                                <div class="col-12 col-md-7 offset-md-1"><?php echo get_sub_field("page_hero_content"); ?></div>
+                                <div class="col-12 col-md-<?php echo $titleWidth;?> <?php if($titleWidth==4) echo 'offset-md-1'; ?>"><?php echo get_sub_field("page_hero_content"); ?></div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -607,19 +607,20 @@ function build_sections()
                             <?php endwhile; ?>
                         </div>
                     </div>
-                    <div class="fullWidth" style="background-color: #0d4059;">
+                    <div class="fullWidth image-content" style="background-color: #0d4059;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-7 pr-0 pr-lg-5">
                                     <?php $image = get_sub_field("big_image"); output_acf_img($image,'lazyImg'); ?>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-5 pr-0 pr-md-0 pr-lg-4">
                                     <h2><?php echo get_sub_field("image_headline"); ?></h2>
                                     <?php echo get_sub_field("image_content"); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="white-bg">&nbsp;</div>
                 </section>
             <?php }
             elseif( get_row_layout() == "story_gallery_section" ) // layout: Story Gallery Section
@@ -672,83 +673,92 @@ function build_sections()
             elseif( get_row_layout() == "select_custom_post_type" ) // layout: Select Custom Post Type
             {
                 $normal_layout= get_sub_field("normal_layout");
+                $post_type = get_sub_field("select_posts");
+                wp_reset_query();
+                global $paged;
+                $args = array(
+                    'post_type'=>$post_type,
+                    'post_status' => 'publish',
+                    'posts_per_page'=>-1,
+                    'orderby'=>'date',
+                );
+                $the_query = new WP_Query( $args );
             ?>
                 <section class="section-custom-post-type">
                     <div class="container">
-                        <?php if($normal_layout) { ?>
-                            <div class="row align-items-center d-flex justify-content-center">
-                                <h2 class="col-12 col-md-8 text-center"><?php echo get_sub_field("section_headline"); ?></h2>
-                                <div class="col-12 col-md-6 text-center"><?php echo get_sub_field("section_content"); ?></div>
+                        <?php if($post_type=="case_studies") { ?>
+                            <div class="grid row align-items-center d-flex justify-content-center">
+                                <?php $i = 0;
+                                    while ( $the_query->have_posts() ): $the_query->the_post();
+                                        $bgimage = get_field("image_for_case_study");
+                                  ?>
+                                    <div class="col-10 col-md-6 item <?php if($i%2==0) echo 'ontop pr-0 pr-lg-3'; elseif($i%2 === 1) echo 'oncenter pl-0 pl-lg-3'; ?>">
+                                            <a class="item-container mr-2" href="">
+                                                <?php echo output_acf_img($bgimage,'lazyImg'); ?>
+                                                <div class="case-content">
+                                                    <h5><?php echo get_field("headline"); ?></h5>
+                                                    <?php echo get_field("brief"); ?>
+                                                </div>
+                                            </a>
+                                        </div>
+                                <?php $i++; endwhile; wp_reset_postdata(); ?>
                             </div>
-                            <?php
-                              $post_type = get_sub_field("select_posts");
-                              wp_reset_query();
-                              global $paged;
-                              $args = array(
-                                'post_type'=>$post_type,
-                                'post_status' => 'publish',
-                                'posts_per_page'=>-1,
-                                'orderby'=>'date',
-                              );
-                              $the_query = new WP_Query( $args );
-                              if( $the_query->have_posts() ) {
-                            ?>
-                            <div class="grid row">
-                              <?php $i = 0;
-                                while ( $the_query->have_posts() ): $the_query->the_post();
-                                    $bgimage = get_field("team_pic");
-                                    $name = get_field("name");
-                                    $title = get_field("title");
-                                    $bio = get_field("bio");
-                                    $link = get_field("link");
-                                    if( $link ):
-                                        $link_url = $link['url'];
-                                        $link_title = $link['title'];
-                                        $link_target = $link['target'] ? $link['target'] : '_self';
-                                    endif
-                              ?>
-                                <div class="col-10 col-md-6 col-lg-4 item normal-item">
-                                    <?php echo output_acf_img($bgimage, "lazyImg"); ?>
-                                    <h5><?php echo $name; ?></h5>
-                                    <small><?php echo $title; ?></small>
-                                    <?php echo $bio; ?>
-                                    <a class="button pl-0" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
-                                </div>
-                              <?php $i++; endwhile; wp_reset_postdata(); }  ?>
-                            </div>
-                          </div>
                         <?php } else { ?>
-                            <div class="items <?php if(!$normal_layout) echo 'wave-items'; ?>">
+                            <?php if($normal_layout) { ?>
+                                <div class="row align-items-center d-flex justify-content-center">
+                                    <h2 class="col-12 col-md-8 text-center"><?php echo get_sub_field("section_headline"); ?></h2>
+                                    <div class="col-12 col-md-6 text-center"><?php echo get_sub_field("section_content"); ?></div>
+                                </div>
                                 <?php
-                                  $post_type = get_sub_field("select_posts");
-                                  wp_reset_query();
-                                  global $paged;
-                                  $args = array(
-                                    'post_type'=>$post_type,
-                                    'post_status' => 'publish',
-                                    'posts_per_page'=>-1,
-                                    'orderby'=>'date',
-                                  );
-                                  $the_query = new WP_Query( $args );
                                   if( $the_query->have_posts() ) {
                                 ?>
                                 <div class="grid row">
                                   <?php $i = 0;
                                     while ( $the_query->have_posts() ): $the_query->the_post();
-                                        $image = get_field("icon_svg");
-                                        $bgimage = get_field("image");
+                                        $bgimage = get_field("team_pic");
+                                        $name = get_field("name");
+                                        $title = get_field("title");
+                                        $bio = get_field("bio");
+                                        $link = get_field("link");
+                                        if( $link ):
+                                            $link_url = $link['url'];
+                                            $link_title = $link['title'];
+                                            $link_target = $link['target'] ? $link['target'] : '_self';
+                                        endif
                                   ?>
-                                    <div class="col-10 col-md-6 col-lg-4 item <?php if($i%3==0) echo 'ontop'; elseif($i%3 === 1) echo 'oncenter'; elseif($i%3 === 2) echo 'onbottom'; ?>">
-                                        <a class="item-container mr-2 <?php if($bgimage) echo 'item-bg-overlay'; ?>" href="" <?php if($bgimage) echo "style='background-image:url(".$bgimage.");filter: grayscale(100%);'" ?>>
-                                            <div class="item-icon"><?php echo output_inline_svg_file($image); ?></div>
-                                            <h5><?php echo get_field("headline"); ?></h5>
-                                            <?php echo get_field("brief"); ?>
-                                        </a>
+                                    <div class="col-10 col-md-6 col-lg-4 item normal-item">
+                                        <?php echo output_acf_img($bgimage, "lazyImg"); ?>
+                                        <h5><?php echo $name; ?></h5>
+                                        <small><?php echo $title; ?></small>
+                                        <?php echo $bio; ?>
+                                        <a class="button pl-0" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                                     </div>
                                   <?php $i++; endwhile; wp_reset_postdata(); }  ?>
                                 </div>
                               </div>
-                            </div>
+                            <?php } else { ?>
+                                <div class="items <?php if(!$normal_layout) echo 'wave-items'; ?>">
+                                    <?php
+                                      if( $the_query->have_posts() ) {
+                                    ?>
+                                    <div class="grid row">
+                                      <?php $i = 0;
+                                        while ( $the_query->have_posts() ): $the_query->the_post();
+                                            $image = get_field("icon_svg");
+                                            $bgimage = get_field("image");
+                                      ?>
+                                        <div class="col-10 col-md-6 col-lg-4 item <?php if($i%3==0) echo 'ontop'; elseif($i%3 === 1) echo 'oncenter'; elseif($i%3 === 2) echo 'onbottom'; ?>">
+                                            <a class="item-container mr-2 <?php if($bgimage) echo 'item-bg-overlay'; ?>" href="" <?php if($bgimage) echo "style='background-image:url(".$bgimage.");filter: grayscale(100%);'" ?>>
+                                                <div class="item-icon"><?php echo output_inline_svg_file($image); ?></div>
+                                                <h5><?php echo get_field("headline"); ?></h5>
+                                                <?php echo get_field("brief"); ?>
+                                            </a>
+                                        </div>
+                                      <?php $i++; endwhile; wp_reset_postdata(); }  ?>
+                                    </div>
+                                  </div>
+                                </div>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </section>
