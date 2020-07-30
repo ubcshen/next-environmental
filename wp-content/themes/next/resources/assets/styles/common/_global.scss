@@ -498,6 +498,10 @@ small {
   @include font-size-sass(14px);
 }
 
+.f32 {
+  @include font-size-sass(32px);
+}
+
 .f16 {
   @include font-size-sass(16px);
 }
@@ -673,3 +677,27 @@ i {
 .normal-item {
   padding: 20px 20px 90px;
 }
+
+.white-font {
+  color: #fff;
+  h2, div, p, a {
+    color: inherit;
+  }
+}
+
+section {
+  padding: 100px 0;
+}
+
+.white-bg {
+  background-color: #fff;
+}
+
+.touchLeft {
+  min-width: 140%;
+  margin-left: -40%;
+  vertical-align: bottom;
+}
+
+
+

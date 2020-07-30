@@ -382,7 +382,6 @@ function build_sections()
             <?php }
             elseif( get_row_layout() == "cta_section") // layout: CTA Section
             {
-                $image = get_sub_field("cta_image");
                 $link = get_sub_field('section_button');
                 if( $link ):
                     $link_url = $link['url'];
@@ -390,17 +389,14 @@ function build_sections()
                     $link_target = $link['target'] ? $link['target'] : '_self';
                 endif
             ?>
-                <section class="section-cta container" style="background-color: <?php echo get_sub_field('background_color'); ?>">
-                  <div class="row align-items-center d-flex justify-content-center \">
-                    <div class="col-12 col-md-7 col-lg-6 section-cta-content">
+                <section class="section-cta container">
+                  <div class="row align-items-center d-flex justify-content-center">
+                    <div class="col-12 section-cta-content text-center">
                         <h3><?php echo get_sub_field("section_title"); ?></h3>
                         <?php echo get_sub_field("section_hero_content"); ?>
-                        <div class="section-cta-btn align-items-center d-flex">
-                          <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                        <div class="section-cta-btn justify-content-center text-center">
+                          <a class="button cta-btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                         </div>
-                    </div>
-                    <div class="col-4 col-md-5 col-lg-6 ml-auto section-cta-image">
-                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
                     </div>
                   </div>
                 </section>
@@ -571,6 +567,7 @@ function build_sections()
             elseif( get_row_layout() == "headline_section" ) // layout: Headline Section
             {
                 $titleWidth = get_sub_field("headline_width");
+                $image = get_sub_field("headline_image");
             ?>
                 <section class="section-headline">
                     <div class="container">
@@ -578,8 +575,13 @@ function build_sections()
                         <div class="row">
                             <h1 class="col-12 col-md-<?php echo $titleWidth;?>"><?php echo get_sub_field("page_title"); ?></h1>
                             <?php if($titleWidth!==12): ?>
-                                <div class="col-12 col-md-<?php echo $titleWidth;?> <?php if($titleWidth==4) echo 'offset-md-1'; ?>"><?php echo get_sub_field("page_hero_content"); ?></div>
+                                <div class="col-12 col-md-<?php echo (11-$titleWidth);?> <?php if($titleWidth==4) echo 'offset-md-1'; ?>"><?php echo get_sub_field("page_hero_content"); ?></div>
                             <?php endif; ?>
+                            <?php
+                                if($image):
+                                    output_acf_img($image,'lazyImg');
+                                endif;
+                            ?>
                         </div>
                     </div>
                 </section>
@@ -675,7 +677,6 @@ function build_sections()
                 $normal_layout= get_sub_field("normal_layout");
                 $post_type = get_sub_field("select_posts");
                 wp_reset_query();
-                global $paged;
                 $args = array(
                     'post_type'=>$post_type,
                     'post_status' => 'publish',
@@ -773,7 +774,7 @@ function build_sections()
                 $numberofCols = get_sub_field("number_of_cols_per_row");
                 $borderBottom = get_sub_field("bottom_border");
                 ?>
-                <section class="section-cols <?php echo $className; ?>">
+                <section class="section-cols <?php echo $className; ?>" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
                     <?php if($sectionWidth==='withincontainer'): ?><div class="container"><?php endif; ?>
                       <div class="text-center">
                           <h2 class="text-center"><?php echo get_sub_field("section_headerline"); ?></h2>
@@ -787,11 +788,21 @@ function build_sections()
                                 <?php
                                   while(has_sub_field('cols')):
                                     $image = get_sub_field('col_image');
+                                    $icon = get_sub_field('col_icon_svg');
                                     $colContent = get_sub_field('col_content');
                                 ?>
                                 <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?>">
-                                    <?php output_acf_img($image,'lazyImg'); ?>
-                                    <div class="text-left"><?php echo $colContent; ?></div>
+                                    <?php if($icon) { ?>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-1 col-svg">
+                                                <?php output_inline_svg_file($icon); ?>
+                                            </div>
+                                            <div class="text-left col-12 col-lg-11 pl-0 pl-lg-4"><?php echo $colContent; ?></div>
+                                        </div>
+                                    <?php } else { ?>
+                                        <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
+                                        <div class="text-left"><?php echo $colContent; ?></div>
+                                    <?php } ?>
                                 </div>
                                 <?php endwhile; ?>
                           </div>
@@ -802,94 +813,40 @@ function build_sections()
                     <?php if($sectionWidth==='withincontainer'): ?></div><?php endif; ?>
                 </section>
             <?php }
-            elseif( get_row_layout() == "section_instagram" ) // layout: Section Instagram
+            elseif( get_row_layout() == "testimonial_section" ) // layout: Testimonial Section
             {
-                ?>
-                <section class="section-cols section-cols3 floatUp textleft>">
-                    <div class="cols container">
-                        <?php
-                          while(has_sub_field('instagram_accounts')):
-                        ?>
-                        <div class="colItem inline">
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive col--<?php echo $colNo; ?>" />
-                            <?php echo $colContent; ?>
+                $bgColor = get_sub_field("testimonial_background_color");
+                $image = get_sub_field('testimonial_image');
+            ?>
+                <section class="section-testimonials" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
+                    <div class="container">
+                        <div class="row">
+                            <h2 class="col-12 col-md-8 col-lg-7"><?php echo get_sub_field("testimonial_headline"); ?></h2>
                         </div>
-                        <?php endwhile; ?>
-                    </div>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_activities" ) // layout: Section Activities
-            {
-                $className = get_sub_field("section_activities_class");
-                $textAlignment = get_sub_field("section_activities_alignment");
-                $post_objects = get_sub_field("section_activities_container");
-                $layout = get_sub_field("section_experience_layouts");
-                if($layout == "OtherExperiences") {
-                ?>
-                <section class="section-cols section-cols-3 section-activities <?php echo $className . ' txt' . $textAlignment; ?>">
-                    <div class="cols container">
-                        <?php
-                          if( $post_objects ):
-                          foreach( $post_objects as $post_object):
-                            //setup_postdata($post);
-                            $image = get_field('activity_img', $post_object);
-                            $titile = get_field('activity_title', $post_object);
-                            $link = get_field('activity_link', $post_object);
-                            $colContent = get_field('activity_info', $post_object);
-                        ?>
-                        <div class="colItem inline">
-                            <a href="<?php echo $link; ?>"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive col--3" /></a>
-                            <p><a class="titlea" href="<?php echo $link; ?>"><?php echo $titile; ?></a></p>
-                            <?php echo $colContent; ?>
-                        </div>
-                        <?php endforeach; wp_reset_postdata(); endif; ?>
-                    </div>
-                </section>
-                <?php } elseif($layout == "Experiences") { ?>
-                <section class="section-cols section-cols-2 <?php echo $className . ' txt' . $textAlignment; ?>">
-                    <div class="cols container">
-                        <div class="container">
-                            <?php
-                              if( $post_objects ):
-                              foreach( $post_objects as $post_object):
-                                //setup_postdata($post);
-                                $image = get_field('activity_img', $post_object);
-                                $titile = get_field('activity_title', $post_object);
-                                $link = get_field('activity_outlink', $post_object);
-                            ?>
-                            <div class="colItem inline">
-                                <a href="<?php echo $link; ?>"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive col--3" /></a>
-                                <div class="tagline col-tagline"><h3>Experience</h3><h3 class="h2size"><?php echo $titile; ?></h3><p><a class="btn white-btn" href="<?php echo $link; ?>" target="_blank">Explore</a></p></div>
+                        <div class="row">
+                            <div class="col-10 col-lg-5 green-rectangle">
+                                <?php output_acf_img($image,'lazyImg touchLeft'); ?>
                             </div>
-                            <?php endforeach; wp_reset_postdata(); endif; ?>
+                            <div class="col-10 col-lg-7 white-bg">
+                                <?php
+                                  $post_objects = get_sub_field('testimonials');
+                                  if( $post_objects ):
+                                    foreach( $post_objects as $post):
+                                        $headline = get_field("testimonial_headline", $post);
+                                        $content = get_field("testimonial_content", $post);
+                                        $name = get_field("name", $post);
+                                        $title = get_field("title", $post);
+                                        $image = wp_get_attachment_image_src(get_field('personal_pic',$post), "medium");
+                                ?>
+                                    <div class="f32"><?php echo $headline; ?></div>
+                                    <div class="testi-content"><?php echo $content; ?></div>
+                                    <div class="testi-pic"><img src="<?php echo $image[0]; ?>" alt="person pic" width="50" height="50" class="img-responsive person-pic" /></div>
+                                    <div class="testi-person"><?php echo $name; ?></div>
+                                    <div class="testi-title"><?php echo $title; ?></div>
+                                <?php endforeach; endif; ?>
+                            </div>
                         </div>
                     </div>
-                </section>
-                <?php } else { ?>
-                <section class="section-cols section-cols-3 <?php echo $className . ' txt' . $textAlignment; ?>">
-                    <div class="cols container">
-                        <?php
-                          if( $post_objects ):
-                          foreach( $post_objects as $post_object):
-                            //setup_postdata($post);
-                            $image = get_field('activity_img', $post_object);
-                            $titile = get_field('activity_title', $post_object);
-                            $link = get_field('activity_outlink', $post_object);
-                            $social = get_field('social_info', $post_object);
-                        ?>
-                        <div class="colItem inline">
-                            <a href="<?php echo $link; ?>" <?php if($layout == "Instagram") { echo ' target="_blank"'; } ?>><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive col--3" /></a>
-                            <h3><?php echo $titile; ?> <span>|</span> <a href="<?php echo $link; ?>" target="_blank" rel="noopener"><?php echo $social; ?></a></h3>
-                        </div>
-                        <?php endforeach; wp_reset_postdata(); endif; ?>
-                    </div>
-                </section>
-                <?php } ?>
-            <?php }
-            elseif( get_row_layout() == "section_testimonials" ) // layout: Section Testimonials
-            { ?>
-                <section class="container section-testimonials">
-                    <div class="inner-container"><?php echo get_sub_field("section_testimonials_headline"); ?></div>
                     <div class="section-content bxslider">
                         <?php
                           while(has_sub_field('testimonials')):

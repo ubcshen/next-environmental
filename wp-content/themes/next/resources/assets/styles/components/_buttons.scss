@@ -6,8 +6,11 @@ a.button {
   line-height: 1;
   display: flex;
   &::after {
-    content: url(/wp-content/themes/next/resources/assets/images/btn_arrow_white.svg);
+    content: url(./images/btn_arrow_white.svg);
     height: 20px;
     padding-left: 15px;
+  }
+  &.cta-btn {
+    display: block;
   }
 }
