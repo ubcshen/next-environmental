@@ -618,6 +618,7 @@ i {
 
 .img-outof-container {
   margin-top: -8vw;
+  vertical-align: bottom;
 }
 
 .nav-tabs {
@@ -678,15 +679,18 @@ i {
   padding: 20px 20px 90px;
 }
 
-.white-font {
-  color: #fff;
-  h2, div, p, a {
-    color: inherit;
-  }
-}
-
 section {
   padding: 100px 0;
+  &.section-chat {
+    padding: 0;
+    padding-left: 140px;
+  }
+  &.section-home-header {
+    padding: 0;
+    /*height: 1080px;
+    width: 100%;
+    max-height: 1080px;*/
+  }
 }
 
 .white-bg {
@@ -699,5 +703,28 @@ section {
   vertical-align: bottom;
 }
 
+.carousel-control-prev, .carousel-control-next {
+  color: #00629b;
+  bottom: -80px;
+  right: 0;
+  top: unset;
+  left: unset;
+  opacity: 1;
+  width: 54px;
+  svg {
+    width: 54px;
+    height: 30px;
+  }
+}
 
+.carousel-control-prev {
+  right: 80px;
+}
+
+.white-font {
+  color: #fff;
+  * {
+    color: inherit;
+  }
+}
 

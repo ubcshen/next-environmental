@@ -1,8 +1,9 @@
 // import external dependencies
 import 'jquery';
 // Import everything from autoload
-import './autoload/**/*'
-
+import './autoload/**/*';
+import './autoload/jquery.countup.min.js';
+import './autoload/jquery.waypoints.min.js';
 // import local dependencies
 import Router from './util/Router';
 import common from './routes/common';

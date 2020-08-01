@@ -367,14 +367,14 @@ function build_sections()
             ?>
                 <section class="section-chat container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
                   <div class="row align-items-center d-flex justify-content-center">
-                    <div class="col-12 col-md-7 col-lg-6 section-chat-content">
+                    <div class="col-12 col-md-7 col-lg-5 section-chat-content">
                         <h3><?php echo get_sub_field("section_headerline"); ?></h3>
                         <?php echo get_sub_field("section_content"); ?>
                         <div class="section-chat-btn align-items-center d-flex justify-content-left">
                           <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                         </div>
                     </div>
-                    <div class="col-4 col-md-5 col-lg-6 ml-auto section-chat-image">
+                    <div class="col-4 col-md-5 col-lg-7 ml-auto section-chat-image">
                         <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
                     </div>
                   </div>
@@ -442,36 +442,6 @@ function build_sections()
                   </div>
                 </section>
             <?php }
-            elseif( get_row_layout() == "section_image_with_text" ) // layout: Section image with text
-            {
-                $imageAlignment = get_sub_field("image_alignment");
-                $textAlignement = ($imageAlignment == 'Left') ? "Right" : "Left";
-                $image = get_sub_field('section_image');
-                $video = get_sub_field('video_id');
-                $popup_video = get_sub_field('popup_video');
-                $cssImageClass = get_sub_field("section_class");
-                if(preg_match('/\bhasWaveBg\b/',$cssImageClass)) {
-                  load_Img(".hasWaveBg", "section_background_image");
-                }
-            ?>
-            <section class="<?php if(!preg_match('/\bhasWaveBg\b/',$cssImageClass)) { echo 'container'; } ?> section-image-with-text <?php echo $cssImageClass; ?>">
-                <div class="inner-container <?php if(preg_match('/\bhasVideo\b/',$cssImageClass)) { echo 'hasVideoClip'; } ?> <?php if(preg_match('/\bhasWaveBg\b/',$cssImageClass)) { echo 'container'; } ?>">
-                    <div class="content f<?php echo $textAlignement; ?>">
-                        <?php echo get_sub_field("section_content"); ?>
-                    </div>
-                    <?php if($image) { ?>
-                    <?php if(($popup_video && $video)) { ?><a href="https://www.youtube.com/embed/<?php echo $video; ?>?autohide=1&loop=1&autoplay=1&controls=0&showinfo=0&rel=0&mute=1" class="fancybox"><?php } ?><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive f<?php echo $imageAlignment; ?>" /><?php if(($popup_video && $video)) { ?></a><?php } ?>
-                    <?php } ?>
-                    <?php if($video && !$popup_video) { ?>
-                    <div class="f<?php echo $imageAlignment; ?>">
-                        <div class="videoWrapper">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video; ?>?autohide=1&loop=1&autoplay=1&controls=0&showinfo=0&rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <?php } ?>
-                </div>
-            </section>
-            <?php }
             elseif( get_row_layout() == "section_multi_images_with_content" ) // layout: Section Multi Images with content
             {
                 $imageAlignment = get_sub_field("section_alignment");
@@ -495,75 +465,6 @@ function build_sections()
                     </div>
                 </section>
             <?php }
-            elseif( get_row_layout() == "section_gallery" ) // layout: Section Gallery
-            { ?>
-                <section class="container section-gallery">
-                    <div class="grid">
-                        <div class="grid-sizer"></div>
-                        <?php $i = 1;
-                            while(has_sub_field('section_gallery_images')):
-                            $image = get_sub_field('section_gallery_image');
-                          ?>
-                            <figure>
-                                <a href="<?php echo $image['url']; ?>" class="fancyboxTitle" data-fancybox="images"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive grid-item <?php if($i==2||$i==8) { echo 'grid-item--width2'; } ?>" id="imgg<?php echo $i; ?>" /></a>
-                                <figcaption>
-                                    <?php echo get_sub_field("section_gallery_desc"); ?>
-                                </figcaption>
-                            </figure>
-                        <?php $i++; endwhile; ?>
-                    </div>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_banner" ) // layout: Section Banner
-            { ?>
-                <section class="section-banner">
-                    <div class="bxslider">
-                      <?php
-                        while(has_sub_field('section_banner_slider')):
-                          $image = get_sub_field('section_banner_slider_image');
-                      ?>
-                          <div class="slider-content">
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive" size="" />
-                            <div class="section-banner-content">
-                                <?php echo get_sub_field("section_banner_slider_content"); ?>
-                            </div>
-                          </div>
-                          <?php endwhile; ?>
-                    </div>
-                    <?php if(get_sub_field("section_banner_search_bar")) { ?>
-                    <div class="section-banner-search">
-                      <?php echo get_sub_field("section_banner_search_bar"); ?>
-                    </div>
-                    <?php } ?>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_image_slider" ) // layout: Section Image Slider
-            { ?>
-                <section class="section-image-slider">
-                    <?php echo get_sub_field('section_image_slider_info'); ?>
-                    <div class="customize-bxslidercontainer ">
-                        <?php if(!$detect->isMobile()) { ?>
-                        <div class="slider-control container ">
-                            <?php $i = 0; while(has_sub_field('section_image_slider_content')): $logo = get_sub_field('slider_icon'); $iconName = get_sub_field('slider_icon_title');  ?>
-                            <a data-slide-index="<?php echo $i; ?>" class="section-slider-control">
-                            <div class="section-tab-content-icon"><?php echo $logo; ?><?php echo $iconName; ?></div></a>
-                            <?php $i++; endwhile; ?>
-                        </div>
-                        <?php } ?>
-                        <div class="img-slider">
-                            <?php
-                            while(has_sub_field('section_image_slider_content')):
-                              $image = get_sub_field('slider_image');
-                              $sliderInfo = get_sub_field('slider_content');
-                            ?>
-                            <div class="section-imag-content" style="background:url(<?php echo $image['url']; ?>); background-repeat: no-repeat;background-size: cover;background-position: center center;">
-                              <div class="section-banner-content"><?php echo $sliderInfo; ?></div>
-                            </div>
-                            <?php endwhile; ?>
-                        </div>
-                    </div>
-                </section>
-            <?php }
             elseif( get_row_layout() == "headline_section" ) // layout: Headline Section
             {
                 $titleWidth = get_sub_field("headline_width");
@@ -582,6 +483,153 @@ function build_sections()
                                     output_acf_img($image,'lazyImg');
                                 endif;
                             ?>
+                        </div>
+                    </div>
+                </section>
+            <?php }
+            elseif( get_row_layout() == "home_page_banner" ) // layout: Home Page Banner
+            {
+                $link = get_sub_field("button");
+                if( $link ):
+                    $link_url = $link['url'];
+                    $link_title = $link['title'];
+                    $link_target = $link['target'] ? $link['target'] : '_self';
+                endif
+            ?>
+                <section class="section-home-header">
+                    <div id="carouselHomeIndicators" class="carousel slide h-100" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        <?php
+                            while(has_sub_field('images')):
+                        ?>
+                            <li data-target="#carouselHomeIndicators" data-slide-to="<?php echo get_row_index()-1; ?>"></li>
+                        <?php endwhile; ?>
+                        </ol>
+                        <div class="carousel-inner">
+                            <?php
+                                while(has_sub_field('images')):
+                                    $image = get_sub_field('image');
+                            ?>
+                                <div class="carousel-item <?php if(get_row_index()===1) echo 'active'; ?>">
+                                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="full-width"  />
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                        <div class="container w-100">
+                            <div class="carousel-content">
+                                <div class="row">
+                                    <div class="col-12 col-md-8 white-font my-auto">
+                                        <h1><?php echo get_sub_field("headline"); ?></h1>
+                                        <h5><?php echo get_sub_field("headline"); ?>content</h5>
+                                        <a class="button d-inline-block" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselHomeIndicators" role="button" data-slide="prev">
+                            <span class="prev-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="54.179" height="30.12" viewBox="0 0 54.179 30.12"><path d="M21.157,24.968A1.8,1.8,0,0,1,22.284,28.1l-11.005,10.1H57.121c.063,0,.125,0,.188,0a1.805,1.805,0,0,1-.188,3.606H11.279L22.284,51.9a1.8,1.8,0,1,1-2.441,2.648L5.419,41.325a1.8,1.8,0,0,1,0-2.648L19.842,25.456a1.8,1.8,0,0,1,1.315-.488Z" transform="translate(-4.84 -24.966)" /></svg></span>
+                            <span class="sr-only"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselHomeIndicatorss" role="button" data-slide="next">
+                            <span class="next-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="54.18" height="30.12" viewBox="0 0 54.18 30.12"><g transform="translate(-4.84 -977.328)"><path d="M42.7,24.968A1.8,1.8,0,0,0,41.576,28.1l11.005,10.1H6.739c-.063,0-.125,0-.188,0a1.805,1.805,0,1,0,.188,3.606H52.581L41.576,51.9a1.8,1.8,0,1,0,2.441,2.648L58.441,41.325a1.8,1.8,0,0,0,0-2.648L44.018,25.456a1.8,1.8,0,0,0-1.315-.488Z" transform="translate(0 952.362)" /></g></svg></span>
+                            <span class="sr-only"></span>
+                        </a>
+                    </div>
+                </section>
+            <?php }
+            elseif( get_row_layout() == "financial" ) // layout: Financial
+            {
+                $image = get_sub_field("section_pic");
+                $borderBottom = get_sub_field("bottom_border");
+            ?>
+                <section class="section-financial" id="section-financial">
+                    <div class="container">
+                        <div class="row financial-container">
+                            <div class="col-10 col-lg-4 blue-rectangle">
+                                <?php output_acf_img($image,'lazyImg touchLeftsm'); ?>
+                            </div>
+                            <div class="col-10 col-lg-4 cover">
+                                <?php output_acf_img($image,'lazyImg touchLeftsm'); ?>
+                            </div>
+                            <div class="col-12 col-md-7 col-lg-6 offset-lg-1 d-flex align-items-end section-financial-content">
+                                <div class="financial-content">
+                                    <div class="subline"><?php echo get_sub_field("subheadline"); ?></div>
+                                    <h3><?php echo get_sub_field("headline"); ?></h3>
+                                    <?php echo get_sub_field("content"); ?>
+                                    <div class="row">
+                                        <?php
+                                            while(has_sub_field('financial_numbers')):
+                                        ?>
+                                          <div class="col-4">
+                                              <div class="number-info">
+                                                <span class="f32 counter"><?php echo get_sub_field("number"); ?></span>
+                                                <?php if(get_sub_field("number_additional_info")) { ?><span class="f32"><?php echo get_sub_field("number_additional_info"); ?></span><?php } ?>
+                                              </div>
+                                              <?php echo get_sub_field("number_content"); ?>
+                                          </div>
+                                        <?php endwhile; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if($borderBottom): ?>
+                        <hr class="container" />
+                    <?php endif; ?>
+                </section>
+            <?php }
+            elseif( get_row_layout() == "casestudies_gallery" ) // layout: CaseStudies Gallery
+            {
+                $link = get_sub_field("section_button");
+                if( $link ):
+                    $link_url = $link['url'];
+                    $link_title = $link['title'];
+                    $link_target = $link['target'] ? $link['target'] : '_self';
+                endif
+            ?>
+                <section class="section-casestudies-gallery">
+                    <div class="container">
+                        <div class="row">
+                            <h2 class="col-12 col-md-5"><?php echo get_sub_field("section_headerline"); ?></h2>
+                            <div class="col-12 col-md-5 offset-md-2">
+                                <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                            </div>
+                        </div>
+                        <div class="row gallery">
+                            <div class="gallery-item-col col-7">
+                                <?php
+                                  while(has_sub_field('gallery')):
+                                    $image = get_sub_field("case_study_pic");
+                                    $location = get_sub_field("case_study_location");
+                                ?>
+                                <?php if(get_row_index()===1) { ?>
+                                    <div class="gallery-item h-100">
+                                        <?php output_acf_img($image,'lazyImg'); ?>
+                                        <div class="gallery-content">
+                                            <h5><?php echo get_sub_field("case_study_title"); ?></h5>
+                                            <?php if($location): ?><?php echo $location; ?><?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <?php endwhile; ?>
+                            </div>
+                            <div class="gallery-item-col col-4">
+                                <?php
+                                  while(has_sub_field('gallery')):
+                                    $image = get_sub_field("case_study_pic");
+                                    $location = get_sub_field("case_study_location");
+                                ?>
+                                <?php if(get_row_index() > 1) { ?>
+                                    <div class="gallery-item gallery-item-<?php echo get_row_index(); ?> h-50 <?php if(get_row_index() === 2) { echo 'pb-3'; } elseif(get_row_index() === 3) { echo 'pt-3'; } ?>">
+                                        <?php output_acf_img($image,'lazyImg'); ?>
+                                        <div class="gallery-content">
+                                            <h5><?php echo get_sub_field("case_study_title"); ?></h5>
+                                            <?php if($location): ?><?php echo $location; ?><?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <?php endwhile; ?>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -773,9 +821,18 @@ function build_sections()
                 $bgImage = get_sub_field("image_for_col_background");
                 $numberofCols = get_sub_field("number_of_cols_per_row");
                 $borderBottom = get_sub_field("bottom_border");
+                $bgcPosition = get_sub_field("section_background_color_position");
+                $colClassNames = get_sub_field("cols_section_custom_class_names");
+                $link = get_sub_field("button_after_col_section");
+                $isInside = get_sub_field("col_info_inside");
+                if( $link ):
+                    $link_url = $link['url'];
+                    $link_title = $link['title'];
+                    $link_target = $link['target'] ? $link['target'] : '_self';
+                endif
                 ?>
-                <section class="section-cols <?php echo $className; ?>" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
-                    <?php if($sectionWidth==='withincontainer'): ?><div class="container"><?php endif; ?>
+                <section class="section-cols <?php echo $className; ?>" style="<?php if($bgColor && $bgcPosition === 'Full') echo 'background-color:' . $bgColor .' '; ?>">
+                    <?php if($sectionWidth==='withincontainer'): ?><div class="container col-head-section"><?php endif; ?>
                       <div class="text-center">
                           <h2 class="text-center"><?php echo get_sub_field("section_headerline"); ?></h2>
                           <div class="row justify-content-center d-flex">
@@ -784,27 +841,58 @@ function build_sections()
                                   <?php echo get_sub_field("section_content"); ?>
                               </div>
                           </div>
-                          <div class="row cols" <?php if($bgImage) echo 'style="background-image:url(' . $bgImage . '); background-position: center center;background-repeat: no-repeat;background-size: cover;"' ?>>
+                      </div>
+                    <?php if($sectionWidth==='withincontainer'): ?></div><?php endif; ?>
+                    <?php if($sectionWidth==='withincontainer'): ?><div class="cols-section" style="<?php if($bgColor && $bgcPosition === 'Middle') echo 'background-color:' . $bgColor .' '; ?>"><div class="container"><?php endif; ?>
+                          <div class="row cols <?php echo $colClassNames; ?>" <?php if($bgImage) echo 'style="background-image:url(' . $bgImage . '); background-position: center center;background-repeat: no-repeat;background-size: cover;"' ?>>
                                 <?php
                                   while(has_sub_field('cols')):
                                     $image = get_sub_field('col_image');
                                     $icon = get_sub_field('col_icon_svg');
                                     $colContent = get_sub_field('col_content');
                                 ?>
-                                <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?>">
-                                    <?php if($icon) { ?>
-                                        <div class="row">
-                                            <div class="col-12 col-lg-1 col-svg">
-                                                <?php output_inline_svg_file($icon); ?>
-                                            </div>
-                                            <div class="text-left col-12 col-lg-11 pl-0 pl-lg-4"><?php echo $colContent; ?></div>
+                                <?php if(!$isInside) { ?>
+                                    <?php if(!is_page("contact")) { print_r("sds: " . $numberofCols); ?>
+                                        <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?>">
+                                            <?php if($icon) { ?>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-1 col-svg">
+                                                        <?php output_inline_svg_file($icon); ?>
+                                                    </div>
+                                                    <div class="text-left col-12 col-lg-11 pl-0 pl-lg-4"><?php echo $colContent; ?></div>
+                                                </div>
+                                            <?php } else { ?>
+                                                <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
+                                                <small class="f16 d-block">0<?php echo get_row_index(); ?></small>
+                                                <h4><?php echo get_sub_field("col_title"); ?></h4>
+                                                <div class="text-left"><?php echo $colContent; ?></div>
+                                            <?php } ?>
                                         </div>
-                                    <?php } else { ?>
-                                        <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
-                                        <div class="text-left"><?php echo $colContent; ?></div>
+                                    <?php } elseif(is_page("contact")&&$numberofCols==4) { ?>
+                                        <div class="col-3 item-<?php echo get_row_index(); ?> location-office col4 <?php if((get_row_index()-1)%2==0) echo 'ontop'; elseif((get_row_index()-1)%2 === 1) echo 'oncenter'; ?>">
+                                            <div class="col4-container"><?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
+                                                <div class="office-location">
+                                                    <h2><?php echo get_sub_field("col_title"); ?></h2>
+                                                </div>
+                                            </div>
+                                            <div class="address"><?php echo $colContent; ?></div>
+                                        </div>
                                     <?php } ?>
-                                </div>
+                                <?php } else { ?>
+                                    <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> location-office">
+                                        <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
+                                        <div class="office-location">
+                                            <h2><?php echo get_sub_field("col_title"); ?></h2>
+                                            <div class="address"><?php echo $colContent; ?></div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                                 <?php endwhile; ?>
+                                <?php if($link) { ?>
+                                    <div class="row m-auto">
+                                      <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                    </div>
+                                <?php } ?>
                           </div>
                       </div>
                       <?php if($borderBottom): ?>
@@ -817,20 +905,26 @@ function build_sections()
             {
                 $bgColor = get_sub_field("testimonial_background_color");
                 $image = get_sub_field('testimonial_image');
+                $className = get_sub_field("custom_class_names");
             ?>
-                <section class="section-testimonials" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
+                <section class="section-testimonials <?php echo $className; ?>" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
                     <div class="container">
                         <div class="row">
                             <h2 class="col-12 col-md-8 col-lg-7"><?php echo get_sub_field("testimonial_headline"); ?></h2>
                         </div>
-                        <div class="row">
+                        <div class="row testimonials-container">
                             <div class="col-10 col-lg-5 green-rectangle">
                                 <?php output_acf_img($image,'lazyImg touchLeft'); ?>
                             </div>
-                            <div class="col-10 col-lg-7 white-bg">
+                            <div class="col-10 col-lg-5 cover">
+                                <?php output_acf_img($image,'lazyImg touchLeft'); ?>
+                            </div>
+                            <div class="white-bg">
+                                <div id="testimonialsControls" class="carousel slide" data-ride="carousel">
+                                      <div class="carousel-inner">
                                 <?php
                                   $post_objects = get_sub_field('testimonials');
-                                  if( $post_objects ):
+                                  if( $post_objects ): $i = 0;
                                     foreach( $post_objects as $post):
                                         $headline = get_field("testimonial_headline", $post);
                                         $content = get_field("testimonial_content", $post);
@@ -838,42 +932,26 @@ function build_sections()
                                         $title = get_field("title", $post);
                                         $image = wp_get_attachment_image_src(get_field('personal_pic',$post), "medium");
                                 ?>
-                                    <div class="f32"><?php echo $headline; ?></div>
-                                    <div class="testi-content"><?php echo $content; ?></div>
-                                    <div class="testi-pic"><img src="<?php echo $image[0]; ?>" alt="person pic" width="50" height="50" class="img-responsive person-pic" /></div>
-                                    <div class="testi-person"><?php echo $name; ?></div>
-                                    <div class="testi-title"><?php echo $title; ?></div>
-                                <?php endforeach; endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section-content bxslider">
-                        <?php
-                          while(has_sub_field('testimonials')):
-                            $image = get_sub_field('testimonial_image');
-                            $link = get_sub_field('testimonial_company_link');
-                        ?>
-                        <div class="testimonial">
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive testimonial-image" />
-                            <div class="item-content hasBg">
-                                <p class="oib-member <?php if(!get_sub_field("oib_member_info")) { echo 'tran'; } ?>"><?php if(get_sub_field("oib_member_info")) { ?><?php echo get_sub_field("oib_member_info"); ?><?php } else { echo '&nbsp;'; } ?></p>
-                                <div class="hasBg-content hasBg-content<?php echo $i; ?>">
-                                    <div class="hasBg-content-padding">
-                                        <p class="testimonial-content"><?php echo get_sub_field("testimonial"); ?></p>
-                                        <p class="testimonial-author"><?php echo get_sub_field("testimonial_author_info"); ?></p>
-                                        <p class="testimonial-author">
-                                            <?php
-                                                echo get_sub_field("testimonial_company");
-                                                if($link) {
-                                                    echo "<span> | </span><a href='http://" . get_sub_field("testimonial_company_link") . "' target='_blank'>" . get_sub_field("testimonial_company_link") . "</a>";
-                                                }
-                                            ?>
-                                        </p>
-                                    </div>
+                                        <div class="carousel-item <?php if($i==0) echo 'active'; ?> pl-0 pl-lg-5">
+                                            <div class="f32"><?php echo $headline; ?></div>
+                                            <div class="testi-content"><?php echo $content; ?></div>
+                                            <div class="testi-pic"><img src="<?php echo $image[0]; ?>" alt="person pic" width="50" height="50" class="img-responsive person-pic" /></div>
+                                            <div class="testi-person"><?php echo $name; ?></div>
+                                            <div class="testi-title"><?php echo $title; ?></div>
+                                        </div>
+                                      <?php $i++; endforeach; endif; ?>
+                                      </div>
                                 </div>
+                                <a class="carousel-control-prev" href="#testimonialsControls" role="button" data-slide="prev">
+                                    <span class="prev-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="54.179" height="30.12" viewBox="0 0 54.179 30.12"><path d="M21.157,24.968A1.8,1.8,0,0,1,22.284,28.1l-11.005,10.1H57.121c.063,0,.125,0,.188,0a1.805,1.805,0,0,1-.188,3.606H11.279L22.284,51.9a1.8,1.8,0,1,1-2.441,2.648L5.419,41.325a1.8,1.8,0,0,1,0-2.648L19.842,25.456a1.8,1.8,0,0,1,1.315-.488Z" transform="translate(-4.84 -24.966)" fill="#00629b"/></svg></span>
+                                    <span class="sr-only"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#testimonialsControls" role="button" data-slide="next">
+                                    <span class="next-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="54.18" height="30.12" viewBox="0 0 54.18 30.12"><g transform="translate(-4.84 -977.328)"><path d="M42.7,24.968A1.8,1.8,0,0,0,41.576,28.1l11.005,10.1H6.739c-.063,0-.125,0-.188,0a1.805,1.805,0,1,0,.188,3.606H52.581L41.576,51.9a1.8,1.8,0,1,0,2.441,2.648L58.441,41.325a1.8,1.8,0,0,0,0-2.648L44.018,25.456a1.8,1.8,0,0,0-1.315-.488Z" transform="translate(0 952.362)" fill="#00629b"/></g></svg></span>
+                                    <span class="sr-only"></span>
+                                </a>
                             </div>
                         </div>
-                        <?php endwhile; ?>
                     </div>
                 </section>
             <?php }
@@ -1086,14 +1164,14 @@ function build_post_sections()
             ?>
                 <section class="section-chat container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
                   <div class="row align-items-center d-flex justify-content-center">
-                    <div class="col-12 col-md-7 col-lg-6 section-chat-content">
+                    <div class="col-12 col-md-7 col-lg-5 section-chat-content">
                         <h3><?php echo get_sub_field("section_headerline"); ?></h3>
                         <?php echo get_sub_field("section_content"); ?>
                         <div class="section-chat-btn align-items-center d-flex">
                           <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                         </div>
                     </div>
-                    <div class="col-4 col-md-5 col-lg-6 ml-auto section-chat-image">
+                    <div class="col-4 col-md-5 col-lg-7 ml-auto section-chat-image">
                         <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
                     </div>
                   </div>
@@ -1164,36 +1242,6 @@ function build_post_sections()
                     </div>
                   </div>
                 </section>
-            <?php }
-            elseif( get_row_layout() == "section_image_with_text" ) // layout: Section image with text
-            {
-                $imageAlignment = get_sub_field("image_alignment");
-                $textAlignement = ($imageAlignment == 'Left') ? "Right" : "Left";
-                $image = get_sub_field('section_image');
-                $video = get_sub_field('video_id');
-                $popup_video = get_sub_field('popup_video');
-                $cssImageClass = get_sub_field("section_class");
-                if(preg_match('/\bhasWaveBg\b/',$cssImageClass)) {
-                  load_Img(".hasWaveBg", "section_background_image");
-                }
-            ?>
-            <section class="<?php if(!preg_match('/\bhasWaveBg\b/',$cssImageClass)) { echo 'container'; } ?> section-image-with-text <?php echo $cssImageClass; ?>">
-                <div class="inner-container <?php if(preg_match('/\bhasVideo\b/',$cssImageClass)) { echo 'hasVideoClip'; } ?> <?php if(preg_match('/\bhasWaveBg\b/',$cssImageClass)) { echo 'container'; } ?>">
-                    <div class="content f<?php echo $textAlignement; ?>">
-                        <?php echo get_sub_field("section_content"); ?>
-                    </div>
-                    <?php if($image) { ?>
-                    <?php if(($popup_video && $video)) { ?><a href="https://www.youtube.com/embed/<?php echo $video; ?>?autohide=1&loop=1&autoplay=1&controls=0&showinfo=0&rel=0&mute=1" class="fancybox"><?php } ?><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive f<?php echo $imageAlignment; ?>" /><?php if(($popup_video && $video)) { ?></a><?php } ?>
-                    <?php } ?>
-                    <?php if($video && !$popup_video) { ?>
-                    <div class="f<?php echo $imageAlignment; ?>">
-                        <div class="videoWrapper">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video; ?>?autohide=1&loop=1&autoplay=1&controls=0&showinfo=0&rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <?php } ?>
-                </div>
-            </section>
             <?php }
             elseif( get_row_layout() == "section_multi_images_with_content" ) // layout: Section Multi Images with content
             {

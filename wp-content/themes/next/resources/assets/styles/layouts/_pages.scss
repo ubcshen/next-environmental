@@ -20,7 +20,7 @@
     margin-top: 20px;
   }
   .section-chat-content {
-    padding: 100px 0;
+    padding: 50px 0;
   }
   .section-chat-image {
     margin-right: -15px;
@@ -187,26 +187,113 @@
     height: auto;
   }
   &.large-bottom {
-    padding-bottom: 25vw;
+    padding-bottom: 35vw;
     hr {
       border-top: 2px solid rgba(0, 147, 178, 0.2);
+    }
+  }
+  &.largeColMarginBottom {
+    padding-bottom: 20vw;
+    hr {
+      border-top: 2px solid rgba(0, 147, 178, 0.2);
+      margin-top: 100px;
+    }
+  }
+  .cols-section {
+    position: relative;
+  }
+  .location-office {
+    position: relative;
+    img {
+      width: 100%;
+    }
+    .office-location {
+      position: absolute;
+      width: 100%;
+      bottom: 30px;
+      left: 30px;
+      color: #fff;
+      * {
+        color: inherit;
+      }
+      h2 {
+        transform: rotate(-90deg);
+        position: absolute;
+        transform-origin: 0 0;
+        left: 0;
+        position: absolute;
+      }
+      .address {
+        padding-left: 10px;
+        position: absolute;
+        left: 50px;
+        bottom: -30px;
+      }
+    }
+    &.col4 {
+      .col4-container {
+        position: relative;
+      }
+      .office-location {
+        left: 10px;
+        h2 {
+          transform: rotate(-90deg);
+          position: absolute;
+          transform-origin: 0 0;
+          left: 0;
+          position: absolute;
+        }
+      }
     }
   }
 }
 
 .section-testimonials {
+  margin-top: -30vw;
+  &.largeColMarginTop {
+    margin-top: -50vw;
+    padding-top: 40vw;
+  }
+  h2 {
+    color: #fff;
+  }
+  .testimonials-container {
+    position: relative;
+  }
   .green-rectangle {
     background-color: $emeraldgreen;
     width: 100%;
     height: 100%;
   }
+  .touchLeft {
+    min-width: 150%;
+    vertical-align: bottom;
+  }
+  .cover {
+    position: absolute;
+    left: 0;
+    z-index: 11;
+  }
   .white-bg {
     padding: 60px 40px;
+    margin: 50px 0 80px;
+    position: absolute;
+    right: 0;
+    width: 65%;
+    z-index: 10;
+    box-shadow: 0px 3px 76px 0px rgba(0,0,0,0.76);
     &::before {
       content: url(./images/quote.svg);
       width: 82px;
       height: auto;
       fill: rgba(18,18,18,0.05);
+      position: absolute;
+    }
+    .carousel {
+      margin-top: 20px;
+    }
+    .f32 {
+      font-weight: 700;
     }
     .testi-pic {
       img {
@@ -215,6 +302,108 @@
         border-radius: 50%;
       }
     }
+    .testi-content {
+      font-style: italic;
+    }
   }
 }
+
+.section-casestudies-gallery {
+  .gallery-item {
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .gallery-content {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      color: #fff;
+      * {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.section-financial {
+  .financial-container {
+    position: relative;
+  }
+  .blue-rectangle {
+    background-color: $skies;
+    width: 100%;
+    height: 100%;
+  }
+  .touchLeftsm {
+    min-width: 150%;
+    margin-left: -30%;
+    vertical-align: bottom;
+  }
+  .cover {
+    position: absolute;
+    left: 0;
+    z-index: 11;
+  }
+  .f32 {
+    font-weight: 700;
+  }
+}
+
+.section-home-header {
+  .carousel {
+    position: relative;
+    .carousel-control-prev, .carousel-control-next {
+      color: #00629b;
+      bottom: -80px;
+      right: 0;
+      top: unset;
+      left: unset;
+      opacity: 1;
+      width: 54px;
+      svg {
+        width: 54px;
+        height: 30px;
+        fill: rgba(255,255,255,0.5);
+      }
+    }
+    .carousel-control-prev {
+      top: 50%;
+      right: unset;
+      left: 5%;
+      bottom: unset;
+    }
+    .carousel-control-next {
+      top: 50%;
+      right: 5%;
+      bottom: unset;
+    }
+  }
+  .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: unset;
+    li {
+      width: 16px;
+      height: 6px;
+      border-radius: 3px;
+      box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+      margin-right: 8px;
+      margin-left: 8px;
+      border: 0;
+    }
+  }
+  .carousel-content {
+    position: absolute;
+    top: 50%;
+    margin-top: -128px;
+  }
+}
+
+
+
+
+
 
