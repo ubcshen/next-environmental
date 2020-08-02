@@ -64,18 +64,18 @@ if( !defined('NEXT_PAGE_PATH') ){
 }
 require_once NEXT_PAGE_PATH . 'Mobile-Detect/Mobile_Detect.php';
 
-/*if( function_exists('acf_add_options_page') ) {
+if( function_exists('acf_add_options_page') ) {
   // add parent
   $parent = acf_add_options_page(array(
-    'page_title'  => 'N’kmip Campground Settings',
-    'menu_title'  => 'N’kmip Campground Settings',
+    'page_title'  => 'Next Environmental Inc Settings',
+    'menu_title'  => 'Site Settings',
     'redirect'    => false
   ));
 
   acf_add_options_sub_page(array(
-    'page_title'  => 'Footer CopyRight',
-    'menu_title'  => 'Footer CopyRight',
-    'menu_slug'   => 'footer-copyright',
+    'page_title'  => 'Footer Setting',
+    'menu_title'  => 'Footer Setting',
+    'menu_slug'   => 'footer-setting',
     'parent_slug'   => $parent['menu_slug'],
     'capability'  => 'activate_plugins',
     'redirect'    => false
@@ -84,12 +84,12 @@ require_once NEXT_PAGE_PATH . 'Mobile-Detect/Mobile_Detect.php';
   acf_add_options_sub_page(array(
     'page_title'  => 'Header Setting',
     'menu_title'  => 'Header Setting',
-    'menu_slug'   => 'header_setting',
+    'menu_slug'   => 'header-setting',
     'parent_slug'   => $parent['menu_slug'],
     'capability'  => 'activate_plugins',
     'redirect'    => false
   ));
-}*/
+}
 
 if ( function_exists( 'add_theme_support' ) ) {
   add_theme_support( 'post-thumbnails' );
