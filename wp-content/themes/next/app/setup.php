@@ -48,7 +48,8 @@ add_action('after_setup_theme', function () {
         'footerlink1' => __('footerlink1', 'sage'),
         'footerlink2' => __('footerlink2', 'sage'),
         'topmenu2' => __('topmenu2', 'sage'),
-        'contact' => __('contact', 'sage')
+        'contact' => __('contact', 'sage'),
+        'additional' => __('additional', 'sage')
     ]);
 
     /**

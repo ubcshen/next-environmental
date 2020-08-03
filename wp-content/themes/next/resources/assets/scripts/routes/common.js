@@ -4,6 +4,11 @@ export default {
     $('.lazyImg').unveil(); 
     $('.hamburger').on('click', function () {
       $(this).toggleClass('open');
+      //$(window).trigger('scroll');
+      //$('.casestudy-image').trigger('unveil');
+      setTimeout(function () {
+      $('.casestudy-image').unveil(200);
+      }, 0);
     });
   },
   finalize() {

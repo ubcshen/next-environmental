@@ -852,7 +852,7 @@ function build_sections()
                                     $colContent = get_sub_field('col_content');
                                 ?>
                                 <?php if(!$isInside) { ?>
-                                    <?php if(!is_page("contact")) { print_r("sds: " . $numberofCols); ?>
+                                    <?php if(!is_page("contact")) { ?>
                                         <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?>">
                                             <?php if($icon) { ?>
                                                 <div class="row">

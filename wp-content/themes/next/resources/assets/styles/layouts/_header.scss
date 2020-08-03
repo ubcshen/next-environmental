@@ -25,8 +25,8 @@
     fill: #00629b;
   }
   .hamburger {
-    width: 24px;
-    height: 22px;
+    width: 30px;
+    height: 20px;
     position: relative;
     margin: 0px;
     transform: rotate(0deg);
@@ -44,16 +44,18 @@
       transition: .25s ease-in-out;
       background: #231f20;
       &:nth-child(1) {
-        top: 0px;
+        top: 0;
         transform-origin: left center;
       }
       &:nth-child(2) {
-        top: 11px;
+        top: 10px;
         transform-origin: left center;
+        width: 80%;
       }
       &:nth-child(3) {
-        top: 22px;
+        top: 20px;
         transform-origin: left center;
+        width: 60%;
       }
     }
     &.open span {
@@ -68,7 +70,8 @@
       }
       &:nth-child(3) {
         transform: rotate(-45deg);
-        top: 22px;
+        top: 21px;
+        width: 100%;
         left: 8px;
       }
     }
