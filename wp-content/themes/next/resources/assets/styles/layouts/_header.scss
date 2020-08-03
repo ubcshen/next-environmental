@@ -104,4 +104,22 @@
   .menu-topmenutwo-container {
     display: flex;
   }
+  #menu-additional-menu li {
+    margin-left: auto;
+  }
+}
+
+.is-hidden {
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.2s;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: #fff;
+  box-shadow: 0px 3px 76px 0px rgba(0,0,0,0.08);
 }

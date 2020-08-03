@@ -7,7 +7,7 @@
         @if (has_nav_menu('topmenu2'))
           {!! wp_nav_menu(['theme_location' => 'topmenu2', 'menu_class' => 'nav nav-small ml-auto']) !!}
         @endif
-        <hr>
+        <hr class="hide-scroll">
         <div class="row">
           <div class="col">
             @if (has_nav_menu('primary_navigation'))
@@ -22,28 +22,30 @@
     </div>
   </div>
   <div class="container additional-nav navbar-collapse collapse" id="navbarAdditionalContent">
-    <div clas="row">
+    <div class="row justify-content-end">
       <div class="col">
-        <?php
-          $post_objects = get_field('header_case_study_selector', 'option');
-          if( $post_objects ): 
-            foreach( $post_objects as $post):
-                $headline = get_field("headline", $post);
-                $content = get_field("brief", $post);
-                $image = get_field('image_for_case_study',$post);
-        ?>
-                <div class="casestudy-container pl-0 pl-lg-5">
-                    <?php output_acf_img($image,'casestudy-image'); ?>
-                    <h5><?php echo $headline; ?></h5>
-                    <div class="casestudy-content"><?php echo $content; ?></div>
-                </div>
-        <?php $i++; endforeach; endif; ?>
+        <div class="row px-0">
+          <?php
+            $post_objects = get_field('header_case_study_selector', 'option');
+            if( $post_objects ): 
+              foreach( $post_objects as $post):
+                  $headline = get_field("headline", $post);
+                  $content = get_field("brief", $post);
+                  $image = get_field('image_for_case_study',$post);
+          ?>
+                  <div class="casestudy-container col-6">
+                      <?php output_acf_img($image,'casestudy-image'); ?>
+                      <h5><?php echo $headline; ?></h5>
+                      <div class="casestudy-content"><?php echo $content; ?></div>
+                  </div>
+          <?php $i++; endforeach; endif; ?>
         </div>
-      </div>
-      <div class="col-auto">
-        @if (has_nav_menu('aditional'))
-          {!! wp_nav_menu(['theme_location' => 'aditional', 'menu_class' => 'nav']) !!}
-        @endif
+        </div>
+        <div class="col-auto">
+          @if (has_nav_menu('additional'))
+            {!! wp_nav_menu(['theme_location' => 'additional', 'menu_class' => 'nav flex-column']) !!}
+          @endif
+        </div>
       </div>
     </div>
   </div>
