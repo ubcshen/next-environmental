@@ -10,6 +10,7 @@ export default {
       } else if (currentScroll >= 100 && currentScroll < $(document).height() - $(window).height()) {
         if (currentScroll > previousScroll) {
           hideNav();
+          $('.hamburger').toggleClass('open');
         } else {
           showNav();
         }

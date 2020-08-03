@@ -14,7 +14,7 @@
               {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav']) !!}
             @endif
           </div>
-          <div class="col-auto">
+          <div class="col-auto d-flex align-items-center justify-content-center">
             <div class="hamburger" data-toggle="collapse" data-target="#navbarAdditionalContent"><span></span><span></span><span></span></div>
           </div>
         </div>
@@ -22,6 +22,9 @@
     </div>
   </div>
   <div class="container additional-nav navbar-collapse collapse" id="navbarAdditionalContent">
+    <div class="row">
+      <div class="w20 col-auto additional-nav-title">CASE STUDIES</div>
+    </div>
     <div class="row justify-content-end">
       <div class="col">
         <div class="row px-0">

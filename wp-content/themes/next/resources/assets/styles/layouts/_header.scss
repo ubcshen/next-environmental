@@ -24,6 +24,12 @@
   .brand {
     fill: #00629b;
   }
+  .w20 {
+    font-family: $nav-font;
+    font-weight: 500;
+    @include font-size-sass(20px);
+    color: rgba(35,31,32,0.5);
+  }
   .hamburger {
     width: 30px;
     height: 20px;
@@ -79,6 +85,7 @@
   li.button {
     text-decoration: none;
     border: 2px solid #231f20;
+    margin-left: 1rem;
     a:hover::after {
       position: inherit;
       left: unset;
@@ -103,9 +110,24 @@
   }
   .menu-topmenutwo-container {
     display: flex;
+    li a {
+      padding-top: 0;
+    }
   }
   #menu-additional-menu li {
     margin-left: auto;
+  }
+  #menu-top-menu li {
+    margin-right: 1rem;
+  }
+  .additional-nav {
+    padding: 50px 0 60px;
+    .additional-nav-title {
+      padding-bottom: 25px;
+    }
+    .casestudy-image {
+      padding-bottom: 40px;
+    }
   }
 }
 
