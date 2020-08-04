@@ -15,6 +15,7 @@
           </aside>
         @endif
       </div>
+      <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true"></a>
     </div>
     @php do_action('get_footer') @endphp
     @include('partials.footer')

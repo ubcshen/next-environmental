@@ -1,5 +1,6 @@
 .post-header {
-  height: 670px;
+  // height: 670px;
+  padding-bottom: 150px;
   .header-content {
     color: #fff;
     max-width: 540px;
@@ -13,8 +14,8 @@
       content: "\2190";
       padding-right: 12px;
     }
-    padding-top: 40px;
-    padding-bottom: 130px;
+    padding-top: 0;
+    padding-bottom: 100px;
   }
 }
 
@@ -36,7 +37,8 @@
 }
 
 .section-icon {
-  margin-top: -6vw;
+  margin-top: -10vw;
+  padding-bottom: 0;
   .icon-line::before {
     content: '';
     width: 0;
@@ -58,7 +60,7 @@
 }
 
 .section-details {
-  margin-top: 10vw;
+  padding-top: 0;
   .tab-pane {
     margin: 80px auto;
   }
@@ -69,6 +71,9 @@
   padding: 100px;
   h3, div, p, a {
     color: #fff;
+  }
+  h3 {
+    margin-top: 10px;
   }
   .green-rectangle {
     background-color: $emeraldgreen;
