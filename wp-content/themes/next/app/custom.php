@@ -396,6 +396,7 @@ function build_sections()
             <?php }
             elseif( get_row_layout() == "cta_section") // layout: CTA Section
             {
+                $className = get_sub_field("custom_class_names");
                 $link = get_sub_field('section_button');
                 if( $link ):
                     $link_url = $link['url'];
@@ -403,13 +404,13 @@ function build_sections()
                     $link_target = $link['target'] ? $link['target'] : '_self';
                 endif
             ?>
-                <section class="section-cta container">
+                <section class="section-cta container <?php echo $className; ?>">
                   <div class="row align-items-center d-flex justify-content-center">
                     <div class="col-12 section-cta-content text-center">
                         <h3><?php echo get_sub_field("section_title"); ?></h3>
                         <?php echo get_sub_field("section_hero_content"); ?>
                         <div class="section-cta-btn justify-content-center text-center">
-                          <a class="button cta-btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                          <a class="button d-inline-block cta-btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                         </div>
                     </div>
                   </div>
@@ -743,6 +744,7 @@ function build_sections()
             {
                 $normal_layout= get_sub_field("normal_layout");
                 $post_type = get_sub_field("select_posts");
+                $className = get_sub_field("custom_class_names");
                 wp_reset_query();
                 $args = array(
                     'post_type'=>$post_type,
@@ -752,7 +754,7 @@ function build_sections()
                 );
                 $the_query = new WP_Query( $args );
             ?>
-                <section class="section-custom-post-type">
+                <section class="section-custom-post-type <?php echo $className; ?>">
                     <div class="container">
                         <?php if($post_type=="case_studies") { ?>
                             <div class="grid row align-items-center d-flex justify-content-center">
@@ -761,7 +763,7 @@ function build_sections()
                                         $bgimage = get_field("image_for_case_study");
                                   ?>
                                     <div class="col-10 col-md-6 item <?php if($i%2==0) echo 'ontop pr-0 pr-lg-3'; elseif($i%2 === 1) echo 'oncenter pl-0 pl-lg-3'; ?>">
-                                            <a class="item-container mr-2" href="">
+                                            <a class="item-container mr-2" href="<?php echo get_post_permalink(); ?>">
                                                 <?php echo output_acf_img($bgimage,'lazyImg'); ?>
                                                 <div class="case-content">
                                                     <h5><?php echo get_field("headline"); ?></h5>
@@ -797,9 +799,9 @@ function build_sections()
                                     <div class="col-10 col-md-6 col-lg-4 item normal-item">
                                         <?php echo output_acf_img($bgimage, "lazyImg"); ?>
                                         <h5><?php echo $name; ?></h5>
-                                        <small><?php echo $title; ?></small>
+                                        <small class="d-inline-block"><?php echo $title; ?></small>
                                         <?php echo $bio; ?>
-                                        <a class="button pl-0" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                        <a class="button pl-0 link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                                     </div>
                                   <?php $i++; endwhile; wp_reset_postdata(); }  ?>
                                 </div>
@@ -843,6 +845,7 @@ function build_sections()
                 $colClassNames = get_sub_field("cols_section_custom_class_names");
                 $link = get_sub_field("button_after_col_section");
                 $isInside = get_sub_field("col_info_inside");
+                $showNumber = get_sub_field("show_number");
                 if( $link ):
                     $link_url = $link['url'];
                     $link_title = $link['title'];
@@ -851,18 +854,20 @@ function build_sections()
                 ?>
                 <section class="section-cols <?php echo $className; ?>" style="<?php if($bgColor && $bgcPosition === 'Full') echo 'background-color:' . $bgColor .' '; ?>">
                     <?php if($sectionWidth==='withincontainer'): ?><div class="container col-head-section"><?php endif; ?>
-                      <div class="text-center">
+                      <div class="text-center <?php if(!get_sub_field('section_content')) echo 'pb-100'; ?>">
                           <h2 class="text-center"><?php echo get_sub_field("section_headerline"); ?></h2>
                           <div class="row justify-content-center d-flex">
-                              <div class="col-subline col-6"><?php echo get_sub_field("section_subheaderline"); ?></div>
-                              <div class="col-content col-8">
-                                  <?php echo get_sub_field("section_content"); ?>
-                              </div>
+                              <div class="col-subline col-10 <?php if(is_page('careers')) echo 'col-md-7'; else echo 'col-md-6'; ?>"><?php echo get_sub_field("section_subheaderline"); ?></div>
+                              <?php if(get_sub_field("section_content")) { ?>
+                                  <div class="col-content col-8">
+                                      <?php echo get_sub_field("section_content"); ?>
+                                  </div>
+                              <?php } ?>
                           </div>
                       </div>
                     <?php if($sectionWidth==='withincontainer'): ?></div><?php endif; ?>
                     <?php if($sectionWidth==='withincontainer'): ?><div class="cols-section" style="<?php if($bgColor && $bgcPosition === 'Middle') echo 'background-color:' . $bgColor .' '; ?>"><div class="container"><?php endif; ?>
-                          <div class="row cols <?php echo $colClassNames; ?>" <?php if($bgImage) echo 'style="background-image:url(' . $bgImage . '); background-position: center center;background-repeat: no-repeat;background-size: cover;"' ?>>
+                          <div class="row cols pb-0 pb-md-5 <?php echo $colClassNames; ?>" <?php if($bgImage) echo 'style="background-image:url(' . $bgImage . '); background-position: center center;background-repeat: no-repeat;background-size: cover;"' ?>>
                                 <?php
                                   while(has_sub_field('cols')):
                                     $image = get_sub_field('col_image');
@@ -871,18 +876,21 @@ function build_sections()
                                 ?>
                                 <?php if(!$isInside) { ?>
                                     <?php if(!is_page("contact")) { ?>
-                                        <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?>">
+                                        <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> <?php if($numberofCols==2) { if(get_row_index()%2==0) echo 'pl-0 pl-md-3 pl-lg-5'; else echo 'pr-0 pr-md-3 pr-lg-5'; } ?>">
                                             <?php if($icon) { ?>
                                                 <div class="row">
                                                     <div class="col-12 col-lg-1 col-svg">
                                                         <?php output_inline_svg_file($icon); ?>
                                                     </div>
-                                                    <div class="text-left col-12 col-lg-11 pl-0 pl-lg-4"><?php echo $colContent; ?></div>
+                                                    <div class="text-left col-12 col-lg-11 pl-0 pl-lg-4">
+                                                        <?php if(get_sub_field("col_title")) { ?><h4><?php echo get_sub_field("col_title"); ?></h4><?php } ?>
+                                                        <?php echo $colContent; ?>
+                                                    </div>
                                                 </div>
                                             <?php } else { ?>
                                                 <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
-                                                <small class="f16 d-block">0<?php echo get_row_index(); ?></small>
-                                                <h4><?php echo get_sub_field("col_title"); ?></h4>
+                                                <?php if($showNumber) { ?><small class="f16 d-block">0<?php echo get_row_index(); ?></small><?php } ?>
+                                                <?php if(get_sub_field("col_title")) { ?><h4><?php echo get_sub_field("col_title"); ?></h4><?php } ?>
                                                 <div class="text-left"><?php echo $colContent; ?></div>
                                             <?php } ?>
                                         </div>
@@ -914,7 +922,7 @@ function build_sections()
                           </div>
                       </div>
                       <?php if($borderBottom): ?>
-                        <hr class="container" />
+                        <div class="container"><hr class="mt-3 mt-md-5" /></div>
                       <?php endif; ?>
                     <?php if($sectionWidth==='withincontainer'): ?></div><?php endif; ?>
                 </section>
@@ -926,6 +934,11 @@ function build_sections()
                 $className = get_sub_field("custom_class_names");
             ?>
                 <section class="section-testimonials <?php echo $className; ?>" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
+                    <div class="svg-arrow-testimonial">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="241" height="458" viewBox="0 0 241 458">
+                          <path id="Testimonial_arrow" d="M68.321,439.495A18.025,18.025,0,1,1,86.34,458,18.267,18.267,0,0,1,68.321,439.495ZM0,439.495a18.267,18.267,0,0,1,18.019-18.5,18.512,18.512,0,0,1,0,37.01A18.267,18.267,0,0,1,0,439.495Zm102.857-52.431a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,102.857,387.064Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,34.536,387.064Zm102.106-52.431a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,136.642,334.633Zm-68.321,0A18.025,18.025,0,1,1,86.34,353.138,18.267,18.267,0,0,1,68.321,334.633ZM171.177,282.2a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,171.177,282.2Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,102.857,282.2ZM204.962,229a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,204.962,229Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,136.642,229Zm34.536-53.2A18.025,18.025,0,1,1,189.2,194.3,18.267,18.267,0,0,1,171.177,175.8Zm-68.321,0A18.025,18.025,0,1,1,120.876,194.3,18.267,18.267,0,0,1,102.857,175.8Zm33.785-52.431a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,136.642,123.367Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,68.321,123.367Zm34.536-52.431a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,102.857,70.936Zm-68.321,0A18.025,18.025,0,1,1,52.555,89.441,18.267,18.267,0,0,1,34.536,70.936ZM68.321,18.505a18.025,18.025,0,1,1,36.037,0,18.025,18.025,0,1,1-36.037,0ZM0,18.505A18.267,18.267,0,0,1,18.019,0,18.267,18.267,0,0,1,36.037,18.505a18.266,18.266,0,0,1-18.018,18.5A18.267,18.267,0,0,1,0,18.505Z" fill="#0093b2" opacity="0.2"/>
+                        </svg>
+                    </div>
                     <div class="container">
                         <div class="row">
                             <h2 class="col-12 col-md-8 col-lg-7"><?php echo get_sub_field("testimonial_headline"); ?></h2>
@@ -1162,7 +1175,7 @@ function build_post_sections()
                                 $tab = preg_replace('/\s+/', '_', $tab);
                             ?>
                             <div class="tab-pane fade <?php if($i==0) echo 'show active'; ?> row" id="nav-<?php echo $tab; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $tab; ?>-tab">
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-6 pl-0">
                                     <h3><?php echo get_sub_field('detail_headline'); ?></h3>
                                 </div>
                                 <div class="col-12 col-lg-6">
@@ -1186,8 +1199,8 @@ function build_post_sections()
             ?>
                 <section class="section-chat container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
                   <div class="svg-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="476" height="905" viewBox="0 0 476 905">
-                      <path id="BigArrow_Homepage" d="M134.941,868.434c0-20.194,15.934-36.565,35.589-36.565s35.588,16.371,35.588,36.565S190.184,905,170.53,905,134.941,888.629,134.941,868.434ZM0,868.434c0-20.194,15.934-36.565,35.589-36.565s35.588,16.371,35.588,36.565S55.244,905,35.589,905,0,888.629,0,868.434Zm203.152-103.6c0-20.2,15.934-36.566,35.589-36.566s35.589,16.371,35.589,36.566S258.4,801.4,238.742,801.4,203.152,785.026,203.152,764.832Zm-134.941,0c0-20.2,15.934-36.566,35.589-36.566s35.588,16.371,35.588,36.566S123.455,801.4,103.8,801.4,68.212,785.026,68.212,764.832Zm201.67-103.6c0-20.194,15.934-36.565,35.589-36.565s35.589,16.371,35.589,36.565-15.935,36.566-35.589,36.566S269.881,681.424,269.881,661.229Zm-134.941,0c0-20.194,15.934-36.565,35.589-36.565s35.588,16.371,35.588,36.565-15.934,36.566-35.588,36.566S134.941,681.424,134.941,661.229Zm203.152-103.6c0-20.2,15.934-36.566,35.589-36.566s35.589,16.371,35.589,36.566-15.934,36.565-35.589,36.565S338.093,577.821,338.093,557.627Zm-134.941,0c0-20.2,15.934-36.566,35.589-36.566s35.589,16.371,35.589,36.566-15.935,36.565-35.589,36.565S203.152,577.821,203.152,557.627ZM404.822,452.5c0-20.2,15.934-36.566,35.589-36.566S476,432.3,476,452.5s-15.933,36.566-35.589,36.566S404.822,472.7,404.822,452.5Zm-134.941,0c0-20.2,15.934-36.566,35.589-36.566S341.06,432.3,341.06,452.5s-15.935,36.566-35.589,36.566S269.881,472.7,269.881,452.5Zm68.212-105.127c0-20.194,15.934-36.565,35.589-36.565s35.589,16.371,35.589,36.565-15.934,36.566-35.589,36.566S338.093,367.569,338.093,347.373Zm-134.941,0c0-20.194,15.934-36.565,35.589-36.565s35.589,16.371,35.589,36.565-15.935,36.566-35.589,36.566S203.152,367.569,203.152,347.373Zm66.729-103.6c0-20.2,15.934-36.566,35.589-36.566s35.589,16.371,35.589,36.566-15.935,36.565-35.589,36.565S269.881,263.965,269.881,243.771Zm-134.941,0c0-20.2,15.934-36.566,35.589-36.566s35.588,16.371,35.588,36.566-15.934,36.565-35.588,36.565S134.941,263.965,134.941,243.771Zm68.212-103.6c0-20.194,15.934-36.565,35.589-36.565s35.589,16.371,35.589,36.565-15.935,36.566-35.589,36.566S203.152,160.363,203.152,140.168Zm-134.941,0c0-20.194,15.934-36.565,35.589-36.565s35.588,16.371,35.588,36.565-15.934,36.566-35.588,36.566S68.212,160.363,68.212,140.168Zm66.729-103.6C134.941,16.371,150.874,0,170.53,0s35.588,16.371,35.588,36.566S190.184,73.131,170.53,73.131,134.941,56.76,134.941,36.566ZM0,36.566C0,16.371,15.934,0,35.589,0S71.177,16.371,71.177,36.566,55.244,73.131,35.589,73.131,0,56.76,0,36.566Z" fill="#fff" opacity="0.1"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
+                      <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
                     </svg>
                   </div>
                   <div class="row align-items-center d-flex justify-content-center">
@@ -1220,7 +1233,7 @@ function build_post_sections()
                         <h3><?php echo get_sub_field("section_title"); ?></h3>
                         <?php echo get_sub_field("section_hero_content"); ?>
                         <div class="section-cta-btn align-items-center d-flex">
-                          <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                          <a class="button d-inline-block cta-btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                         </div>
                     </div>
                     <div class="col-4 col-md-5 col-lg-6 ml-auto section-cta-image">

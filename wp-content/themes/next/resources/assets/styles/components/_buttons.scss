@@ -4,13 +4,33 @@ a.button {
   @include font-size-sass(20px);
   padding: 15px 30px;
   line-height: 1;
+  font-family: $nav-font;
   display: flex;
   &::after {
     content: url(./images/btn_arrow_white.svg);
     height: 20px;
     padding-left: 15px;
+    fill: #fff;
+    vertical-align: middle;
   }
   &.cta-btn {
     display: block;
+  }
+  &.link {
+    color: #333;
+    border: 0;
+    @include font-size-sass(16px);
+    padding-top: 25px;
+    &::after {
+      content: url(./images/btn_arrow_black.svg);
+      fill: #333;
+    }
+  }
+  &.cta-btn {
+    border: 2px solid #00629b;
+    color: #00629b;
+    &::after {
+      fill: #00629b;
+    }
   }
 }

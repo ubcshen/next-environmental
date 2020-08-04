@@ -37,9 +37,11 @@
                   $image = get_field('image_for_case_study',$post);
           ?>
                   <div class="casestudy-container col-6">
+                    <a href="<?php echo get_post_permalink($post); ?>">
                       <?php output_acf_img($image,'casestudy-image'); ?>
                       <h5><?php echo $headline; ?></h5>
                       <div class="casestudy-content"><?php echo $content; ?></div>
+                    </a>
                   </div>
           <?php $i++; endforeach; endif; ?>
         </div>

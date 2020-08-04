@@ -65,7 +65,7 @@ export default {
           $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
         }
       },
-      offset: 250,
+      offset: 200,
     });
 
     $('.svg-arrow-headline').waypoint({
@@ -84,6 +84,15 @@ export default {
         }
       },
       offset: 250,
+    });
+
+    $('.svg-arrow-testimonial').waypoint({
+      handler: function(direction) {
+        if (direction === 'down') { 
+          $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
+        }
+      },
+      offset: 50,
     });
   },
 };
