@@ -5,10 +5,11 @@
 }
 
 .section-chat {
-  padding-left: 140px;
   margin-top: 8vw;
   z-index: 20;
   position: relative;
+  overflow: hidden;
+  padding-bottom: 0;
   h3 {
     color: #fff;
   }
@@ -23,14 +24,23 @@
   }
   .section-chat-content {
     padding: 50px 0;
+    @include breakpoint(small640-down) {
+      padding: 0 0 20px;
+    }
   }
   .section-chat-image {
     margin-right: -15px;
+    @include breakpoint(small640-down) {
+      .img-outof-container {
+        margin-top: 0;
+        min-width: 130%;
+      }
+    }
   }
 }
 
 .wave-items {
-  padding: 80px 0;
+  padding: 4rem 0;
   .item {
     margin-bottom: -80px;
     &.oncenter {
@@ -78,6 +88,36 @@
       }
       .item-icon svg {
         fill: #231f20;
+      }
+    }
+  }
+  @include breakpoint(small640-down) {
+    padding: 0;
+    .item-icon {
+      svg {
+        width: 36px;
+        height: auto;
+      }
+    }
+    .item {
+      margin: 15px auto 0;
+      &:first-child {
+        margin-top: 0;
+      }
+      &.oncenter {
+        margin-top: 15px;
+      }
+      &.onbottom {
+        margin-top: 15px;
+      }
+    }
+    a.item-container {
+      padding: 30px 15px;
+      max-width: none;
+      width: 100%;
+      height: auto;
+      h5 {
+        margin-top: 20px;
       }
     }
   }
@@ -235,6 +275,12 @@
       border-top: 2px solid rgba(0, 147, 178, 0.2);
       margin-top: 100px;
     }
+    small {
+      margin: 45px 0 15px;
+    }
+    .cols h4 {
+      margin-bottom: 20px;
+    }
   }
   .cols-section {
     position: relative;
@@ -290,12 +336,15 @@
 
 .section-testimonials {
   margin-top: -30vw;
+  z-index: 1;
   &.largeColMarginTop {
-    margin-top: -50vw;
-    padding-top: 40vw;
+    margin-top: -68vw;
+    padding-top: 53vw;
+    padding-bottom: 0;
   }
   h2 {
     color: #fff;
+    margin-bottom: 4.125rem;
   }
   .testimonials-container {
     position: relative;
@@ -459,6 +508,9 @@
     small {
       padding-bottom: 20px;
     }
+    @include breakpoint(small640-down) {
+      margin-top: 2rem;
+    }
   }
 }
 
@@ -467,4 +519,29 @@
     margin: 45px auto 15px;
   }
 }
+
+.section-list {
+  .section-list-header {
+    margin-bottom: 3.25rem;
+  }
+}
+
+.home {
+  .section-cols {
+    z-index: 10;
+  }
+  .svg-arrow-testimonial {
+    top: 34%;
+  }
+  .section-cols {
+    hr {
+      width: 70%;
+      margin-left: 0;
+    }
+  }
+}
+
+
+
+
 

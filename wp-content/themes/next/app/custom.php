@@ -374,23 +374,25 @@ function build_sections()
                     $link_target = $link['target'] ? $link['target'] : '_self';
                 endif
             ?>
-                <section class="section-chat container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
-                  <div class="svg-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
-                      <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
-                    </svg>
-                  </div>
-                  <div class="row align-items-center d-flex justify-content-center">
-                    <div class="col-12 col-md-7 col-lg-5 section-chat-content">
-                        <h3><?php echo get_sub_field("section_headerline"); ?></h3>
-                        <?php echo get_sub_field("section_content"); ?>
-                        <div class="section-chat-btn align-items-center d-flex justify-content-left">
-                          <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                <section class="section-chat">
+                  <div class="container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
+                      <div class="svg-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
+                          <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
+                        </svg>
+                      </div>
+                      <div class="row align-items-center d-flex justify-content-center">
+                        <div class="col-12 col-md-7 col-lg-5 section-chat-content">
+                            <h3><?php echo get_sub_field("section_headerline"); ?></h3>
+                            <?php echo get_sub_field("section_content"); ?>
+                            <div class="section-chat-btn align-items-center d-flex justify-content-left">
+                              <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-4 col-md-5 col-lg-7 ml-auto section-chat-image">
-                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
-                    </div>
+                        <div class="col-12 col-md-5 col-lg-7 ml-auto section-chat-image">
+                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
+                        </div>
+                      </div>
                   </div>
                 </section>
             <?php }
@@ -434,7 +436,7 @@ function build_sections()
                       <?php echo get_sub_field("section_headerline"); ?>
                     </<?php echo get_sub_field("header_htag"); ?>>
                     <div class="<?php echo $btn_alignment; ?> section-header-btn align-items-center d-flex justify-content-center ">
-                      <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                      <a class="button cta-btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                     </div>
                   </div>
                   <div class="section-list-container">
@@ -486,7 +488,7 @@ function build_sections()
                 $image = get_sub_field("headline_image");
             ?>
                 <section class="section-headline">
-                    <div class="svg-arrow-headline">
+                    <div class="svg-arrow-headline d-none d-md-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
                           <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
                         </svg>
@@ -612,7 +614,7 @@ function build_sections()
                         <div class="row">
                             <h2 class="col-12 col-md-5"><?php echo get_sub_field("section_headerline"); ?></h2>
                             <div class="col-12 col-md-5 offset-md-2">
-                                <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                <a class="button cta-btn d-inline-block" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                             </div>
                         </div>
                         <div class="row gallery">
@@ -786,10 +788,13 @@ function build_sections()
                                   <?php $i = 0;
                                     while ( $the_query->have_posts() ): $the_query->the_post();
                                         $bgimage = get_field("team_pic");
+                                        $image = get_field("team_pic_in_modal");
                                         $name = get_field("name");
+                                        $level = get_field("management_level");
                                         $title = get_field("title");
                                         $bio = get_field("bio");
                                         $link = get_field("link");
+                                        $fullStory = get_field("full_story");
                                         if( $link ):
                                             $link_url = $link['url'];
                                             $link_title = $link['title'];
@@ -797,11 +802,41 @@ function build_sections()
                                         endif
                                   ?>
                                     <div class="col-10 col-md-6 col-lg-4 item normal-item">
-                                        <?php echo output_acf_img($bgimage, "lazyImg"); ?>
+                                        <?php if($bgimage) { ?><?php echo output_acf_img($bgimage, "lazyImg"); ?><?php } ?>
                                         <h5><?php echo $name; ?></h5>
-                                        <small class="d-inline-block"><?php echo $title; ?></small>
+                                        <small class="d-block"><?php echo $title; ?></small>
                                         <?php echo $bio; ?>
-                                        <a class="button pl-0 link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                        <?php if($bgimage) { ?>
+                                            <a class="button pl-0 link" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>">READ MORE</a>
+                                            <div class="modal fade" id="<?php echo 'team'.get_row_index().'Modal'; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'team'.get_row_index().'Modal'; ?>Label" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-body">
+                                                    <div class="fullWidth image-content">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6 green-rectangle pl-0">
+                                                                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-right-container"  />
+                                                                </div>
+                                                                <div class="col-12 col-md-6 pl-0 pl-lg-5">
+                                                                    <div class="row justify-content-end pr-3 pt-1">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    </div>
+                                                                    <h2><hr class="d-block ml-0"><?php echo $level; ?></h2>
+                                                                    <h4><?php echo $name; ?></h4>
+                                                                    <small class="d-block"><?php echo $title; ?></small>
+                                                                    <?php echo $fullStory; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        <?php } else { ?>
+                                            <a class="button pl-0 link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                        <?php } ?>
                                     </div>
                                   <?php $i++; endwhile; wp_reset_postdata(); }  ?>
                                 </div>
@@ -817,7 +852,7 @@ function build_sections()
                                             $image = get_field("icon_svg");
                                             $bgimage = get_field("image");
                                       ?>
-                                        <div class="col-10 col-md-6 col-lg-4 item <?php if($i%3==0) echo 'ontop'; elseif($i%3 === 1) echo 'oncenter'; elseif($i%3 === 2) echo 'onbottom'; ?>">
+                                        <div class="col-12 col-md-6 col-lg-4 item <?php if($i%3==0) echo 'ontop'; elseif($i%3 === 1) echo 'oncenter'; elseif($i%3 === 2) echo 'onbottom'; ?>">
                                             <a class="item-container mr-2 <?php if($bgimage) echo 'item-bg-overlay'; ?>" href="" <?php if($bgimage) echo "style='background-image:url(".$bgimage.");filter: grayscale(100%);'" ?>>
                                                 <div class="item-icon"><?php echo output_inline_svg_file($image); ?></div>
                                                 <h5><?php echo get_field("headline"); ?></h5>
@@ -915,7 +950,7 @@ function build_sections()
                                 <?php } ?>
                                 <?php endwhile; ?>
                                 <?php if($link) { ?>
-                                    <div class="row m-auto">
+                                    <div class="row ml-auto mr-auto mt-5">
                                       <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                                     </div>
                                 <?php } ?>
@@ -941,7 +976,7 @@ function build_sections()
                     </div>
                     <div class="container">
                         <div class="row">
-                            <h2 class="col-12 col-md-8 col-lg-7"><?php echo get_sub_field("testimonial_headline"); ?></h2>
+                            <h2 class="col-12 col-md-8 col-lg-7 pl-0"><?php echo get_sub_field("testimonial_headline"); ?></h2>
                         </div>
                         <div class="row testimonials-container">
                             <div class="col-10 col-lg-5 green-rectangle">
@@ -984,6 +1019,7 @@ function build_sections()
                             </div>
                         </div>
                     </div>
+                    <div class="white-bg-full">&nbsp;</div>
                 </section>
             <?php }
             elseif( get_row_layout() == "section_select_members" ) // layout: Section Select Members
@@ -1197,23 +1233,25 @@ function build_post_sections()
                     $link_target = $link['target'] ? $link['target'] : '_self';
                 endif
             ?>
-                <section class="section-chat container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
-                  <div class="svg-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
-                      <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
-                    </svg>
-                  </div>
-                  <div class="row align-items-center d-flex justify-content-center">
-                    <div class="col-12 col-md-7 col-lg-5 section-chat-content">
-                        <h3><?php echo get_sub_field("section_headerline"); ?></h3>
-                        <?php echo get_sub_field("section_content"); ?>
-                        <div class="section-chat-btn align-items-center d-flex">
-                          <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                <section class="section-chat">
+                  <div class="container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
+                      <div class="svg-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
+                          <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
+                        </svg>
+                      </div>
+                      <div class="row align-items-center d-flex justify-content-center">
+                        <div class="col-12 col-md-7 col-lg-5 section-chat-content">
+                            <h3><?php echo get_sub_field("section_headerline"); ?></h3>
+                            <?php echo get_sub_field("section_content"); ?>
+                            <div class="section-chat-btn align-items-center d-flex">
+                              <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-4 col-md-5 col-lg-7 ml-auto section-chat-image">
-                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
-                    </div>
+                        <div class="col-12 col-md-5 col-lg-7 ml-auto section-chat-image">
+                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-fluid img-responsive img-outof-container"  />
+                        </div>
+                      </div>
                   </div>
                 </section>
             <?php }
@@ -1260,7 +1298,7 @@ function build_post_sections()
                       <?php echo get_sub_field("section_headerline"); ?>
                     </<?php echo get_sub_field("header_htag"); ?>>
                     <div class="<?php echo $btn_alignment; ?> section-header-btn align-items-center d-flex justify-content-center ">
-                      <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                      <a class="button cta-btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                     </div>
                   </div>
                   <div class="section-list-container">
@@ -1322,413 +1360,6 @@ function build_post_sections()
                                 </figcaption>
                             </figure>
                         <?php $i++; endwhile; ?>
-                    </div>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_banner" ) // layout: Section Banner
-            { ?>
-                <section class="section-banner">
-                    <div class="bxslider">
-                      <?php
-                        while(has_sub_field('section_banner_slider')):
-                          $image = get_sub_field('section_banner_slider_image');
-                      ?>
-                          <div class="slider-content">
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive" size="" />
-                            <div class="section-banner-content">
-                                <?php echo get_sub_field("section_banner_slider_content"); ?>
-                            </div>
-                          </div>
-                          <?php endwhile; ?>
-                    </div>
-                    <?php if(get_sub_field("section_banner_search_bar")) { ?>
-                    <div class="section-banner-search">
-                      <?php echo get_sub_field("section_banner_search_bar"); ?>
-                    </div>
-                    <?php } ?>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_image_slider" ) // layout: Section Image Slider
-            { ?>
-                <section class="section-image-slider">
-                    <?php echo get_sub_field('section_image_slider_info'); ?>
-                    <div class="customize-bxslidercontainer ">
-                        <?php if(!$detect->isMobile()) { ?>
-                        <div class="slider-control container ">
-                            <?php $i = 0; while(has_sub_field('section_image_slider_content')): $logo = get_sub_field('slider_icon'); $iconName = get_sub_field('slider_icon_title');  ?>
-                            <a data-slide-index="<?php echo $i; ?>" class="section-slider-control">
-                            <div class="section-tab-content-icon"><?php echo $logo; ?><?php echo $iconName; ?></div></a>
-                            <?php $i++; endwhile; ?>
-                        </div>
-                        <?php } ?>
-                        <div class="img-slider">
-                            <?php
-                            while(has_sub_field('section_image_slider_content')):
-                              $image = get_sub_field('slider_image');
-                              $sliderInfo = get_sub_field('slider_content');
-                            ?>
-                            <div class="section-imag-content" style="background:url(<?php echo $image['url']; ?>); background-repeat: no-repeat;background-size: cover;background-position: center center;">
-                              <div class="section-banner-content"><?php echo $sliderInfo; ?></div>
-                            </div>
-                            <?php endwhile; ?>
-                        </div>
-                    </div>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_image_tabs" ) // layout: Section Image Tabs
-            { ?>
-                <section class="section-image-tabs container">
-                    <?php echo get_sub_field('section_image_slider_info'); ?>
-                    <?php if(!$detect->isMobile()) { ?>
-                    <div class="section-tabs ">
-                        <?php
-                        while(has_sub_field('tabs')):
-                          $icon = get_sub_field('tab_icon');
-                          $tab = get_sub_field('tab');
-                          $tabLink = get_sub_field('tab_link');
-                          $currentTdb = get_sub_field('current_page');
-                        ?>
-                            <div class="section-tab <?php if($currentTdb) { echo 'section-tab-active'; } ?>" data-link="<?php echo $tabLink; ?>">
-                              <div class="section-tab-content-icon"><?php echo $icon; ?></div>
-                              <div class="section-tab-content"><?php echo $tab; ?></div>
-                            </div>
-                        <?php endwhile; ?>
-                    </div>
-                    <?php } else { ?>
-                    <select class="section-tab section-tab-select">
-                        <?php
-                        $i = 0;
-                        while(has_sub_field('tabs')):
-                          $tab = get_sub_field('tab');
-                          $tabLink = get_sub_field('tab_link');
-                        ?>
-                        <option data-slide-index="<?php echo $i; ?>" class="section-tab-control" data-slide-link="<?php echo $tabLink; ?>" value="<?php echo $i; ?>"><?php echo $tab; ?></a>
-                                                <?php $i++; endwhile; ?>"
-                    </select>
-                    <?php } ?>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_tab_system" ) // layout: Section Tabs
-            {
-                $tabAlignment = get_sub_field("tab_position");
-                $hasDouble = get_sub_field("enable_double_filters");
-                if($detect->isMobile()&&!$detect->isTablet()) { ?>
-                    <?php if(!$hasDouble) { ?>
-                        <?php if(!$tabAlignment=="vertical") { ?>
-                            <section class="container section-tabs-system mobile-container">
-                                <div class="fliter-btns-group">
-                                    <?php
-                                        $i = 0;
-                                        while(has_sub_field('section_tabs')):
-                                            $tab = strtolower(get_sub_field("tab"));
-                                            $tab = preg_replace('/\s+/', '_', $tab);
-                                    ?>
-                                        <div class="inline tab mobile-tab"><?php echo get_sub_field("tab");?></div>
-                                        <div class="grid section-content mobile-content">
-                                            <div class="inner-container"><?php echo get_sub_field("tab_section"); ?></div>
-                                            <?php if(get_sub_field("has_slider")) { ?>
-                                                <div class="testimonials bxslider">
-                                                    <?php
-                                                      while(has_sub_field('tab_testimonial_system')):
-                                                        $image = get_sub_field('tab_testimonial_image');
-                                                        $link = get_sub_field('tab_testimonial_company_link');
-                                                    ?>
-                                                    <div class="testimonial">
-                                                        <div class="testimonial-bg-image" style="background-image: url('<?php echo $image['url']; ?>');">
-                                                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive testimonial-image" />
-                                                        </div>
-                                                        <div class="item-content hasBg">
-                                                            <div class="hasBg-content">
-                                                                <div class="hasBg-content-padding">
-                                                                    <p class="testimonial-content"><?php echo get_sub_field("tab_testimonial"); ?></p>
-                                                                    <p class="testimonial-author"><?php echo get_sub_field("tab_testimonial_author_info"); ?></p>
-                                                                    <p class="testimonial-author">
-                                                                        <?php
-                                                                            echo get_sub_field("tab_testimonial_company");
-                                                                            if($link) {
-                                                                                echo "<span> | </span><a href='http://" . $link . "' target='_blank'>" . $link . "</a>";
-                                                                            }
-                                                                        ?>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <?php endwhile; ?>
-                                                 </div>
-                                            <?php } ?>
-                                        </div>
-                                    <?php $i++; endwhile; ?>
-                                </div>
-                            </section>
-                        <?php } else { ?>
-                            <section class="container section-tabs-system mobile-container hasTopbar">
-                                <div class="inner-container">
-                                    <h3><?php echo get_sub_field("tab_vertical_headline"); ?></h3>
-                                    <select class='filter-div-select'>
-                                        <?php
-                                            while(has_sub_field('section_tabs')):
-                                                $tab = strtolower(get_sub_field("tab"));
-                                                $tab = preg_replace('/\s+/', '_', $tab);
-                                        ?>
-                                        <option class='filter-list filter-list-item' value='#<?php echo $tab; ?>'><?php echo get_sub_field("tab"); ?></option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                </div>
-                                <div class="grid section-content grid-alignV mobileV-container">
-                                    <?php
-                                      while(has_sub_field('section_tabs')):
-                                        $tab = strtolower(get_sub_field("tab"));
-                                        $tab = preg_replace('/\s+/', '_', $tab);
-                                    ?>
-                                    <div class="<?php echo $tab; ?> element-item" id="<?php echo $tab; ?>">
-                                        <div class="inner-container"><?php echo get_sub_field("tab_section"); ?></div>
-                                        <?php if(get_sub_field("has_slider")) { ?>
-                                        <div class="testimonials bxslider">
-                                            <?php
-                                              while(has_sub_field('tab_testimonial_system')):
-                                                $image = get_sub_field('tab_testimonial_image');
-                                                $link = get_sub_field('tab_testimonial_company_link');
-                                            ?>
-                                            <div class="testimonial">
-                                                <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive testimonial-image" />
-                                                <div class="item-content hasBg">
-                                                    <div class="hasBg-content">
-                                                        <div class="hasBg-content-padding">
-                                                            <p class="testimonial-content"><?php echo get_sub_field("tab_testimonial"); ?></p>
-                                                            <p class="testimonial-author"><?php echo get_sub_field("tab_testimonial_author_info"); ?></p>
-                                                            <p class="testimonial-author">
-                                                                <?php
-                                                                    echo get_sub_field("tab_testimonial_company");
-                                                                    if($link) {
-                                                                        echo "<span> | </span><a href='http://" . $link . "' target='_blank'>" . $link . "</a>";
-                                                                    }
-                                                                ?>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                <?php endwhile; ?>
-                                         </div>
-                                        <?php } ?>
-                                    </div>
-                                    <?php endwhile; ?>
-                                </div>
-                            </section>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <section class="container section-tabs-system mobile-container double-filters-mobile-layout">
-                            <div class="fliter-btns-group">
-                                <?php $i = 0;
-                                while(has_sub_field('double_filters_layout')):
-                                    $tab = strtolower(get_sub_field("horizontal_tab"));
-                                    $tab = preg_replace('/\s+/', '_', $tab);
-                                ?>
-                                <div class="inline tab mobile-tab"><?php echo get_sub_field("horizontal_tab"); ?></div>
-                                <div class="grid section-content mobile-content">
-                                    <div class="<?php echo $tab; ?> inner-tabs element-item">
-                                        <div class="inner-container">
-                                            <h3><?php echo get_sub_field("vertical_tab_headline"); ?></h3>
-                                            <select class='filter-div-select'>
-                                                <?php
-                                                    $j = 0;
-                                                    while(has_sub_field('horizontal_tab_content')):
-                                                        $tabV = strtolower(get_sub_field("vertical_tab"));
-                                                        $tabV = preg_replace('/\s+/', '_', $tabV);
-                                                ?>
-                                                <option class='filter-list filter-list-item' value='#<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $tabV); ?>'><?php echo get_sub_field("vertical_tab"); ?></option>
-                                                <?php $j++; endwhile; ?>
-                                            </select>
-                                            <div class="grid-inner section-content grid-alignV mobileV-container">
-                                                <?php
-                                                  while(has_sub_field('horizontal_tab_content')):
-                                                    $tabV = strtolower(get_sub_field("vertical_tab"));
-                                                    $tabV = preg_replace('/\s+/', '_', $tabV);
-                                                ?>
-                                                <div class="<?php echo $tab; ?> <?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $tabV); ?> element-item-inner" id="<?php echo $tabV; ?>">
-                                                    <div class="inner-container"><?php echo get_sub_field("vertical_tab_content"); ?></div>
-                                                </div>
-                                                <?php endwhile; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                              <?php $i++; endwhile; ?>
-                        </section>
-                    <?php } ?>
-                <?php } else {
-                    if(!$hasDouble) {
-                ?>
-                    <section class="container section-tabs-system <?php if($tabAlignment=="vertical") echo "hasBorder"; ?>">
-                        <?php if($tabAlignment=="vertical") {?><div class="inner-container"><?php } ?>
-                            <div class="fliter-btns-group <?php if($tabAlignment=="vertical") echo "fliter-btns-group-alignV fLeft"; ?>">
-                                <?php if($tabAlignment=="vertical") {?>
-                                <h3><?php echo get_sub_field("tab_vertical_headline"); ?></h3>
-                              <?php } $i = 0;
-                                while(has_sub_field('section_tabs')):
-                                    $tab = strtolower(get_sub_field("tab"));
-                                    $tab = preg_replace('/\s+/', '_', $tab);
-                              ?>
-                              <div class="inline tab <?php if($i==0) { echo "tab-active"; } ?> desktop-tab" data-filter=".<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $tab); ?>"><?php echo get_sub_field("tab"); ?></div>
-                              <?php $i++; endwhile; ?>
-                            </div>
-                            <div class="grid section-content <?php if($tabAlignment=="vertical") echo "grid-alignV fRight"; ?>">
-                                <?php
-                                  while(has_sub_field('section_tabs')):
-                                    $tab = strtolower(get_sub_field("tab"));
-                                    $tab = preg_replace('/\s+/', '_', $tab);
-                                ?>
-                                <div class="<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $tab); ?> element-item">
-                                    <div class="inner-container"><?php echo get_sub_field("tab_section"); ?></div>
-                                    <?php if(get_sub_field("has_slider")) { ?>
-                                    <div class="testimonials bxslider">
-                                        <?php
-                                          while(has_sub_field('tab_testimonial_system')):
-                                            $image = get_sub_field('tab_testimonial_image');
-                                            $link = get_sub_field('tab_testimonial_company_link');
-                                        ?>
-                                        <div class="testimonial">
-                                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive testimonial-image" />
-                                            <div class="item-content hasBg">
-                                                <div class="hasBg-content">
-                                                    <div class="hasBg-content-padding">
-                                                        <p class="testimonial-content"><?php echo get_sub_field("tab_testimonial"); ?></p>
-                                                        <p class="testimonial-author"><?php echo get_sub_field("tab_testimonial_author_info"); ?></p>
-                                                        <p class="testimonial-author">
-                                                            <?php
-                                                                echo get_sub_field("tab_testimonial_company");
-                                                                if($link) {
-                                                                    echo "<span> | </span><a href='http://" . $link . "' target='_blank'>" . $link . "</a>";
-                                                                }
-                                                            ?>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <?php endwhile; ?>
-                                     </div>
-                                    <?php } ?>
-                                </div>
-                                <?php endwhile; ?>
-                            </div>
-                        <?php if($tabAlignment=="vertical") {?></div><?php } ?>
-                    </section>
-                    <?php } else { ?>
-                    <section class="container section-tabs-system">
-                            <div class="fliter-btns-group">
-                              <?php $i = 0;
-                                while(has_sub_field('double_filters_layout')):
-                                    $tab = strtolower(get_sub_field("horizontal_tab"));
-                                    $tab = preg_replace('/\s+/', '_', $tab);
-                              ?>
-                              <div class="inline tab <?php if($i==0) { echo "tab-active"; } ?>" data-filter=".<?php echo $tab; ?>"><?php echo get_sub_field("horizontal_tab"); ?></div>
-                              <?php $i++; endwhile; ?>
-                            </div>
-                            <div class="grid section-content inner-container">
-                                <?php while(has_sub_field('double_filters_layout')):
-                                    $tab = strtolower(get_sub_field("horizontal_tab"));
-                                    $tab = preg_replace('/\s+/', '_', $tab);
-                                ?>
-                                <div class="<?php echo $tab; ?> inner-tabs element-item">
-                                    <div class="fliter-btns-group-inner fliter-btns-group-alignV fLeft">
-                                        <h3><?php echo get_sub_field("vertical_tab_headline"); ?></h3>
-                                        <?php $j = 0;
-                                          while(has_sub_field('horizontal_tab_content')):
-                                            $tabV = strtolower(get_sub_field("vertical_tab"));
-                                            $tabV = preg_replace('/\s+/', '_', $tabV);
-                                        ?>
-                                        <div class="inline inner-tab <?php if($j==0) { echo "tab-active"; } ?>" data-filter=".<?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $tabV); ?>"><?php echo get_sub_field("vertical_tab"); ?></div>
-                                        <?php $j++; endwhile; ?>
-                                    </div>
-                                    <div class="grid-inner section-content grid-alignV fRight">
-                                        <?php
-                                          while(has_sub_field('horizontal_tab_content')):
-                                            $tabV = strtolower(get_sub_field("vertical_tab"));
-                                            $tabV = preg_replace('/\s+/', '_', $tabV);
-                                        ?>
-                                        <div class="<?php echo $tab; ?> <?php echo preg_replace("/[^A-Za-z0-9 ]/", '', $tabV); ?> element-item-inner">
-                                            <div class="inner-container"><?php echo get_sub_field("vertical_tab_content"); ?></div>
-                                        </div>
-                                        <?php endwhile; ?>
-                                    </div>
-                                </div>
-                                <?php endwhile; ?>
-                            </div>
-                    </section>
-                <?php } } ?>
-            <?php }
-            elseif( get_row_layout() == "section_intro" ) // layout: Section Intro
-            { ?>
-                <section class="section-intro">
-                    <div class="hasCrossLine">
-                        <div class="container">
-                            <div class="inner-container">
-                                <div class="hasCrossLine-topic"><?php echo get_sub_field("section_intro_topic"); ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="inner-container">
-                            <div class="fLeft intro-topic">
-                                <h2><?php echo get_sub_field("section_intro_headline"); ?></h2>
-                                <?php if(get_sub_field("section_intro_headline_additional_content")) { ?><h3><?php echo get_sub_field("section_intro_headline_additional_content"); ?></h3><?php } ?>
-                            </div>
-                            <div class="fRight intro-content">
-                                <div><?php echo get_sub_field("section_intro_content"); ?></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_instagram" ) // layout: Section Instagram
-            {
-                ?>
-                <section class="section-cols section-cols3 floatUp textleft>">
-                    <div class="cols container">
-                        <?php
-                          while(has_sub_field('instagram_accounts')):
-                        ?>
-                        <div class="colItem inline">
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive col--<?php echo $colNo; ?>" />
-                            <?php echo $colContent; ?>
-                        </div>
-                        <?php endwhile; ?>
-                    </div>
-                </section>
-            <?php }
-            elseif( get_row_layout() == "section_testimonials" ) // layout: Section Testimonials
-            { ?>
-                <section class="container section-testimonials">
-                    <div class="inner-container"><?php echo get_sub_field("section_testimonials_headline"); ?></div>
-                    <div class="section-content bxslider">
-                        <?php
-                          while(has_sub_field('testimonials')):
-                            $image = get_sub_field('testimonial_image');
-                            $link = get_sub_field('testimonial_company_link');
-                        ?>
-                        <div class="testimonial">
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" class="img-responsive testimonial-image" />
-                            <div class="item-content hasBg">
-                                <p class="oib-member <?php if(!get_sub_field("oib_member_info")) { echo 'tran'; } ?>"><?php if(get_sub_field("oib_member_info")) { ?><?php echo get_sub_field("oib_member_info"); ?><?php } else { echo '&nbsp;'; } ?></p>
-                                <div class="hasBg-content hasBg-content<?php echo $i; ?>">
-                                    <div class="hasBg-content-padding">
-                                        <p class="testimonial-content"><?php echo get_sub_field("testimonial"); ?></p>
-                                        <p class="testimonial-author"><?php echo get_sub_field("testimonial_author_info"); ?></p>
-                                        <p class="testimonial-author">
-                                            <?php
-                                                echo get_sub_field("testimonial_company");
-                                                if($link) {
-                                                    echo "<span> | </span><a href='http://" . get_sub_field("testimonial_company_link") . "' target='_blank'>" . get_sub_field("testimonial_company_link") . "</a>";
-                                                }
-                                            ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endwhile; ?>
                     </div>
                 </section>
             <?php }

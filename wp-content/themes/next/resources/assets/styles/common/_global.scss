@@ -385,6 +385,9 @@ blockquote {
   @extend %fix-webkit-font-rendering;
   line-height: 1.625;
   color: #4a4a4a;
+  @include breakpoint(small640-down) {
+    font-size: 14px;
+  }
 }
 
 p {
@@ -683,8 +686,17 @@ section {
   padding: 80px 0 100px;
   position: relative;
   &.section-chat {
-    padding: 0;
-    padding-left: 140px;
+    .container {
+      padding: 0;
+      padding-left: 140px;
+      @include breakpoint(small640-down) {
+        padding: 30px 30px 0 30px;
+      }
+    }
+    @include breakpoint(small640-down) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
   }
   &.section-home-header {
     padding: 0;
@@ -698,10 +710,26 @@ section {
   &.section-core-value {
     padding-top: 0;
   }
+  &.section-financial {
+    padding-bottom: 0;
+    hr {
+      margin-top: 5rem;
+    }
+  }
+  @include breakpoint(small640-down) {
+    padding: 0;
+  }
 }
 
 .white-bg {
   background-color: #fff;
+}
+
+.white-bg-full {
+  background-color: #fff;
+  width: 100%;
+  height: 15rem;
+  margin-top: -10rem;
 }
 
 .touchLeft {
@@ -836,5 +864,78 @@ section {
 .pb-100 {
   padding-bottom: 5rem;
 }
+
+/*body .modal-dialog {
+  max-width: 100%;
+  width: auto !important;
+  display: inline-block;
+}
+
+.modal {
+  z-index: -1;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-open .modal {
+  z-index: 1050;
+}*/
+
+.modal-dialog {
+  @include media-breakpoint-up(sm) {
+    max-width: 1000px;
+  }
+}
+
+.modal-lg {
+  min-width: auto;
+  max-width: fit-content;
+}
+
+.modal-header {
+  border-bottom: 0;
+  padding: 0 1rem;
+}
+
+.modal-body {
+  padding: 0;
+  .fullWidth {
+    h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    hr {
+      border-top: 4px solid #121212;
+      width: 80px;
+      margin-bottom: 20px;
+    }
+  }
+  .green-rectangle {
+    background-color: $emeraldgreen;
+    width: 100%;
+    height: 100%;
+    max-width: 640px;
+  }
+}
+
+.img-outof-right-container {
+  max-width: 110%;
+  vertical-align: bottom;
+}
+
+.close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+  outline: none;
+}
+
+button.close span {
+  @include font-size-sass(32px);
+}
+
+.cd-top {
+  display: none;
+}
+
+
 
 

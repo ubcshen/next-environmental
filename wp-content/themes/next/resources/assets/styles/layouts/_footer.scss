@@ -3,20 +3,70 @@
   padding: 300px 0 100px;
   margin-top: -13vw;
   margin-bottom: 0;
+  @include breakpoint(small640-down) {
+    padding: 110vw 0 100px;
+    margin-top: -100vw;
+  }
   .white-font {
     svg {
       fill: #fff;
+      @include breakpoint(small640-down) {
+        width: 80px;
+        height: 32px;
+        margin-bottom: 20px;
+      }
+    }
+    a {
+      font-weight: 400;
     }
   }
   li {
     list-style: none;
+    @include breakpoint(small640-down) {
+      margin-bottom: 10px;
+    }
   }
   .f16.bold {
     font-weight: 700;
+    @include breakpoint(small640-down) {
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
   }
   .f16 {
+    font-weight: 400;
     li {
       @include font-size-sass(16px);
+    }
+  }
+  #menu-contact {
+    .footer-phone a::before {
+      content: url(./images/phone.svg);
+      height: 16px;
+      width: 16px;
+      padding-right: 15px;
+      fill: #fff;
+      vertical-align: middle;
+    }
+    .footer-email a::before {
+      content: url(./images/email.svg);
+      height: 16px;
+      width: 16px;
+      padding-right: 10px;
+      fill: #fff;
+      vertical-align: middle;
+    }
+  }
+  @include breakpoint(small640-down) {
+    .container-fluid {
+      margin-top: 25px;
+      .social-icon {
+        max-width: 50px;
+        svg {
+          width: 22px;
+          height: auto;
+        }
+      }
     }
   }
 }

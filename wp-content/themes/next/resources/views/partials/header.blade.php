@@ -21,35 +21,37 @@
       </nav>
     </div>
   </div>
-  <div class="container additional-nav navbar-collapse collapse" id="navbarAdditionalContent">
-    <div class="row">
-      <div class="w20 col-auto additional-nav-title">CASE STUDIES</div>
-    </div>
-    <div class="row justify-content-end">
-      <div class="col">
-        <div class="row px-0">
-          <?php
-            $post_objects = get_field('header_case_study_selector', 'option');
-            if( $post_objects ): 
-              foreach( $post_objects as $post):
-                  $headline = get_field("headline", $post);
-                  $content = get_field("brief", $post);
-                  $image = get_field('image_for_case_study',$post);
-          ?>
-                  <div class="casestudy-container col-6">
-                    <a href="<?php echo get_post_permalink($post); ?>">
-                      <?php output_acf_img($image,'casestudy-image'); ?>
-                      <h5><?php echo $headline; ?></h5>
-                      <div class="casestudy-content"><?php echo $content; ?></div>
-                    </a>
-                  </div>
-          <?php $i++; endforeach; endif; ?>
-        </div>
-        </div>
-        <div class="col-auto">
-          @if (has_nav_menu('additional'))
-            {!! wp_nav_menu(['theme_location' => 'additional', 'menu_class' => 'nav flex-column']) !!}
-          @endif
+  <div class="additional-nav navbar-collapse collapse" id="navbarAdditionalContent">
+    <div class="container">
+      <div class="row">
+        <div class="w20 col-auto additional-nav-title">CASE STUDIES</div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col">
+          <div class="row px-0">
+            <?php
+              $post_objects = get_field('header_case_study_selector', 'option');
+              if( $post_objects ): 
+                foreach( $post_objects as $post):
+                    $headline = get_field("headline", $post);
+                    $content = get_field("brief", $post);
+                    $image = get_field('image_for_case_study',$post);
+            ?>
+                    <div class="casestudy-container col-6">
+                      <a href="<?php echo get_post_permalink($post); ?>">
+                        <?php output_acf_img($image,'casestudy-image'); ?>
+                        <h5><?php echo $headline; ?></h5>
+                        <div class="casestudy-content"><?php echo $content; ?></div>
+                      </a>
+                    </div>
+            <?php $i++; endforeach; endif; ?>
+          </div>
+          </div>
+          <div class="col-auto">
+            @if (has_nav_menu('additional'))
+              {!! wp_nav_menu(['theme_location' => 'additional', 'menu_class' => 'nav flex-column']) !!}
+            @endif
+          </div>
         </div>
       </div>
     </div>

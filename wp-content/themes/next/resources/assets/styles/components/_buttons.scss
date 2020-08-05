@@ -12,6 +12,9 @@ a.button {
     padding-left: 15px;
     fill: #fff;
     vertical-align: middle;
+    @include breakpoint(small640-down) {
+      margin-top: -3px;
+    }
   }
   &.cta-btn {
     display: block;
@@ -24,6 +27,9 @@ a.button {
     &::after {
       content: url(./images/btn_arrow_black.svg);
       fill: #333;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
   &.cta-btn {
