@@ -245,6 +245,15 @@
     &.oncenter {
       margin-top: 160px;
     }
+    @include breakpoint(small640-down) {
+      margin-top: 20px;
+      &:first-child {
+        margin-top: 0;
+      }
+      &.oncenter {
+        margin-top: 20px;
+      }
+    }
   }
 }
 
@@ -510,6 +519,17 @@
     }
     @include breakpoint(small640-down) {
       margin-top: 2rem;
+    }
+    @include breakpoint(small640-down) {
+      h5 {
+        margin: 20px 0 8px;
+      }
+    }
+  }
+  .cs-container {
+    @include breakpoint(small640-down) {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
     }
   }
 }

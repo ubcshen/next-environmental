@@ -452,7 +452,7 @@ h1 {
     @include font-size-sass(45px);
   }
   @include breakpoint(medium700-down) {
-    @include font-size-sass(24px);
+    @include font-size-sass(32px);
   }
 }
 
@@ -718,6 +718,9 @@ section {
   }
   @include breakpoint(small640-down) {
     padding: 0;
+    &.section-404 {
+      padding-bottom: 80px;
+    }
   }
 }
 

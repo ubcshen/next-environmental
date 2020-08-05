@@ -759,12 +759,12 @@ function build_sections()
                 <section class="section-custom-post-type <?php echo $className; ?>">
                     <div class="container">
                         <?php if($post_type=="case_studies") { ?>
-                            <div class="grid row align-items-center d-flex justify-content-center">
+                            <div class="grid row align-items-center d-flex justify-content-center cs-container">
                                 <?php $i = 0;
                                     while ( $the_query->have_posts() ): $the_query->the_post();
                                         $bgimage = get_field("image_for_case_study");
                                   ?>
-                                    <div class="col-10 col-md-6 item <?php if($i%2==0) echo 'ontop pr-0 pr-lg-3'; elseif($i%2 === 1) echo 'oncenter pl-0 pl-lg-3'; ?>">
+                                    <div class="col-12 col-md-6 item <?php if($i%2==0) echo 'ontop pl-0 pr-0 pr-lg-3'; elseif($i%2 === 1) echo 'oncenter pr-0 pl-0 pl-lg-3'; ?>">
                                             <a class="item-container mr-2" href="<?php echo get_post_permalink(); ?>">
                                                 <?php echo output_acf_img($bgimage,'lazyImg'); ?>
                                                 <div class="case-content">
@@ -853,7 +853,7 @@ function build_sections()
                                             $bgimage = get_field("image");
                                       ?>
                                         <div class="col-12 col-md-6 col-lg-4 item <?php if($i%3==0) echo 'ontop'; elseif($i%3 === 1) echo 'oncenter'; elseif($i%3 === 2) echo 'onbottom'; ?>">
-                                            <a class="item-container mr-2 <?php if($bgimage) echo 'item-bg-overlay'; ?>" href="" <?php if($bgimage) echo "style='background-image:url(".$bgimage.");filter: grayscale(100%);'" ?>>
+                                            <a class="item-container mr-2 <?php if($bgimage) echo 'item-bg-overlay'; ?>" href="<?php echo get_permalink(); ?>" <?php if($bgimage) echo "style='background-image:url(".$bgimage[url].");filter: grayscale(100%);'" ?>>
                                                 <div class="item-icon"><?php echo output_inline_svg_file($image); ?></div>
                                                 <h5><?php echo get_field("headline"); ?></h5>
                                                 <?php echo get_field("brief"); ?>
@@ -1106,7 +1106,9 @@ function build_post_sections()
                     <div class="container">
                       <div class="row align-items-center d-flex justify-content-left">
                         <div class="col-12 header-content">
-                            <a href="<?php echo get_post_type_archive_link( $post_type ); ?>" class="d-block back-casestudy"><?php echo $post_type; ?></a>
+                            <a href="<?php echo get_post_type_archive_link( $post_type ); ?>" class="d-block back-casestudy">
+                                <?php echo str_replace("_", " ", $post_type); ?>
+                            </a>
                             <h1><?php echo get_sub_field("page_title"); ?></h1>
                             <?php echo get_sub_field("page_headerline"); ?>
                         </div>
@@ -1119,15 +1121,15 @@ function build_post_sections()
             ?>
                 <section class="container section-case-study-info">
                     <div class="row">
-                        <div class="col-12 col-md-6 col-lg-1">
+                        <div class="col-12 col-md-6 col-lg-1 col-info">
                             <h4>Year</h4>
                             <?php echo get_sub_field('case_year'); ?>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4">
+                        <div class="col-12 col-md-6 col-lg-4 col-info">
                             <h4>Location</h4>
                             <?php echo get_sub_field('case_location'); ?>
                         </div>
-                        <div class="col-12 col-md-12 col-lg-6 offset-lg-1">
+                        <div class="col-12 col-md-12 col-lg-6 offset-lg-1 col-info">
                             <h4>The Challenge</h4>
                             <?php echo get_sub_field('case_challenge'); ?>
                         </div>
@@ -1214,7 +1216,7 @@ function build_post_sections()
                                 <div class="col-12 col-lg-6 pl-0">
                                     <h3><?php echo get_sub_field('detail_headline'); ?></h3>
                                 </div>
-                                <div class="col-12 col-lg-6">
+                                <div class="col-12 col-lg-6 pl-0 pl-lg-4">
                                     <?php echo get_sub_field('detail'); ?>
                                 </div>
                             </div>

@@ -16,6 +16,14 @@
     }
     padding-top: 0;
     padding-bottom: 100px;
+    @include breakpoint(small640-down) {
+      padding-bottom: 80px;
+    }
+  }
+  @include breakpoint(small640-down) {
+    h1 {
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -26,6 +34,20 @@
   .casestudy-result {
     @include font-size-sass(18px);
     font-weight: 300;
+  }
+  @include breakpoint(small640-down) {
+    margin-top: -30vw;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: calc(100% - 30px);
+    padding: 15px;
+    h4 {
+      @include font-size-sass(14px);
+      margin-bottom: 6px;
+    }
+    .col-info {
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -63,6 +85,13 @@
   padding: 0;
   .tab-pane {
     margin: 30px auto 80px;
+  }
+  @include breakpoint(small640-down) {
+    padding-left: 15px;
+    padding-right: 15px;
+    .tab-pane {
+      margin: 15px auto 0;
+    }
   }
 }
 
