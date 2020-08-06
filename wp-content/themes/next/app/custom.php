@@ -502,7 +502,7 @@ function build_sections()
                             <?php endif; ?>
                             <?php
                                 if($image):
-                                    output_acf_img($image,'lazyImg');
+                                    output_acf_img($image,'lazyImg pt-3 pt-md-0');
                                 endif;
                             ?>
                         </div>
@@ -664,19 +664,23 @@ function build_sections()
                             <h2 class="col-12 col-md-8 text-center"><?php echo get_sub_field("headline"); ?></h2>
                             <div class="col-12 col-md-6 text-center head-content"><?php echo get_sub_field("sub_headline"); ?></div>
                         </div>
-                        <div class="row text-left align-items-start d-flex justify-content-center">
-                            <?php
-                              while(has_sub_field('words_cols')):
-                            ?>
-                            <div class="col-2 col-2-adjust">
-                                <div class="word-item">
-                                    <div class="word"><?php echo get_sub_field("word"); ?></div>
+                        <div class="row mobile-blue">
+                            <div class="mobile-up container">
+                                <div class="row text-left align-items-start d-flex justify-content-center">
+                                    <?php
+                                      while(has_sub_field('words_cols')):
+                                    ?>
+                                    <div class="col-12 col-2-adjust">
+                                        <div class="word-item">
+                                            <div class="word"><?php echo get_sub_field("word"); ?></div>
+                                        </div>
+                                        <small class="f16 d-inline-block">0<?php echo get_row_index(); ?></small>
+                                        <h4><?php echo get_sub_field("word"); ?></h4>
+                                        <?php echo get_sub_field("content"); ?>
+                                    </div>
+                                    <?php endwhile; ?>
                                 </div>
-                                <small class="f16 d-inline-block">0<?php echo get_row_index(); ?></small>
-                                <h4><?php echo get_sub_field("word"); ?></h4>
-                                <?php echo get_sub_field("content"); ?>
                             </div>
-                            <?php endwhile; ?>
                         </div>
                     </div>
                     <div class="fullWidth image-content" style="background-color: #0d4059;">
@@ -706,7 +710,7 @@ function build_sections()
                             $image = get_sub_field('image');
                             if(get_row_index()<=2):
                         ?>
-                        <div class="<?php if(get_row_index()==1) echo 'image-1 col-3'; elseif(get_row_index()==2) echo 'image-2 col-6'; ?>">
+                        <div class="<?php if(get_row_index()==1) echo 'image-1 col-4 col-lg-3'; elseif(get_row_index()==2) echo 'image-2 col-5 col-lg-6'; ?>">
                             <?php output_acf_img($image,'lazyImg'); ?>
                         </div>
                         <?php endif; endwhile; ?>
@@ -717,7 +721,7 @@ function build_sections()
                             $image = get_sub_field('image');
                             if(get_row_index()>=3):
                         ?>
-                        <div class="<?php if(get_row_index()==3) echo 'image-3 col-6'; elseif(get_row_index()==4) echo 'image-4 col-6'; ?>">
+                        <div class="<?php if(get_row_index()==3) echo 'image-3 col-lg-6 col-7'; elseif(get_row_index()==4) echo 'image-4 col-5 col-lg-6'; ?>">
                             <?php output_acf_img($image,'lazyImg'); ?>
                         </div>
                         <?php endif; endwhile; ?>
@@ -729,9 +733,11 @@ function build_sections()
                                   while(has_sub_field('story_gallery_list')):
                                     $image = get_sub_field('icon_svg');
                                 ?>
-                                <div class="col-12 col-lg-6">
-                                    <div class="story-icon"><?php echo output_inline_svg_file($image); ?></div>
-                                    <?php echo get_sub_field("list_content"); ?>
+                                <div class="col-12 col-lg-6 gallery-point">
+                                    <div class="row">
+                                        <div class="story-icon col-2 col-lg-12"><?php echo output_inline_svg_file($image); ?></div>
+                                        <div class="story-content col-10 col-lg-12"><?php echo get_sub_field("list_content"); ?></div>
+                                    </div>
                                 </div>
                                 <?php endwhile; ?>
                             </div>
@@ -891,10 +897,10 @@ function build_sections()
                     <?php if($sectionWidth==='withincontainer'): ?><div class="container col-head-section"><?php endif; ?>
                       <div class="text-center <?php if(!get_sub_field('section_content')) echo 'pb-100'; ?>">
                           <h2 class="text-center"><?php echo get_sub_field("section_headerline"); ?></h2>
-                          <div class="row justify-content-center d-flex">
+                          <div class="row justify-content-center d-flex m-bottom">
                               <div class="col-subline col-10 <?php if(is_page('careers')) echo 'col-md-7'; else echo 'col-md-6'; ?>"><?php echo get_sub_field("section_subheaderline"); ?></div>
                               <?php if(get_sub_field("section_content")) { ?>
-                                  <div class="col-content col-8">
+                                  <div class="col-content col-12 col-lg-8">
                                       <?php echo get_sub_field("section_content"); ?>
                                   </div>
                               <?php } ?>
@@ -911,13 +917,13 @@ function build_sections()
                                 ?>
                                 <?php if(!$isInside) { ?>
                                     <?php if(!is_page("contact")) { ?>
-                                        <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> <?php if($numberofCols==2) { if(get_row_index()%2==0) echo 'pl-0 pl-md-3 pl-lg-5'; else echo 'pr-0 pr-md-3 pr-lg-5'; } ?>">
+                                        <div class="<?php if(is_page('story')) echo 'col-6'; else echo 'col-12'; ?> col-lg-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> <?php if($numberofCols==2) { if(get_row_index()%2==0) echo 'pl-md-3 pl-lg-5'; else echo ' pr-md-3 pr-lg-5'; } ?>">
                                             <?php if($icon) { ?>
                                                 <div class="row">
-                                                    <div class="col-12 col-lg-1 col-svg">
+                                                    <div class="col-2 col-lg-1 col-svg">
                                                         <?php output_inline_svg_file($icon); ?>
                                                     </div>
-                                                    <div class="text-left col-12 col-lg-11 pl-0 pl-lg-4">
+                                                    <div class="text-left col-10 col-lg-11 pl-4">
                                                         <?php if(get_sub_field("col_title")) { ?><h4><?php echo get_sub_field("col_title"); ?></h4><?php } ?>
                                                         <?php echo $colContent; ?>
                                                     </div>
@@ -969,7 +975,7 @@ function build_sections()
                 $className = get_sub_field("custom_class_names");
             ?>
                 <section class="section-testimonials <?php echo $className; ?>" style="<?php if($bgColor) echo 'background-color:' . $bgColor .' '; ?>">
-                    <div class="svg-arrow-testimonial">
+                    <div class="svg-arrow-testimonial d-none d-md-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="241" height="458" viewBox="0 0 241 458">
                           <path id="Testimonial_arrow" d="M68.321,439.495A18.025,18.025,0,1,1,86.34,458,18.267,18.267,0,0,1,68.321,439.495ZM0,439.495a18.267,18.267,0,0,1,18.019-18.5,18.512,18.512,0,0,1,0,37.01A18.267,18.267,0,0,1,0,439.495Zm102.857-52.431a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,102.857,387.064Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,34.536,387.064Zm102.106-52.431a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,136.642,334.633Zm-68.321,0A18.025,18.025,0,1,1,86.34,353.138,18.267,18.267,0,0,1,68.321,334.633ZM171.177,282.2a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,171.177,282.2Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,102.857,282.2ZM204.962,229a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,204.962,229Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,136.642,229Zm34.536-53.2A18.025,18.025,0,1,1,189.2,194.3,18.267,18.267,0,0,1,171.177,175.8Zm-68.321,0A18.025,18.025,0,1,1,120.876,194.3,18.267,18.267,0,0,1,102.857,175.8Zm33.785-52.431a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,136.642,123.367Zm-68.321,0a18.025,18.025,0,1,1,18.019,18.5A18.267,18.267,0,0,1,68.321,123.367Zm34.536-52.431a18.025,18.025,0,1,1,18.019,18.505A18.267,18.267,0,0,1,102.857,70.936Zm-68.321,0A18.025,18.025,0,1,1,52.555,89.441,18.267,18.267,0,0,1,34.536,70.936ZM68.321,18.505a18.025,18.025,0,1,1,36.037,0,18.025,18.025,0,1,1-36.037,0ZM0,18.505A18.267,18.267,0,0,1,18.019,0,18.267,18.267,0,0,1,36.037,18.505a18.266,18.266,0,0,1-18.018,18.5A18.267,18.267,0,0,1,0,18.505Z" fill="#0093b2" opacity="0.2"/>
                         </svg>
@@ -979,10 +985,10 @@ function build_sections()
                             <h2 class="col-12 col-md-8 col-lg-7 pl-0"><?php echo get_sub_field("testimonial_headline"); ?></h2>
                         </div>
                         <div class="row testimonials-container">
-                            <div class="col-10 col-lg-5 green-rectangle">
+                            <div class="col-12 col-lg-5 green-rectangle">
                                 <?php output_acf_img($image,'lazyImg touchLeft'); ?>
                             </div>
-                            <div class="col-10 col-lg-5 cover">
+                            <div class="col-12 col-lg-5 cover">
                                 <?php output_acf_img($image,'lazyImg touchLeft'); ?>
                             </div>
                             <div class="white-bg">
