@@ -385,15 +385,82 @@ blockquote {
   @extend %fix-webkit-font-rendering;
   line-height: 1.625;
   color: #4a4a4a;
+}
+
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+sub,
+sup,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+i,
+b,
+em,
+strong,
+blockquote {
   @include breakpoint(small640-down) {
-    font-size: 14px;
+    @include font-size-sass(14px);
   }
 }
 
 p {
   margin-bottom: 30px;
   @include breakpoint(small640-down) {
-    @include font-size-sass(14px);
     line-height: 1.57;
     margin-bottom: 12px;
   }
@@ -891,6 +958,9 @@ section {
 
 .mg-t-60 {
   margin-top: 3rem;
+  @include breakpoint(small640-down) {
+    margin-top: 1.725rem;
+  }
 }
 
 .pb-100 {
@@ -971,10 +1041,57 @@ button.close span {
   display: none;
 }
 
+.desktop-show {
+  @include breakpoint(small640-down) {
+    display: none;
+  }
+}
+
+.mobile-show {
+  display: none;
+  @include breakpoint(small640-down) {
+    display: block;
+  }
+}
+
 .mobile-blue {
   @include breakpoint(small640-down) {
     background-color: #0d4059;
   }
 }
+
+.select2-container {
+  width: 100% !important;
+  margin: 20px auto;
+}
+
+.select2-container--default .select2-selection--single {
+  border: 2px solid #ebebeb;
+  padding: 3px;
+  height: auto;
+  .select2-selection__rendered {
+    color: #1693b2;
+    @include font-size-sass(14px);
+    font-weight: 500;
+    font-family: $nav-font;
+  }
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border: 0;
+  content: url(./images/downarrow.svg);
+  width: 10px;
+  height: 14px;
+  left: 26%;
+}
+
+.carousel-item {
+  img {
+    width: 100%;
+  }
+}
+
+
+
 
 

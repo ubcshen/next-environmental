@@ -418,6 +418,83 @@ function build_sections()
                   </div>
                 </section>
             <?php }
+            elseif( get_row_layout() == "content_section") // layout: Content Section
+            {
+                $titleAlignemnt = get_sub_field("title_alignment");
+                $title_col_width = get_sub_field('title_col_width');
+                $image = get_sub_field('content_image');
+            ?>
+                <section class="section-content container">
+                    <div class="row align-items-center d-flex justify-content-center">
+                        <?php
+                            if($image):
+                                output_acf_img($image,'lazyImg');
+                            endif;
+                        ?>
+                    </div>
+                    <?php if($titleAlignemnt == 'center') { ?>
+                        <div class="row content-container">
+                            <div class="col-12 section-cta-content text-center">
+                                <h3><?php echo get_sub_field("content_title"); ?></h3>
+                                <?php echo get_sub_field("content"); ?>
+                            </div>
+                        </div>
+                        <?php } else { ?>
+                        <div class="row content-container">
+                            <h3 class="col-12 col-lg-<?php echo $title_col_width; ?>"><?php echo get_sub_field("content_title"); ?></h3>
+                            <div class="col-12 col-lg-<?php echo (11-$title_col_width); ?> <?php if($title_col_width == 4 || $title_col_width == 5) echo 'offset-lg-1'; ?>"><?php echo get_sub_field("content"); ?></div>
+                        </div>
+                        <?php } ?>
+                </section>
+            <?php }
+            elseif( get_row_layout() == "risks_tabs") // layout: Risks Tabs
+            { ?>
+                <section class="section-risks">
+                    <div class="row">
+                        <div class="col-5 risk-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1061" height="1060" viewBox="0 0 1061 1060" class="circle">
+                              <g id="Group_191" data-name="Group 191" transform="translate(436 -2228)">
+                                <ellipse id="Ellipse_230" data-name="Ellipse 230" cx="530.5" cy="530" rx="530.5" ry="530" transform="translate(-436 2228)" fill="#47c16d"/>
+                                <circle id="Ellipse_344" data-name="Ellipse 344" cx="452" cy="452" r="452" transform="translate(-357 2307)" fill="#231f20" opacity="0.1"/>
+                                <circle id="Ellipse_345" data-name="Ellipse 345" cx="357" cy="357" r="357" transform="translate(-262 2402)" fill="#231f20" opacity="0.1"/>
+                                <circle id="Ellipse_342" data-name="Ellipse 342" cx="258" cy="258" r="258" transform="translate(-163 2501)" fill="#231f20" opacity="0.1"/>
+                                <circle id="Ellipse_346" data-name="Ellipse 346" cx="165" cy="165" r="165" transform="translate(-70 2594)" fill="#231f20"/>
+                              </g>
+                            </svg>
+                            <div class="risk-pointer risk1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="472.124" height="390.264" viewBox="0 0 472.124 390.264"><circle cx="10" cy="10" r="10" transform="translate(440.405 370.264)" /><path d="M2975.041,10426.2l553.932,40.389-.563,5.316-533.189,12.151Z" transform="translate(4110.266 -10047.576) rotate(38)" /></svg>
+                            </div>
+                            <div class="risk-tab-container">
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                  <?php
+                                  $i = 0;
+                                  while(has_sub_field('risks')):
+                                        $tab = strtolower(get_sub_field("risk_level"));
+                                        $tab = preg_replace('/\s+/', '_', $tab);
+                                  ?>
+                                  <a class="nav-item nav-link <?php if($i==0) echo 'active'; ?> nav-item-<?php echo $i; ?>" id="nav-<?php echo $tab; ?>-tab" data-toggle="tab" href="#nav-<?php echo $tab; ?>" role="tab" aria-controls="nav-<?php echo $tab; ?>" aria-selected="<?php if($i==0) echo 'true'; else echo 'false'; ?>"><?php echo get_sub_field("risk_level"); ?></a>
+                                  <?php $i++; endwhile; ?>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-6 offset-1 risk-content-container tab-content d-flex align-items-center justify-content-center">
+                            <div class="dvd">&nbsp;</div>
+                            <?php $i = 0;
+                              while(has_sub_field('risks')):
+                                $tab = strtolower(get_sub_field("risk_level"));
+                                $tab = preg_replace('/\s+/', '_', $tab);
+                            ?>
+                            <div class="tab-pane fade <?php if($i==0) echo 'show active'; ?> row" id="nav-<?php echo $tab; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $tab; ?>-tab">
+                                <div class="col-12 col-lg-9 pl-0 pl-lg-5">
+                                    <h2><hr align="left" /><?php echo get_sub_field('risk_level'); ?></h2>
+                                    <?php echo get_sub_field('risk_content'); ?>
+                                </div>
+                            </div>
+                            <?php $i++; endwhile; ?>
+                        </div>
+                    </div>
+                </section>
+            <?php }
             elseif( get_row_layout() == "list_section" ) // layout: List Section
             {
               $hasBorder = (get_sub_field('bottom_border')) ? 'border-bottom' : '';
@@ -936,7 +1013,7 @@ function build_sections()
                                             <?php } ?>
                                         </div>
                                     <?php } elseif(is_page("contact")&&$numberofCols==4) { ?>
-                                        <div class="col-3 item-<?php echo get_row_index(); ?> location-office col4 <?php if((get_row_index()-1)%2==0) echo 'ontop'; elseif((get_row_index()-1)%2 === 1) echo 'oncenter'; ?>">
+                                        <div class="col-12 col-md-3 item-<?php echo get_row_index(); ?> location-office col4 <?php if((get_row_index()-1)%2==0) echo 'ontop'; elseif((get_row_index()-1)%2 === 1) echo 'oncenter'; ?>">
                                             <div class="col4-container"><?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
                                                 <div class="office-location">
                                                     <h2><?php echo get_sub_field("col_title"); ?></h2>
@@ -946,7 +1023,7 @@ function build_sections()
                                         </div>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <div class="col-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> location-office">
+                                    <div class="col-12 col-md-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> location-office">
                                         <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
                                         <div class="office-location">
                                             <h2><?php echo get_sub_field("col_title"); ?></h2>
@@ -1148,12 +1225,52 @@ function build_post_sections()
                 $image = get_sub_field("post_image");
             ?>
                 <section class="container section-icon">
-                    <div class="row">
-                        <div class="col-12 col-md-2 col-lg-1 icon-line">
+                    <div class="row desktop-show">
+                        <div class="col-3 col-md-2 col-lg-1 icon-line">
                             <div class="round-svg align-items-center d-flex justify-content-center"><?php output_inline_svg_file($icon); ?></div>
                         </div>
-                        <div class="col-12 col-md-8 col-lg-9 offset-md-2 offset-lg-2">
+                        <div class="col-12 col-md-8 col-lg-9 offset-md-2 offset-lg-2 icon-image">
                             <?php output_acf_img($image,'lazyImg'); ?>
+                        </div>
+                    </div>
+                    <div class="row mobile-show">
+                        <div class="col-12 col-md-8 col-lg-9 offset-md-2 offset-lg-2 icon-image">
+                            <?php output_acf_img($image,'lazyImg'); ?>
+                        </div>
+                    </div>
+                    <?php
+                        $count = count(get_sub_field('mobile_details_dropdown'));
+                        if($count>1) :
+                    ?>
+                        <div class="row mobile-show">
+                            <nav class="col-12">
+                              <select class="mobile-dropdown" id="mobile-tab" >
+                              <?php
+                              while(has_sub_field('mobile_details_dropdown')):
+                                    $tab = strtolower(get_sub_field("dropdown"));
+                                    $tab = preg_replace('/\s+/', '_', $tab);
+                              ?>
+                              <option class="nav-item nav-link nav-item-<?php echo $i; ?>  mobile-tab-item" id="nav-<?php echo $tab; ?>-tab" data-title="#title-<?php echo $tab; ?>" data-toggle="tab" ole="tab" aria-controls="nav-<?php echo $tab; ?>" aria-selected="<?php if($i==0) echo 'true'; else echo 'false'; ?>" value="#nav-<?php echo $tab; ?>"><?php echo get_sub_field("dropdown"); ?></option>
+                              <?php endwhile; ?>
+                              </select>
+                            </nav>
+                        </div>
+                    <?php endif; ?>
+                    <div class="row mobile-show">
+                        <div class="col-3 icon-line">
+                            <div class="round-svg align-items-center d-flex justify-content-center"><?php output_inline_svg_file($icon); ?></div>
+                        </div>
+                        <div class="tab-content col-9 pl-0 mobile-tab-title">
+                            <?php
+                              $i = 0;
+                              while(has_sub_field('mobile_details_dropdown')):
+                                    $tab = strtolower(get_sub_field("dropdown"));
+                                    $tab = preg_replace('/\s+/', '_', $tab);
+                              ?>
+                              <h3 class="tab-pane title-detail fade <?php if($i==0) echo 'show active'; ?>" id="title-nav-<?php echo $tab; ?>">
+                                  <?php echo get_sub_field("content_title"); ?>
+                              </h3>
+                              <?php $i++; endwhile; ?>
                         </div>
                     </div>
                 </section>
@@ -1173,7 +1290,7 @@ function build_post_sections()
                                 $brief = get_field('brief',$post_objects);
                                 $image = get_field('image',$post_objects);
                         ?>
-                            <div class="col-12 col-md-5">
+                            <div class="col-7 col-md-5">
                                 <?php output_acf_img($image,'lazyImg img-outof-border'); ?>
                                 <div class="green-rectangle">&nbsp;</div>
                             </div>
@@ -1199,7 +1316,7 @@ function build_post_sections()
                           $count = count(get_sub_field('details'));
                           if($count>1) :
                         ?>
-                            <nav class="col-12">
+                            <nav class="col-12 desktop-show">
                               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                               <?php
                               $i = 0;
@@ -1216,10 +1333,11 @@ function build_post_sections()
                         <div class="tab-content col-12 container" id="nav-tabContent">
                             <?php $i = 0;
                               while(has_sub_field('details')):
+                                $tab = strtolower(get_sub_field("detail_type"));
                                 $tab = preg_replace('/\s+/', '_', $tab);
                             ?>
                             <div class="tab-pane fade <?php if($i==0) echo 'show active'; ?> row" id="nav-<?php echo $tab; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $tab; ?>-tab">
-                                <div class="col-12 col-lg-6 pl-0">
+                                <div class="col-12 col-lg-6 pl-0 desktop-show">
                                     <h3><?php echo get_sub_field('detail_headline'); ?></h3>
                                 </div>
                                 <div class="col-12 col-lg-6 pl-0 pl-lg-4">

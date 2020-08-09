@@ -49,7 +49,8 @@ add_action('after_setup_theme', function () {
         'footerlink2' => __('footerlink2', 'sage'),
         'topmenu2' => __('topmenu2', 'sage'),
         'contact' => __('contact', 'sage'),
-        'additional' => __('additional', 'sage')
+        'additional' => __('additional', 'sage'),
+        'mobile' => __('mobile', 'sage')
     ]);
 
     /**

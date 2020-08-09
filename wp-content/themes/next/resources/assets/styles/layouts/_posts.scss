@@ -56,6 +56,11 @@
   background-color: #00629b;
   width: 168px;
   height: 168px;
+  @include breakpoint(small640-down) {
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+  }
 }
 
 .section-icon {
@@ -69,6 +74,12 @@
     border: 1px solid black;
     top: 35%;
     left: 100px;
+    @include breakpoint(small640-down) {
+      left: 38px;
+      top: 54%;
+      height: 46%;
+      z-index: 5;
+    }
   }
   .icon-line::after {
     content: '.';
@@ -78,6 +89,27 @@
     bottom: 12%;
     position: absolute;
     font-size: 120px;
+    @include breakpoint(small640-down) {
+      left: 25px;
+      bottom: 112%;
+      z-index: 6;
+    }
+  }
+  @include breakpoint(small640-down) {
+    margin-top: -20vw;
+    .desktop-show {
+      display: none;
+    }
+    .mobile-show {
+      display: flex;
+    }
+    .mobile-tab-title {
+      padding-top: 60px;
+      min-height: 115px;
+    }
+    h3.title-detail {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -89,8 +121,12 @@
   @include breakpoint(small640-down) {
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 60px;
     .tab-pane {
       margin: 15px auto 0;
+    }
+    #nav-tabContent {
+      margin-top: 15px;
     }
   }
 }
@@ -113,6 +149,16 @@
     position: absolute;
     top: -30%;
     left: 20%;
+  }
+  @include breakpoint(small640-down) {
+    padding: 50px 15px;
+    .case-study-type {
+      margin-top: 20px;
+    }
+    .green-rectangle {
+      width: 180px;
+      height: 250px;
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import 'jquery';
 import './autoload/**/*';
 import './autoload/jquery.countup.min.js';
 import './autoload/jquery.waypoints.min.js';
+import './autoload/select2.min.js';
 // import local dependencies
 import Router from './util/Router';
 import common from './routes/common';

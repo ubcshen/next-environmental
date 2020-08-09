@@ -39,4 +39,8 @@ a.button {
       fill: #00629b;
     }
   }
+  @include breakpoint(small640-down) {
+    @include font-size-sass(16px);
+    padding: 15px;
+  }
 }

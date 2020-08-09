@@ -187,7 +187,7 @@
     }
   }
   @include breakpoint(small640-down) {
-    .cols-section {
+    .cols-section hr {
       margin-top: 3rem !important;
       margin-bottom: 3rem;
     }
@@ -417,12 +417,21 @@
         transform-origin: 0 0;
         left: 0;
         position: absolute;
+        @include breakpoint(small640-down) {
+          @include font-size-sass(28px);
+        }
       }
       .address {
         padding-left: 10px;
         position: absolute;
         left: 50px;
         bottom: -30px;
+        font-weight: 400;
+        @include breakpoint(small640-down) {
+          @include font-size-sass(16px);
+          left: 30px;
+          bottom: -20px;
+        }
       }
     }
     &.col4 {
@@ -670,6 +679,15 @@
       padding-right: 15px !important;
     }
   }
+  @include breakpoint(small640-down) {
+    .col-10 {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .normal-item {
+      padding: 20px 0 0;
+    }
+  }
 }
 
 .error404 {
@@ -711,6 +729,138 @@
         p {
           margin-bottom: 20px;
         }
+      }
+    }
+  }
+}
+
+.section-content {
+  .content-container {
+    margin-top: 5rem;
+  }
+}
+
+.section-risks {
+  background-color: #0d4059;
+  padding: 0;
+  color: #fff;
+  * {
+    color: inherit;
+  }
+  h2 {
+    hr {
+      border-top: 4px solid #fff;
+      margin-bottom: 2rem;
+      margin-top: 0;
+      max-width: 78px;
+    }
+  }
+  .dvd {
+    border-left: 1px solid #707070;
+    height: 90%;
+    margin-left: -40px;
+  }
+  .risk-container {
+    .nav-tabs {
+      position: initial;
+    }
+    position: relative;
+    svg.circle {
+      width: 100%;
+      height: auto;
+      min-width: 130%;
+      margin-left: -60%;
+      margin-top: -5vw;
+      margin-bottom: -5vw;
+    }
+    .risk-pointer {
+      svg {
+        fill: #fff;
+        position: absolute;
+        top: 34%;
+        left: 10%;
+        width: 54%;
+        transition: 1s ease-in-out;
+      }
+      &.risk1 {
+        svg {
+          transform: rotate(-70deg);
+          top: 3%;
+          left: 8%;
+        }
+      }
+      &.risk2 {
+        svg {
+          transform: rotate(-55deg);
+          top: 11%;
+          left: 12%;
+        }
+      }
+      &.risk3 {
+        svg {
+          transform: rotate(-40deg);
+          top: 18%;
+          left: 14%;
+        }
+      }
+      &.risk4 {
+        svg {
+          transform: rotate(-25deg);
+          top: 26%;
+          left: 13%;
+        }
+      }
+      &.risk5 {
+        svg {
+          transform: rotate(-8deg);
+        }
+      }
+    }
+    .nav-item {
+      position: absolute;
+      top: 10%;
+      right: 20%;
+      display: inline-block;
+      @include font-size-sass(18px);
+      border: none;
+      color: #fff;
+      font-weight: 300;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 2px;
+      &.active {
+        font-weight: 900;
+        color: #fff;
+        background-color: transparent;
+        border-bottom: 2px solid #fff;
+      }
+    }
+    .nav-item-1 {
+      top: 28%;
+      right: 0;
+    }
+    .nav-item-2 {
+      top: 46%;
+      right: -8%;
+    }
+    .nav-item-3 {
+      top: 64%;
+      right: 10%;
+    }
+    .nav-item-4 {
+      top: 82%;
+    }
+  }
+  .taboncircle {
+    position: absolute;
+    right: 0;
+    .nav-tabs {
+      border: none;
+      hr {
+        display: none;
+      }
+      a.nav-item {
+        display: block;
       }
     }
   }

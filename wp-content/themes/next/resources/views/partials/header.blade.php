@@ -1,4 +1,8 @@
-<header class="banner header-banner">
+<?php
+$detect = new Mobile_Detect;
+if ( !$detect->isMobile() ) {
+?>
+<header class="banner header-banner desktop-show">
   <div class="container">
     <?php $logo = get_field('logo', 'option');  ?>
     <div class="row justify-content-end">
@@ -57,3 +61,23 @@
     </div>
   </div>
 </header>
+<?php } else { ?>
+<header class="banner header-banner mobile-show">
+  <div class="container">
+    <?php $logo = get_field('logo', 'option');  ?>
+    <div class="row justify-content-end">
+      <a class="brand col" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
+      <div class="col-auto d-flex align-items-center justify-content-center">
+        <div class="hamburger" data-toggle="collapse" data-target="#navbarAdditionalContent"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="additional-nav navbar-collapse collapse" id="navbarAdditionalContent">
+    <nav class="nav-primary col-auto">
+      @if (has_nav_menu('mobile'))
+        {!! wp_nav_menu(['theme_location' => 'mobile', 'menu_class' => 'nav']) !!}
+      @endif
+    </nav>
+  </div>
+</header>
+<?php } ?>

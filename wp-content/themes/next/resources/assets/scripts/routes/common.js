@@ -10,12 +10,13 @@ export default {
       $('.casestudy-image').unveil(200);
       }, 0);
     });
+    // var window.isMobile = /iphone|ipod|ipad|android|blackberry|opera mini|opera mobi|skyfire|maemo|windows phone|palm|iemobile|symbian|symbianos|fennec/i.test(navigator.userAgent.toLowerCase());
     var previousScroll = 0;
     $(window).scroll(function () {
       var currentScroll = $(this).scrollTop();
       if (currentScroll < 100) {
         showTopNav();
-      } else if (currentScroll >= 100 && currentScroll < $(document).height() - $(window).height()) {
+      } else if (currentScroll >= 100 && currentScroll < $(document).height() - $(window).height()) { // && !$('.navbar-collapse').hasClass('show')
         if (currentScroll > previousScroll) {
           hideNav();
           if($('.additional-nav').hasClass('show')) { $('.hamburger').click(); }
@@ -93,6 +94,16 @@ export default {
         }
       },
       offset: 50,
+    });
+
+    $('.mobile-dropdown').select2({
+      minimumResultsForSearch: -1,
+    });
+
+    $('.mobile-dropdown').on('select2:select', function (e) {
+      var data = e.params.data;
+      $('.tab-pane').removeClass('show active');
+      $(data['id']).addClass('show active');
     });
   },
 };
