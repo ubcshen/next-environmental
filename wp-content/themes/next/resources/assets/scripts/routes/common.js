@@ -105,5 +105,11 @@ export default {
       $('.tab-pane').removeClass('show active');
       $(data['id']).addClass('show active');
     });
+
+    //price page
+    $('.risk-tab-container .nav-item').click(function(e) {
+      e.preventDefault();
+      $('.risk-pointer').attr('id',$(this).attr('data-pointer'));
+    });
   },
 };

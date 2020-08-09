@@ -782,35 +782,35 @@
         width: 54%;
         transition: 1s ease-in-out;
       }
-      &.risk1 {
+      &#risk1 {
         svg {
           transform: rotate(-70deg);
           top: 3%;
           left: 8%;
         }
       }
-      &.risk2 {
+      &#risk2 {
         svg {
           transform: rotate(-55deg);
           top: 11%;
           left: 12%;
         }
       }
-      &.risk3 {
+      &#risk3 {
         svg {
           transform: rotate(-40deg);
           top: 18%;
           left: 14%;
         }
       }
-      &.risk4 {
+      &#risk4 {
         svg {
           transform: rotate(-25deg);
           top: 26%;
           left: 13%;
         }
       }
-      &.risk5 {
+      &#risk5 {
         svg {
           transform: rotate(-8deg);
         }

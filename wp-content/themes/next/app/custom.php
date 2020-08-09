@@ -461,7 +461,7 @@ function build_sections()
                                 <circle id="Ellipse_346" data-name="Ellipse 346" cx="165" cy="165" r="165" transform="translate(-70 2594)" fill="#231f20"/>
                               </g>
                             </svg>
-                            <div class="risk-pointer risk1">
+                            <div class="risk-pointer" id="risk1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="472.124" height="390.264" viewBox="0 0 472.124 390.264"><circle cx="10" cy="10" r="10" transform="translate(440.405 370.264)" /><path d="M2975.041,10426.2l553.932,40.389-.563,5.316-533.189,12.151Z" transform="translate(4110.266 -10047.576) rotate(38)" /></svg>
                             </div>
                             <div class="risk-tab-container">
@@ -472,7 +472,7 @@ function build_sections()
                                         $tab = strtolower(get_sub_field("risk_level"));
                                         $tab = preg_replace('/\s+/', '_', $tab);
                                   ?>
-                                  <a class="nav-item nav-link <?php if($i==0) echo 'active'; ?> nav-item-<?php echo $i; ?>" id="nav-<?php echo $tab; ?>-tab" data-toggle="tab" href="#nav-<?php echo $tab; ?>" role="tab" aria-controls="nav-<?php echo $tab; ?>" aria-selected="<?php if($i==0) echo 'true'; else echo 'false'; ?>"><?php echo get_sub_field("risk_level"); ?></a>
+                                  <a class="nav-item nav-link <?php if($i==0) echo 'active'; ?> nav-item-<?php echo $i; ?>" data-pointer="risk<?php echo ($i+1); ?>" id="nav-<?php echo $tab; ?>-tab" data-toggle="tab" href="#nav-<?php echo $tab; ?>" role="tab" aria-controls="nav-<?php echo $tab; ?>" aria-selected="<?php if($i==0) echo 'true'; else echo 'false'; ?>"><?php echo get_sub_field("risk_level"); ?></a>
                                   <?php $i++; endwhile; ?>
                               </div>
                             </div>
