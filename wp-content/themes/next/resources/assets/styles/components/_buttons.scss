@@ -1,4 +1,4 @@
-a.button {
+.button {
   text-decoration: none;
   border: 2px solid #fff;
   @include font-size-sass(20px);
@@ -6,18 +6,41 @@ a.button {
   line-height: 1;
   font-family: $nav-font;
   display: flex;
+  position: relative;
+  @include breakpoint(medium1250-down) {
+    @include font-size-sass(18px);
+  }
+  @include media-breakpoint-down(md) {
+    @include font-size-sass(16px);
+    padding: 15px;
+  }
+  @include breakpoint(medium768-down) {
+    padding-right: 35px;
+  }
+  @include breakpoint(medium767-down) {
+    padding-right: 35px !important;
+  }
+  &:hover {
+    color: $default-font-color;
+    border-color: $default-font-color;
+  }
   &::after {
     content: url(./images/btn_arrow_white.svg);
     height: 20px;
     padding-left: 15px;
     fill: #fff;
     vertical-align: middle;
-    @include breakpoint(small640-down) {
-      margin-top: -3px;
+    @include breakpoint(medium768-down) {
+      margin-top: -1px;
+      right: 15px;
+      position: absolute;
     }
   }
   &.cta-btn {
     display: block;
+    @include breakpoint(medium768-down) {
+      padding-right: 35px;
+    }
   }
   &.link {
     color: #333;
@@ -27,9 +50,21 @@ a.button {
     &::after {
       content: url(./images/btn_arrow_black.svg);
       fill: #333;
+      @include breakpoint(medium767-down) {
+        padding-right: 35px !important;
+        margin-top: 0;
+        right: unset;
+        position: static;
+      }
     }
     &:hover {
       cursor: pointer;
+    }
+    &.no-arrow {
+      padding: 0;
+      &::after {
+        content: none;
+      }
     }
   }
   &.cta-btn {
@@ -38,9 +73,27 @@ a.button {
     &::after {
       fill: #00629b;
     }
+    &:hover {
+      color: #fff;
+      background-color: #00629b;
+    }
   }
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium767-down) {
     @include font-size-sass(16px);
     padding: 15px;
   }
 }
+
+.contact {
+  .frm_style_formidable-style.with_frm_style .frm_compact .frm_dropzone.dz-clickable .dz-message, .frm_style_formidable-style.with_frm_style input[type=submit], .frm_style_formidable-style.with_frm_style .frm_submit input[type=button], .frm_style_formidable-style.with_frm_style .frm_submit button, .frm_form_submit_style, .frm_style_formidable-style.with_frm_style .frm-edit-page-btn {
+    background-color: transparent;
+    font-family: $nav-font;
+    @include font-size-sass(20px);
+    font-weight: 500;
+    color: #00629b;
+    border: 2px solid #00629b;
+    border-radius: 0;
+  }
+}
+
+

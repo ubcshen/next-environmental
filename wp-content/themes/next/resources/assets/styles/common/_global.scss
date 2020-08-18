@@ -12,7 +12,19 @@
 }
 
 @mixin breakpoint($point) {
-  @if $point == large2000-up {
+  @if $point == large2300-up {
+    @media (min-width: 2300px) {
+      @content;
+    }
+  } @else if $point == large2200-up {
+    @media (min-width: 2200px) {
+      @content;
+    }
+  } @else if $point == large2100-up {
+    @media (min-width: 2100px) {
+      @content;
+    }
+  } @else if $point == large2000-up {
     @media (min-width: 2000px) {
       @content;
     }
@@ -218,6 +230,10 @@
     }
   } @else if $point == medium780-down {
     @media (max-width: 780px) {
+      @content;
+    }
+  } @else if $point == medium768-down {
+    @media (max-width: 768px) {
       @content;
     }
   } @else if $point == medium767-down {
@@ -453,14 +469,17 @@ b,
 em,
 strong,
 blockquote {
-  @include breakpoint(small640-down) {
-    @include font-size-sass(14px);
+  @include breakpoint(medium1250-down) {
+    @include font-size-sass(16px);
+  }
+  @include media-breakpoint-down(md) {
+    @include font-size-sass(13px);
   }
 }
 
 p {
   margin-bottom: 30px;
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium768-down) {
     line-height: 1.57;
     margin-bottom: 12px;
   }
@@ -511,6 +530,9 @@ h5 {
   font-weight: 700;
   line-height: 1;
   margin-bottom: 20px;
+  @include media-breakpoint-down(md) {
+    margin-bottom:  15px;
+  }
 }
 
 h1 {
@@ -519,7 +541,10 @@ h1 {
   @include breakpoint(medium1250-down) {
     @include font-size-sass(45px);
   }
-  @include breakpoint(medium700-down) {
+  @include media-breakpoint-down(md) {
+    margin-bottom: 14px;
+  }
+  @include breakpoint(medium768-down) {
     @include font-size-sass(32px);
   }
 }
@@ -539,47 +564,69 @@ html {
 
 h2 {
   @include font-size-sass(48px);
-  @include breakpoint(medium750-down) {
+  @include breakpoint(medium1250-down) {
     @include font-size-sass(32px);
+  }
+  @include breakpoint(medium768-down) {
+    @include font-size-sass(27px);
   }
 }
 
 h3 {
   @include font-size-sass(36px);
-  @include breakpoint(medium750-down) {
+  @include breakpoint(medium1250-down) {
     @include font-size-sass(24px);
+  }
+  @include breakpoint(medium768-down) {
+    @include font-size-sass(18px);
   }
 }
 
 h4 {
   @include font-size-sass(18px);
-  @include breakpoint(medium750-down) {
+  @include breakpoint(medium1250-down) {
     @include font-size-sass(14px);
   }
 }
 
 h5 {
   @include font-size-sass(24px);
-  @include breakpoint(medium750-down) {
+  @include breakpoint(medium1250-down) {
     @include font-size-sass(16px);
   }
 }
 
 small {
   @include font-size-sass(14px);
+  @include media-breakpoint-down(md) {
+    @include font-size-sass(11px);
+  }
+  @include breakpoint(medium768-down) {
+    @include font-size-sass(10px);
+  }
 }
 
 .f32 {
   @include font-size-sass(32px);
   line-height: 1.6;
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium1250-down) {
+    @include font-size-sass(26px);
+    line-height: 1.2;
+  }
+  @include media-breakpoint-down(md) {
     @include font-size-sass(20px);
     margin-bottom: 16px;
+  }
+  @include breakpoint(medium768-down) {
+    @include font-size-sass(16px);
   }
 }
 
 .f16 {
   @include font-size-sass(16px);
+  @include media-breakpoint-down(md) {
+    @include font-size-sass(10px);
+  }
 }
 
 .video-btn {
@@ -612,7 +659,13 @@ a {
   color: #0093b2;
   &:hover {
     text-decoration: none;
-    color: #ba6027;
+    color: #0093b2;
+    * {
+      color: inherit;
+      svg {
+        fill: #0093b2;
+      }
+    }
   }
   text-decoration: none;
   span,
@@ -622,6 +675,10 @@ a {
     color: inherit;
     font-size: inherit;
   }
+}
+
+.content-info .white-font a:hover svg {
+  fill: #0093b2;
 }
 
 a:active,
@@ -758,18 +815,27 @@ i {
 section {
   padding: 80px 0 100px;
   position: relative;
+  @include media-breakpoint-down(md) {
+    padding: 2rem 0;
+  }
   &.section-chat {
     .container {
       padding: 0;
       padding-left: 140px;
-      @include breakpoint(small640-down) {
+      @include media-breakpoint-down(md) {
+        padding: 30px 30px 0 80px;
+      }
+      @include breakpoint(medium767-down) {
         padding: 30px 30px 0 30px;
       }
     }
-    @include breakpoint(small640-down) {
+    @include breakpoint(medium767-down) {
       margin-left: 15px;
       margin-right: 15px;
     }
+  }
+  &.section-story-gallery {
+    overflow-x: hidden;
   }
   &.section-home-header {
     padding: 0;
@@ -782,14 +848,36 @@ section {
   }
   &.section-core-value {
     padding-top: 0;
+    @include breakpoint(medium767-down) {
+      .container {
+        max-width: none;
+      }
+    }
+  }
+  &.section-custom-post-type {
+    padding-top: 0;
   }
   &.section-financial {
     padding-bottom: 0;
     hr {
-      margin-top: 5rem;
+      margin-top: 3rem;
+      @include media-breakpoint-down(md) {
+        margin-top: 20px;
+      }
+      &.number-hr {
+        width: 96px;
+        margin-left: 0;
+      }
     }
   }
-  @include breakpoint(small640-down) {
+  &.section-contact {
+    padding-top: 1.5rem;
+    border-bottom: 2px solid #ebebeb;
+    @include breakpoint(medium767-down) {
+      border-bottom: 0;
+    }
+  }
+  @include breakpoint(medium767-down) {
     padding: 0;
     &.section-404 {
       padding-bottom: 80px;
@@ -810,9 +898,9 @@ section {
 .white-bg-full {
   background-color: #fff;
   width: 100%;
-  height: 15rem;
+  height: 16rem;
   margin-top: -10rem;
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium767-down) {
     margin-left: -15px;
     margin-right: -15px;
     width: auto;
@@ -837,12 +925,13 @@ section {
     width: 54px;
     height: 30px;
   }
+  z-index: 20;
 }
 
 .carousel-control-prev {
   right: 80px;
-  @include breakpoint(small640-down) {
-    right: 50%;
+  @include breakpoint(medium767-down) {
+    right: 55%;
     margin-right: 20px;
     width: 40px;
   }
@@ -856,9 +945,9 @@ section {
 }
 
 .carousel-control-next {
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium767-down) {
     right: 50%;
-    margin-right: -60px;
+    margin-right: -68px;
   }
 }
 
@@ -916,7 +1005,20 @@ section {
   height: 100%;
   overflow: hidden;
   &.animate__slideInLeft {
-    left: 35%;
+    left: 75%;
+  }
+}
+
+.svg-chat-arrow {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  &.animate__slideInLeft {
+    left: 100%;
+  }
+  @include breakpoint(medium767-down) {
+    display: none;
   }
 }
 
@@ -925,6 +1027,14 @@ section {
   left: -20%;
   &.animate__slideInLeft {
     left: 0;
+    @include breakpoint(large2100-up) {
+      left: 10%;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    svg {
+      width: 160px;
+    }
   }
 }
 
@@ -940,10 +1050,27 @@ section {
 .svg-arrow-testimonial {
   position: absolute;
   top: -21%;
-  left: 30%;
+  left: 35%;
   z-index: 10;
   &.animate__slideInLeft {
     left: 65%;
+  }
+}
+
+.svg-arrow-head-home {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  z-index: 10;
+  top: 25%;
+  &.animate__slideInLeft {
+    left: 5%;
+  }
+  @include media-breakpoint-down(md) {
+    svg {
+      width: 160px;
+    }
+    top: 0;
   }
 }
 
@@ -953,18 +1080,24 @@ section {
     * {
       color: inherit;
     }
+    @include breakpoint(medium767-down) {
+      padding-top: 30px;
+    }
   }
 }
 
 .mg-t-60 {
   margin-top: 3rem;
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium767-down) {
     margin-top: 1.725rem;
   }
 }
 
 .pb-100 {
   padding-bottom: 5rem;
+  @include breakpoint(medium768-down) {
+    padding-bottom: 2rem;
+  }
   @include breakpoint(small640-down) {
     padding-bottom: 0;
   }
@@ -1014,6 +1147,46 @@ section {
       border-top: 4px solid #121212;
       width: 80px;
       margin-bottom: 20px;
+      @include media-breakpoint-down(md) {
+        width: 40px;
+        border-top: 2px solid #121212;
+        margin-bottom: 10px;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      .modal-copy {
+        padding-top: 0 !important;
+      }
+      .modal-copy-container {
+        padding-left: 20px !important;
+        padding-right: 20px;
+      }
+      button.close {
+        padding-right: 10px;
+        font-size: 1rem;
+        padding-top: 10px;
+        span {
+          @include font-size-sass(28px);
+          line-height: 1;
+        }
+      }
+    }
+  }
+  .container {
+    @include breakpoint(medium1200-down) {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 15px;
+      .img-outof-right-container {
+        max-width: 112%;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      max-width: none;
+      margin: auto;
+      .img-outof-right-container {
+        max-width: 100%;
+      }
     }
   }
   .green-rectangle {
@@ -1042,20 +1215,36 @@ button.close span {
 }
 
 .desktop-show {
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium768-down) {
     display: none;
+  }
+}
+
+.desktop-show-640 {
+  @include breakpoint(medium767-down) {
+    display: none;
+  }
+}
+
+.mobile-show-640 {
+  display: none;
+  @include breakpoint(medium767-down) {
+    display: block;
   }
 }
 
 .mobile-show {
   display: none;
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium768-down) {
     display: block;
+    &.row {
+      display: flex;
+    }
   }
 }
 
 .mobile-blue {
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium768-down) {
     background-color: #0d4059;
   }
 }
@@ -1090,6 +1279,59 @@ button.close span {
     width: 100%;
   }
 }
+
+.with_frm_style .frm_top_container .frm_primary_label, .with_frm_style .frm_hidden_container .frm_primary_label, .with_frm_style .frm_pos_top {
+  font-family: $default-font;
+  font-weight: 700;
+}
+
+hr.hide-scroll {
+  margin-top: 0.175rem;
+}
+
+.carousel-inner .carousel-item > img {
+  -webkit-animation: thing 20s;
+  -o-animation: thing 20s;
+  animation: thing 20s;
+}
+@keyframes thing {
+  from {
+     transform: scale(1, 1);
+  }
+  to {
+    transform: scale(1.25, 1.25);
+  }
+}
+
+.modal-content {
+  p {
+    @include font-size-sass(14px);
+    @include media-breakpoint-down(md) {
+      margin-bottom: 10px;
+      @include font-size-sass(13px);
+    }
+  }
+  hr {
+    margin-top: 0;
+  }
+}
+
+#circle {
+  fill: black;
+}
+
+#mySVG {
+  width: 10px;
+}
+
+.st0 {
+  fill: none;
+  stroke: black;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
+
+
 
 
 

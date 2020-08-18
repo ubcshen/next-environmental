@@ -3,6 +3,16 @@
   padding: 300px 0 100px;
   margin-top: -13vw;
   margin-bottom: 0;
+  @include breakpoint(large2100-up) {
+    margin-top: -8vw;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 200px 0 100px;
+  }
+  @include breakpoint(medium767-down) {
+    padding: 70vw 0 100px;
+    margin-top: -60vw;
+  }
   @include breakpoint(small640-down) {
     padding: 110vw 0 100px;
     margin-top: -100vw;
@@ -10,25 +20,40 @@
   .white-font {
     svg {
       fill: #fff;
-      @include breakpoint(small640-down) {
+      @include media-breakpoint-down(md) {
+        width: 100px;
+      }
+      @include breakpoint(medium767-down) {
         width: 80px;
         height: 32px;
         margin-bottom: 20px;
+      }
+      &:hover {
+        fill: #0093b2;
       }
     }
     a {
       font-weight: 400;
     }
+    span {
+      vertical-align: text-top;
+      svg {
+        @include media-breakpoint-down(md) {
+          width: 15px;
+          height: auto;
+        }
+      }
+    }
   }
   li {
     list-style: none;
-    @include breakpoint(small640-down) {
+    @include breakpoint(medium767-down) {
       margin-bottom: 10px;
     }
   }
   .f16.bold {
     font-weight: 700;
-    @include breakpoint(small640-down) {
+    @include breakpoint(medium767-down) {
       margin-top: 10px;
       margin-bottom: 15px;
     }
@@ -37,9 +62,12 @@
     font-weight: 400;
     li {
       @include font-size-sass(16px);
+      @include media-breakpoint-down(md) {
+        @include font-size-sass(10px);
+      }
     }
   }
-  #menu-contact {
+  /*#menu-contact {
     .footer-phone a::before {
       content: url(./images/phone.svg);
       height: 16px;
@@ -56,8 +84,22 @@
       fill: #fff;
       vertical-align: middle;
     }
+  }*/
+  @include media-breakpoint-down(md) {
+    .container-fluid {
+      .social-icon {
+        padding-left: 0;
+        padding-right: 8px;
+        &:first-child {
+          padding-left: 15px;
+        }
+        svg {
+          width: 18px;
+        }
+      }
+    }
   }
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium767-down) {
     .container-fluid {
       margin-top: 25px;
       .social-icon {

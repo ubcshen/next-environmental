@@ -9,6 +9,16 @@
   font-weight: 500;
   @include font-size-sass(20px);
   position: relative;
+  @include breakpoint(medium1200-down) {
+    @include font-size-sass(16px);
+  }
+  @include media-breakpoint-down(md) {
+    @include font-size-sass(12px);
+    padding: 10px 0;
+  }
+  &:hover {
+    color: #0093b2;
+  }
   &:hover::after {
     content: "";
     position: absolute;
@@ -16,27 +26,64 @@
     width: 20px;
     bottom: 0;
     border-top: 4px solid #0093b2;
-    @include breakpoint(small640-down) {
+    @include media-breakpoint-down(md) {
+      left: 0;
+      width: 10px;
+    }
+    @include breakpoint(medium767-down) {
       left: unset;
       bottom: unset;
       border-top: 0;
     }
   }
-  @include breakpoint(small640-down) {
-    @include font-size-sass(16px);
+  @include breakpoint(medium767-down) {
     padding: 0.5rem 0;
     line-height: 1;
   }
 }
 
+.banner .nav#menu-topmenutwo {
+  a:hover::after {
+    content: none;
+  }
+  .current-menu-item a {
+    color: #0093b2;
+    &::after {
+      content: none;
+    }
+  }
+  .menu-item:first-child {
+    @include media-breakpoint-down(md) {
+      padding-right: 10px;
+    }
+  }
+  .menu-item:last-child {
+    a {
+      padding-right: 0;
+    }
+  }
+}
+
+.banner .nav#menu-additional-menu {
+  a:hover::after {
+    content: none;
+  }
+  .current-menu-item a {
+    color: #0093b2;
+    &::after {
+      content: none;
+    }
+  }
+}
+
 .header-banner {
   padding: 40px 0 40px;
-  @include breakpoint(small640-down) {
+  @include breakpoint(medium767-down) {
     padding: 20px 0 20px;
   }
   .brand {
     fill: #00629b;
-    @include breakpoint(small640-down) {
+    @include breakpoint(medium767-down) {
       svg {
         width: 78px;
         height: 28px;
@@ -57,7 +104,7 @@
     transform: rotate(0deg);
     transition: .5s ease-in-out;
     cursor: pointer;
-    @include breakpoint(small640-down) {
+    @include breakpoint(medium767-down) {
       width: 24px;
       height: 22px;
     }
@@ -92,7 +139,7 @@
         transform: rotate(45deg);
         top: 0px;
         left: 8px;
-        @include breakpoint(small640-down) {
+        @include breakpoint(medium767-down) {
           left: 5px;
         }
       }
@@ -105,14 +152,14 @@
         top: 21px;
         width: 100%;
         left: 8px;
-        @include breakpoint(small640-down) {
+        @include breakpoint(medium767-down) {
           left: 5px;
           top: 17px;
         }
       }
     }
   }
-  li.button {
+  li.nav-button {
     text-decoration: none;
     border: 2px solid #231f20;
     margin-left: 1rem;
@@ -123,7 +170,12 @@
       bottom: unset;
       border-top: none;
     }
-    @include breakpoint(small640-down) {
+    @include media-breakpoint-down(md) {
+      a {
+        padding: 10px;
+      }
+    }
+    @include breakpoint(medium767-down) {
       margin-left: 0;
       text-align: center;
     }
@@ -135,7 +187,11 @@
     width: 20px;
     bottom: 0;
     border-top: 4px solid #0093b2;
-    @include breakpoint(small640-down) {
+    @include media-breakpoint-down(md) {
+      left: 0;
+      width: 10px;
+    }
+    @include breakpoint(medium767-down) {
       left: unset;
       bottom: unset;
       border-top: 0;
@@ -164,11 +220,23 @@
     padding-bottom: 60px;
     .additional-nav-title {
       padding-bottom: 25px;
+      @include breakpoint(medium1250-down) {
+        padding-bottom: 15px;
+      }
+      @include media-breakpoint-down(md) {
+        padding-bottom: 8px;
+      }
     }
     .casestudy-image {
       padding-bottom: 40px;
+      @include breakpoint(medium1250-down) {
+        padding-bottom: 20px;
+      }
+      @include media-breakpoint-down(md) {
+        padding-bottom: 10px;
+      }
     }
-    @include breakpoint(small640-down) {
+    @include breakpoint(medium767-down) {
       padding-top: 30px;
     }
   }
@@ -176,14 +244,27 @@
     .additional-nav {
       .additional-nav-title {
         margin-top: 40px;
+        @include breakpoint(medium1250-down) {
+          margin-top: 20px;
+        }
+        @include media-breakpoint-down(md) {
+          margin-top:  10px;
+        }
       }
     }
   }
-  @include breakpoint(small640-down) {
+  &.fixed-top,
+  &.open {
+    background-color: #fff;
+    .hamburger span {
+      background-color: #231f20;
+    }
+  }
+  @include breakpoint(medium767-down) {
     .menu-item {
       width: 100%;
       margin: 6px 0 6px 0;
-      &:not(.button) a {
+      &:not(.nav-button) a {
         position: relative;
         &::after {
           content: url(./images/rightarrow.svg);
@@ -201,6 +282,7 @@
 .is-hidden {
   opacity: 0;
   transition: transform 0.4s, opacity 0.2s;
+  z-index: -1 !important;
 }
 
 .fixed-top {
@@ -220,6 +302,9 @@
     left:0;
     width: 100%;
     z-index: 1000;
+    .brand svg {
+      fill: #fff;
+    }
     &.fixed-top {
       position: fixed;
       top: 0;
@@ -228,8 +313,29 @@
       z-index: 1030;
       background-color: #fff;
       box-shadow: 0px 3px 76px 0px rgba(0,0,0,0.08);
+      .brand svg {
+        fill: #00629b;
+      }
+      &.banner .nav a {
+        color: $default-font-color;
+        &:hover::after {
+          border-top: 4px solid #0093b2;
+        }
+      }
+      &.banner .additional-nav .nav a {
+        color: #231f20;
+        &:hover::after {
+          content: none;
+        }
+      }
+      .hamburger span {
+        background: $default-font-color;
+      }
+      li.nav-button {
+        border-color: #231f20;
+      }
     }
-    li.button {
+    li.nav-button {
       border-color: #fff;
     }
     hr {
@@ -241,16 +347,72 @@
     .additional-nav {
       background: #fff;
     }
+    &.fixed-top,
+    &.open {
+      .hamburger span {
+        background-color: #231f20;
+      }
+    }
+    &.open {
+      hr {
+        border-top: 1px solid rgba(35,31,32, 0.2);
+      }
+      .nav a {
+        color: #231f20;
+        &:hover {
+          color: #0093b2;
+        }
+      }
+    }
   }
   .banner .nav a {
     color: #fff;
-    &:hover::after {
-      border-top: 4px solid #fff;
+    &:hover {
+      color: #0093b2;
+    }
+  }
+  .banner .additional-nav {
+    .nav a {
+      color: #231f20;
+      &:hover::after {
+        content: none;
+      }
+      &:hover {
+        color: #0093b2;
+      }
+    }
+    li.nav-button {
+      border-color: #231f20;
     }
   }
 }
 
+.casestudy-container a:hover h5 {
+  color: #0093b2;
+}
 
+.header-banner .brand svg {
+  @include media-breakpoint-down(md) {
+    width: 100px;
+  }
+}
+
+#navbarAdditionalContent {
+  li {
+    display: block;
+    width: 100%;
+  }
+}
+
+.header-banner #navbarAdditionalContent {
+  li.nav-button {
+    margin-left: 0;
+  }
+}
+
+.mobile-nav-768.align-items-start {
+  align-items: center !important;
+}
 
 
 

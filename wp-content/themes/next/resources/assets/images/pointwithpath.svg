@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="mySVG" viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice" style="width: 5%; padding-bottom: 42%; height: 1px; overflow: visible">
+  <circle id="circle" cx="10" cy="10" r="10"/>
+  <path id="myline" class="st0" stroke-dasharray="10,9" d="M50 0 v100 100" />
+</svg>

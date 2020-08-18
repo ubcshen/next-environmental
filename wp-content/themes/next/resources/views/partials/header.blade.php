@@ -1,10 +1,12 @@
-<?php
-$detect = new Mobile_Detect;
-if ( !$detect->isMobile() ) {
-?>
 <header class="banner header-banner desktop-show">
   <div class="container">
-    <?php $logo = get_field('logo', 'option');  ?>
+    <?php 
+    if(!is_page("home")) {
+      $logo = get_field('logo', 'option');  
+    } else {
+      $logo = get_field('home_logo', 'option'); 
+    }
+    ?>
     <div class="row justify-content-end">
       <a class="brand col" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
       <nav class="nav-primary col-auto">
@@ -61,13 +63,12 @@ if ( !$detect->isMobile() ) {
     </div>
   </div>
 </header>
-<?php } else { ?>
 <header class="banner header-banner mobile-show">
   <div class="container">
     <?php $logo = get_field('logo', 'option');  ?>
     <div class="row justify-content-end">
       <a class="brand col" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
-      <div class="col-auto d-flex align-items-center justify-content-center">
+      <div class="col-auto d-flex align-items-start justify-content-center mobile-nav-768">
         <div class="hamburger" data-toggle="collapse" data-target="#navbarAdditionalContent"><span></span><span></span><span></span></div>
       </div>
     </div>
@@ -80,4 +81,3 @@ if ( !$detect->isMobile() ) {
     </nav>
   </div>
 </header>
-<?php } ?>

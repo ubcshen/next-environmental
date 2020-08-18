@@ -4,6 +4,7 @@ export default {
     $('.lazyImg').unveil(); 
     $('.hamburger').on('click', function () {
       $(this).toggleClass('open');
+      $(this).closest('.header-banner').toggleClass('open');
       //$(window).trigger('scroll');
       //$('.casestudy-image').trigger('unveil');
       setTimeout(function () {
@@ -60,13 +61,25 @@ export default {
   },
   finalize() {
     // JavaScript to be fired on all pages, after page specific JS is fired
-    $('.svg-arrow').waypoint({
+    /*$('.section-chat').waypoint({
+      handler: function(direction) {
+        if (direction === 'down') { 
+          $(this.element).find('.svg-arrow').addClass('animate__animated animate__slideInLeft animate__slower');
+        }
+      },
+      offset: function() {
+        var chatPoint = $('.section-chat').outerHeight();
+        return chatPoint*2+50
+      },
+    });*/
+
+    $('.svg-chat-arrow').waypoint({
       handler: function(direction) {
         if (direction === 'down') { 
           $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
         }
       },
-      offset: 200,
+      offset: 100,
     });
 
     $('.svg-arrow-headline').waypoint({
@@ -84,19 +97,31 @@ export default {
           $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
         }
       },
-      offset: 250,
+      offset: function() {
+        var chatPoint = $('.section-case-study').outerHeight();
+        return chatPoint+50
+      },
     });
 
     $('.svg-arrow-testimonial').waypoint({
       handler: function(direction) {
         if (direction === 'down') { 
-          $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
+          $(this.element).addClass('animate__animated animate__slideInLeft animate__slow');
         }
       },
-      offset: 50,
+      offset: function() {
+        var chatPoint = $('.svg-arrow-testimonial').outerHeight();
+        return chatPoint*2+200
+      },
     });
 
+    $('.svg-arrow-head-home').addClass('animate__animated animate__slideInLeft animate__slower');
+
     $('.mobile-dropdown').select2({
+      minimumResultsForSearch: -1,
+    });
+
+    $('.mobile-dropdown-risk').select2({
       minimumResultsForSearch: -1,
     });
 
@@ -106,10 +131,71 @@ export default {
       $(data['id']).addClass('show active');
     });
 
+    $('.mobile-dropdown-risk').on('select2:select', function (e) {
+      var data = e.params.data;
+      $('.tab-pane').removeClass('show active');
+      $(data['id']).addClass('show active');
+      $('.risk-pointer').attr('id',data['id']);
+    });
+
     //price page
     $('.risk-tab-container .nav-item').click(function(e) {
       e.preventDefault();
       $('.risk-pointer').attr('id',$(this).attr('data-pointer'));
+      $('.mobile-dropdown-risk').val($(this).attr('data-pointer'));
+      $('.mobile-dropdown-risk').trigger('change'); 
+    });
+
+
+    if(document.getElementById('myline')) {
+      // Find scroll percentage on scroll (using cross-browser properties), and offset dash same amount as percentage scrolled
+      window.addEventListener('scroll', myFunction);
+    }
+
+    function myFunction() {
+      var myline = document.getElementById('myline');
+      var length = myline.getTotalLength();
+      var circle = document.getElementById('circle');
+      length = $('.icon-line').height();
+      console.log('length: ' + $('.icon-line').height());
+      myline.setAttribute('d', 'M165 0 v' + length +' 20');
+      console.log('length1: ' + myline.getAttribute('d'));
+      // The start position of the drawing
+      myline.style.strokeDasharray = length;
+
+      // Hide the triangle by offsetting dash. Remove this line to show the triangle before scroll draw
+      myline.style.strokeDashoffset = length;
+      // What % down is it?
+      var scrollpercent = (document.body.scrollTop + document.documentElement.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+      // Length to offset the dashes
+      var draw = length * scrollpercent*5;
+
+      // Reverse the drawing (when scrolling upwards)
+      myline.style.strokeDashoffset = ((length - draw) >= 0 ) ? length - draw : 0;
+
+      //get point at length
+      var endPoint = myline.getPointAtLength(draw);
+      endPoint.y = (endPoint.y <= length ) ? endPoint.y : length;
+      circle.setAttribute('cx', endPoint.x);
+      circle.setAttribute('cy', endPoint.y);
+    }
+      
+
+    $( window ).resize(function() {
+      var myline = document.getElementById('myline');
+      if(myline) {
+        var length = myline.getTotalLength();
+        length = $('.icon-line').height();
+        myline.setAttribute('d', 'M165 0 v' + length +' 20');
+        // The start position of the drawing
+        myline.style.strokeDasharray = length;
+        // Hide the triangle by offsetting dash. Remove this line to show the triangle before scroll draw
+        myline.style.strokeDashoffset = length;
+        myFunction();
+
+        // Find scroll percentage on scroll (using cross-browser properties), and offset dash same amount as percentage scrolled
+        window.addEventListener('scroll', myFunction);
+      }
     });
   },
 };
