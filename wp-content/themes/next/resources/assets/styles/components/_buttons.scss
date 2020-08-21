@@ -93,6 +93,15 @@
     color: #00629b;
     border: 2px solid #00629b;
     border-radius: 0;
+    &::after {
+      fill: #00629b;
+    }
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #00629b;
+      border: 2px solid #00629b;
+    }
   }
 }
 

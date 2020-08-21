@@ -75,12 +75,13 @@ export default {
 
     $('.svg-chat-arrow').waypoint({
       handler: function(direction) {
-        if (direction === 'down') { 
+        if (direction !== 'up') { 
           $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
         }
       },
-      offset: 100,
     });
+
+    $('.imgAnimation').addClass('animate__animated animate__fadeInLeft animate__slower');
 
     $('.svg-arrow-headline').waypoint({
       handler: function(direction) {
@@ -157,9 +158,9 @@ export default {
       var length = myline.getTotalLength();
       var circle = document.getElementById('circle');
       length = $('.icon-line').height();
-      console.log('length: ' + $('.icon-line').height());
+      //console.log('length: ' + $('.icon-line').height());
       myline.setAttribute('d', 'M165 0 v' + length +' 20');
-      console.log('length1: ' + myline.getAttribute('d'));
+      //console.log('length1: ' + myline.getAttribute('d'));
       // The start position of the drawing
       myline.style.strokeDasharray = length;
 

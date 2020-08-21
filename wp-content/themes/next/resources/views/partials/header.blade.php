@@ -44,11 +44,9 @@
                     $image = get_field('image_for_case_study',$post);
             ?>
                     <div class="casestudy-container col-6">
-                      <a href="<?php echo get_post_permalink($post); ?>">
-                        <?php output_acf_img($image,'casestudy-image'); ?>
-                        <h5><?php echo $headline; ?></h5>
-                        <div class="casestudy-content"><?php echo $content; ?></div>
-                      </a>
+                      <?php output_acf_img($image,'casestudy-image'); ?>
+                      <a href="<?php echo get_post_permalink($post); ?>"><h5><?php echo $headline; ?></h5></a>
+                      <div class="casestudy-content"><?php echo $content; ?></div>
                     </div>
             <?php $i++; endforeach; endif; ?>
           </div>

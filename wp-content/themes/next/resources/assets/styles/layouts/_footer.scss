@@ -47,8 +47,19 @@
   }
   li {
     list-style: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &:first-child {
+      margin-top: 0;
+    }
     @include breakpoint(medium767-down) {
-      margin-bottom: 10px;
+      margin-top: 0;
+    }
+  }
+  .menu-contact-container li {
+    margin-top: 10px;
+    @include breakpoint(medium767-down) {
+      margin-top: 0;
     }
   }
   .f16.bold {
@@ -66,6 +77,10 @@
         @include font-size-sass(10px);
       }
     }
+  }
+  .container-fluid .f16 {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   /*#menu-contact {
     .footer-phone a::before {

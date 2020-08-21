@@ -1493,6 +1493,9 @@
   }
   .sub-title {
     margin-bottom: 10px;
+    h4 {
+      letter-spacing: 4px;
+    }
   }
   .phone.info,
   .fax.info {
@@ -1505,6 +1508,9 @@
     font-weight: 400;
     color: #121212;
     text-decoration: underline;
+    &:hover {
+      color: #0093b2;
+    }
   }
   .frm_style_formidable-style.with_frm_style .frm_submit button {
     @include breakpoint(medium767-down) {
@@ -1515,6 +1521,11 @@
   hr.mobile-show {
     border-top: 2px solid #ebebeb;
     margin: 40px auto 50px;
+  }
+  .social-icon {
+    svg {
+      max-width: 24px;
+    }
   }
 }
 

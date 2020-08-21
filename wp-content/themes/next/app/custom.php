@@ -98,6 +98,15 @@ if( function_exists('acf_add_options_page') ) {
     'capability'  => 'activate_plugins',
     'redirect'    => false
   ));
+
+  acf_add_options_sub_page(array(
+    'page_title'  => 'Site Setting',
+    'menu_title'  => 'Site Setting',
+    'menu_slug'   => 'site-setting',
+    'parent_slug'   => $parent['menu_slug'],
+    'capability'  => 'activate_plugins',
+    'redirect'    => false
+  ));
 }
 
 if ( function_exists( 'add_theme_support' ) ) {
@@ -340,7 +349,12 @@ function get_lazy_load_img($src, $alt, $class = '', $width = '', $height = '') {
 }
 
 function get_lazy_load_img_src($src) {
-  return  'src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$src.'"';
+    $enableLazy = get_field('use_lazyload', 'option');
+    if($enableLazy) {
+      return  'src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$src.'"';
+    } else {
+      return  'src="'.$src.'" data-src="'.$src.'"';
+    }
 }
 
 // GET SECTION BUILDER
@@ -375,6 +389,11 @@ function build_sections()
                 endif
             ?>
                 <section class="section-chat">
+                  <div class="svg-arrow-chat">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
+                      <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
+                    </svg>
+                  </div>
                   <div class="container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
                       <div class="row align-items-center d-flex justify-content-center">
                         <div class="col-12 col-md-7 col-lg-5 section-chat-content">
@@ -660,7 +679,11 @@ function build_sections()
                             <?php endif; ?>
                             <?php
                                 if($image):
-                                    output_acf_img($image,'lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
+                                    $animation = get_sub_field('image_animation');
+                                    if($animation)
+                                        output_acf_img($image,'lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
+                                    else
+                                        output_acf_img($image,'lazyImg pt-3 pt-md-0');
                                 endif;
                             ?>
                         </div>
@@ -938,13 +961,11 @@ function build_sections()
                                         $bgimage = get_field("image_for_case_study");
                                   ?>
                                     <div class="col-12 col-md-6 item <?php if($i%2==0) echo 'ontop pl-0 pr-0 pr-md-3'; elseif($i%2 === 1) echo 'oncenter pr-0 pl-0 pl-md-3'; ?>">
-                                            <a class="item-container mr-2" href="<?php echo get_post_permalink(); ?>">
-                                                <?php echo output_acf_img($bgimage,'lazyImg'); ?>
-                                                <div class="case-content">
-                                                    <h5><?php echo get_field("headline"); ?></h5>
-                                                    <?php echo get_field("brief"); ?>
-                                                </div>
-                                            </a>
+                                            <?php echo output_acf_img($bgimage,'lazyImg'); ?>
+                                            <div class="case-content">
+                                                <a class="item-container mr-2" href="<?php echo get_post_permalink(); ?>"><h5><?php echo get_field("headline"); ?></h5></a>
+                                                <?php echo get_field("brief"); ?>
+                                            </div>
                                         </div>
                                 <?php $i++; endwhile; wp_reset_postdata(); ?>
                             </div>
@@ -982,7 +1003,7 @@ function build_sections()
                                         <?php if($bgimage) { ?>
                                             <a class="button pl-0 link" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>">READ MORE</a>
                                             <div class="modal fade" id="<?php echo 'team'.get_row_index().'Modal'; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo 'team'.get_row_index().'Modal'; ?>Label" aria-hidden="true">
-                                              <div class="modal-dialog" role="document">
+                                              <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                   <div class="modal-body">
                                                     <div class="fullWidth image-content">
@@ -1291,7 +1312,7 @@ function build_post_sections()
                                 elseif($post_type=='services') $link = '/services';
                                 elseif($post_type=='case_studies') $link = '/case-studies';
                             ?>
-                            <a href="<?php echo $link; ?>" class="d-block back-casestudy">
+                            <a href="<?php echo $link; ?>" class="d-inline-block back-casestudy">
                                 <?php echo str_replace("_", " ", $post_type); ?>
                             </a>
                             <h1><?php echo get_sub_field("page_title"); ?></h1>
@@ -1467,6 +1488,11 @@ function build_post_sections()
             ?>
                 <section class="section-chat">
                   <div class="container" style="background-color: <?php echo get_sub_field('section_background_color'); ?>">
+                      <div class="svg-arrow-chat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="261" height="497" viewBox="0 0 261 497">
+                          <path id="Header_arrow" d="M73.991,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S104.282,497,93.5,497,73.991,488.01,73.991,476.919ZM0,476.919c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S30.291,497,19.514,497,0,488.01,0,476.919Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,431.114,111.392,420.024Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081S67.693,440.1,56.916,440.1,37.4,431.114,37.4,420.024Zm110.579-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S147.981,374.218,147.981,363.128Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.991,19.514,20.08-8.737,20.081-19.514,20.081S73.991,374.218,73.991,363.128Zm111.392-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S185.383,317.322,185.383,306.233Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S111.392,317.322,111.392,306.233ZM221.972,248.5c0-11.091,8.737-20.081,19.514-20.081S261,237.409,261,248.5s-8.737,20.081-19.514,20.081S221.972,259.591,221.972,248.5Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.081-19.514,20.081S147.981,259.591,147.981,248.5Zm37.4-57.733c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S185.383,201.858,185.383,190.767Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,201.858,111.392,190.767Zm36.589-56.9c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S147.981,144.962,147.981,133.872Zm-73.991,0c0-11.091,8.737-20.081,19.514-20.081s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,144.962,73.991,133.872Zm37.4-56.9c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08-8.737,20.081-19.514,20.081S111.392,88.067,111.392,76.976Zm-73.991,0c0-11.09,8.737-20.08,19.514-20.08s19.514,8.99,19.514,20.08S67.693,97.057,56.916,97.057,37.4,88.067,37.4,76.976Zm36.589-56.9C73.991,8.99,82.727,0,93.5,0s19.514,8.99,19.514,20.081-8.737,20.08-19.514,20.08S73.991,31.171,73.991,20.081ZM0,20.081C0,8.99,8.737,0,19.514,0S39.028,8.99,39.028,20.081s-8.737,20.08-19.514,20.08S0,31.171,0,20.081Z" opacity="0.1"/>
+                        </svg>
+                      </div>
                       <div class="row align-items-center d-flex justify-content-center">
                         <div class="col-12 col-md-7 col-lg-5 section-chat-content">
                             <h3><?php echo get_sub_field("section_headerline"); ?></h3>

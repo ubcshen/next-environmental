@@ -10,15 +10,25 @@
     color: #fff;
     @include font-size-sass(18px);
     font-weight: 400;
+    position: relative;
     &::before {
       content: "\2190";
       padding-right: 12px;
       display:inline-block;
     }
+    &::after {
+      position: absolute;
+      content: '';
+      border-bottom: 1px solid #fff;
+      width: 0;
+      top: 30px;
+      left: 32px;
+    }
     &:hover {
-      text-decoration: underline;
-      &::before {
-        text-decoration: none;
+      &::after {
+        width: calc(100% - 32px);
+        animation-duration: 1s;
+        animation-name: slidein;
       }
     }
     padding-top: 0;
@@ -131,6 +141,10 @@
   .tab-pane {
     margin: 30px auto 80px;
   }
+  .nav-tabs .nav-link.active, .nav-tabs .banner .nav a.active, .banner .nav .nav-tabs a.active, .nav-tabs .banner .nav a.active, .banner .nav .nav-tabs a.active, .nav-tabs .nav-item.show .nav-link, .nav-tabs .banner .nav li.show .nav-link, .banner .nav .nav-tabs li.show .nav-link, .nav-tabs .nav-item.show .banner .nav a, .banner .nav .nav-tabs .nav-item.show a, .nav-tabs .banner .nav li.show a, .banner .nav .nav-tabs li.show a, .nav-tabs .banner .nav li.show .nav-link, .nav-tabs .banner .nav li.show a, .banner .nav .nav-tabs li.show .nav-link, .banner .nav .nav-tabs li.show a, .nav-tabs .nav-item.show .banner .nav a, .nav-tabs .banner .nav li.show .banner .nav a, .banner .nav .nav-tabs li.show .banner .nav a, .banner .nav .nav-tabs .nav-item.show a, .banner .nav .nav-tabs li.show a, .nav-tabs .banner .nav li.show a, .banner .nav .nav-tabs li.show a {
+    border-bottom: none;
+    border-color: transparent;
+  }
   @include breakpoint(medium768-down) {
     padding-top: 3rem;
     padding-left: 15px;
@@ -208,6 +222,22 @@
   @include breakpoint(small640-down) {
     .case-study-content {
       margin-left: 0;
+    }
+    .case-study-content {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .green-rectangle {
+      width: 80%;
+    }
+    .case-study-img {
+      flex: 0 0 100%;
+      max-width: 100%;
+      img.img-outof-border {
+        width: 60%;
+        top: -40%;
+        left: 36%;
+      }
     }
   }
 }
