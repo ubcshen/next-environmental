@@ -771,10 +771,7 @@ i {
     position: absolute;
     margin: 0px;
     background: #0093b2;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
+    border: none;
     transition: all 0.3s ease-in-out 0s;
     bottom: -3px;
   }
@@ -1018,12 +1015,12 @@ section {
 
 .svg-chat-arrow {
   position: absolute;
-  left: 0;
+  left: 98%;
   height: 100%;
   overflow: hidden;
-  &.animate__slideInLeft {
+ /* &.animate__slideInLeft {
     left: 100%;
-  }
+  } */
   @include breakpoint(medium767-down) {
     display: none;
   }
@@ -1360,6 +1357,18 @@ hr.hide-scroll {
   to {
     margin-left: 0%;
     width: calc(100% - 32px);
+  }
+}
+
+@keyframes slideinTen {
+  from {
+    margin-right: 100%;
+    width: 0;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 15px;
   }
 }
 

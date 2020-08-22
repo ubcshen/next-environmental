@@ -71,7 +71,7 @@ export default {
         var chatPoint = $('.section-chat').outerHeight();
         return chatPoint*2+50
       },
-    });*/
+    });
 
     $('.svg-chat-arrow').waypoint({
       handler: function(direction) {
@@ -79,7 +79,7 @@ export default {
           $(this.element).addClass('animate__animated animate__slideInLeft animate__slower');
         }
       },
-    });
+    });*/
 
     $('.imgAnimation').addClass('animate__animated animate__fadeInLeft animate__slower');
 

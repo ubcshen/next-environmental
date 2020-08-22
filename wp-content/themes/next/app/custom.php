@@ -892,6 +892,7 @@ function build_sections()
             elseif( get_row_layout() == "story_gallery_section" ) // layout: Story Gallery Section
             {
                 $borderBottom = get_sub_field("bottom_border");
+                $animation = get_sub_field('image_animation');
             ?>
                 <section class="section-story-gallery">
                     <div class="story-gallery row align-items-end d-flex justify-content-end">
@@ -901,7 +902,13 @@ function build_sections()
                             if(get_row_index()<=2):
                         ?>
                         <div class="<?php if(get_row_index()==1) echo 'image-1 col-4 col-md-3'; elseif(get_row_index()==2) echo 'image-2 col-5 col-md-6'; ?>">
-                            <?php output_acf_img($image,'lazyImg'); ?>
+                            <?php
+                            if($animation) {
+                                output_acf_img($image,'lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
+                            }
+                            else {
+                                output_acf_img($image,'lazyImg');
+                            } ?>
                         </div>
                         <?php endif; endwhile; ?>
                     </div>
@@ -912,7 +919,13 @@ function build_sections()
                             if(get_row_index()>=3):
                         ?>
                         <div class="<?php if(get_row_index()==3) echo 'image-3 col-md-6 col-7'; elseif(get_row_index()==4) echo 'image-4 col-5 col-md-6'; ?>">
-                            <?php output_acf_img($image,'lazyImg'); ?>
+                            <?php
+                            if($animation) {
+                                output_acf_img($image,'lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
+                            }
+                            else {
+                                output_acf_img($image,'lazyImg');
+                            } ?>
                         </div>
                         <?php endif; endwhile; ?>
                         <div class="story-gallery-content col-12 col-md-5">

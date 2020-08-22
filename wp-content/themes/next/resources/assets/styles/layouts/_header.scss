@@ -19,22 +19,27 @@
   &:hover {
     color: #0093b2;
   }
-  &:hover::after {
+  &::after {
     content: "";
     position: absolute;
-    left: 1rem;
-    width: 20px;
-    bottom: 0;
+    left: 18px;
     border-top: 4px solid #0093b2;
+    width: 0;
+    bottom: 0;
     @include media-breakpoint-down(md) {
-      left: 0;
       width: 10px;
+      left: 0;
     }
     @include breakpoint(medium767-down) {
       left: unset;
       bottom: unset;
       border-top: 0;
     }
+  }
+  &:hover::after {
+    width: 15px;
+    animation-duration: 0.2s;
+    animation-name: slideinTen;
   }
   @include breakpoint(medium767-down) {
     padding: 0.5rem 0;

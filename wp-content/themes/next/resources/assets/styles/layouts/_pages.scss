@@ -1527,6 +1527,11 @@
       max-width: 24px;
     }
   }
+  .social-icon .sm-icon:hover {
+    svg {
+      fill: #0093b2;
+    }
+  }
 }
 
 @include breakpoint(medium767-down) {
