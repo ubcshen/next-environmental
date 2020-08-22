@@ -1089,6 +1089,7 @@ function build_sections()
                 $link = get_sub_field("button_after_col_section");
                 $isInside = get_sub_field("col_info_inside");
                 $showNumber = get_sub_field("show_number");
+                $animation = get_sub_field('image_animation');
                 if( $link ):
                     $link_url = $link['url'];
                     $link_title = $link['title'];
@@ -1131,7 +1132,14 @@ function build_sections()
                                                     </div>
                                                 </div>
                                             <?php } else { ?>
-                                                <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
+                                                <?php if($image) {
+                                                    if($animation) {
+                                                        output_acf_img($image,'lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
+                                                    }
+                                                    else {
+                                                        output_acf_img($image,'lazyImg');
+                                                    }
+                                                } ?>
                                                 <?php if($showNumber) { ?><small class="f16 d-block">0<?php echo get_row_index(); ?></small><?php } ?>
                                                 <?php if(get_sub_field("col_title")) { ?><h4><?php echo get_sub_field("col_title"); ?></h4><?php } ?>
                                                 <div class="text-left"><?php echo $colContent; ?></div>
@@ -1149,7 +1157,9 @@ function build_sections()
                                     <?php } ?>
                                 <?php } else { ?>
                                     <div class="col-12 col-md-<?php echo 12/$numberofCols;?> item-<?php echo get_row_index(); ?> location-office">
-                                        <?php if($image) { ?><?php output_acf_img($image,'lazyImg'); ?><?php } ?>
+                                        <?php if($image) {
+                                            output_acf_img($image,'lazyImg');
+                                        } ?>
                                         <div class="office-location">
                                             <h2><?php echo get_sub_field("col_title"); ?></h2>
                                             <div class="address"><?php echo $colContent; ?></div>
