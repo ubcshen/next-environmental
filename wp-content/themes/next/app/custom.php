@@ -538,12 +538,18 @@ function build_sections()
                     <div class="row">
                         <div class="col-12 col-md-5 risk-container">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1061" height="1060" viewBox="0 0 1061 1060" class="circle">
-                              <g id="Group_191" data-name="Group 191" transform="translate(436 -2228)">
-                                <ellipse id="Ellipse_230" data-name="Ellipse 230" cx="530.5" cy="530" rx="530.5" ry="530" transform="translate(-436 2228)" fill="#47c16d"/>
-                                <circle id="Ellipse_344" data-name="Ellipse 344" cx="452" cy="452" r="452" transform="translate(-357 2307)" fill="#231f20" opacity="0.1"/>
-                                <circle id="Ellipse_345" data-name="Ellipse 345" cx="357" cy="357" r="357" transform="translate(-262 2402)" fill="#231f20" opacity="0.1"/>
-                                <circle id="Ellipse_342" data-name="Ellipse 342" cx="258" cy="258" r="258" transform="translate(-163 2501)" fill="#231f20" opacity="0.1"/>
-                                <circle id="Ellipse_346" data-name="Ellipse 346" cx="165" cy="165" r="165" transform="translate(-70 2594)" fill="#231f20"/>
+                              <g id="Group_195" data-name="Group 195" transform="translate(436 -2228)">
+                                <g id="Group_191" data-name="Group 191">
+                                  <ellipse id="Ellipse_230" data-name="Ellipse 230" cx="530.5" cy="530" rx="530.5" ry="530" transform="translate(-436 2228)" fill="#47c16d"/>
+                                  <circle id="Ellipse_344" data-name="Ellipse 344" cx="452" cy="452" r="452" transform="translate(-357 2307)" fill="#231f20" opacity="0.1"/>
+                                  <circle id="Ellipse_345" data-name="Ellipse 345" cx="357" cy="357" r="357" transform="translate(-262 2402)" fill="#231f20" opacity="0.1"/>
+                                  <circle id="Ellipse_342" data-name="Ellipse 342" cx="258" cy="258" r="258" transform="translate(-163 2501)" fill="#231f20" opacity="0.1"/>
+                                  <circle id="Ellipse_346" data-name="Ellipse 346" cx="165" cy="165" r="165" transform="translate(-70 2594)" fill="#231f20"/>
+                                </g>
+                                <g id="Group_192" data-name="Group 192">
+                                  <ellipse id="Ellipse_232" data-name="Ellipse 232" cx="82.5" cy="84" rx="82.5" ry="84" transform="translate(12 2674)" fill="#fff"/>
+                                  <ellipse id="Ellipse_343" data-name="Ellipse 343" cx="36.5" cy="38" rx="36.5" ry="38" transform="translate(58 2720)" fill="#231f20"/>
+                                </g>
                               </g>
                             </svg>
                             <div class="risk-pointer" id="risk5">
@@ -622,7 +628,7 @@ function build_sections()
                         <div class="col-12 col-md-6 list-item">
                           <div class="row">
                             <div class="col-2"><?php echo output_inline_svg_file($image); ?></div>
-                            <div class="col-8 pl-2 pl-md-4">
+                            <div class="col-10 col-md-8 pl-2 pl-md-4">
                               <h4><?php echo get_sub_field('list_headerline'); ?></h4>
                               <?php echo get_sub_field('list_content'); ?>
                             </div>
@@ -681,7 +687,7 @@ function build_sections()
                                 if($image):
                                     $animation = get_sub_field('image_animation');
                                     if($animation)
-                                        output_acf_img($image,'lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
+                                        output_acf_img($image,'fit-container lazyImg pt-3 pt-md-0 animate__animated animate__fadeInUp animate__slower');
                                     else
                                         output_acf_img($image,'lazyImg pt-3 pt-md-0');
                                 endif;
@@ -1008,7 +1014,7 @@ function build_sections()
                                             $link_target = $link['target'] ? $link['target'] : '_self';
                                         endif
                                   ?>
-                                    <div class="col-10 col-md-6 col-lg-4 item normal-item">
+                                    <div class="col-12 col-md-6 col-lg-4 item normal-item">
                                         <a class="button pl-0 link no-arrow" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>"><?php if($bgimage) { ?><?php echo output_acf_img($bgimage, "lazyImg"); ?><?php } ?></a>
                                         <a class="button pl-0 link no-arrow" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>"><h5><?php echo $name; ?></h5></a>
                                         <small class="d-block"><?php echo $title; ?></small>
@@ -1392,7 +1398,7 @@ function build_post_sections()
                         $count = count(get_sub_field('mobile_details_dropdown'));
                         if($count>1) :
                     ?>
-                        <div class="row mobile-show">
+                        <div class="row mobile-show pb-4">
                             <nav class="col-12">
                               <select class="mobile-dropdown" id="mobile-tab" >
                               <?php
@@ -1487,7 +1493,7 @@ function build_post_sections()
                                 $tab = preg_replace('/\s+/', '_', $tab);
                             ?>
                             <div class="tab-pane fade <?php if($i==0) echo 'show active'; ?> row" id="nav-<?php echo $tab; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $tab; ?>-tab">
-                                <div class="col-12 col-md-6 pl-0 desktop-show">
+                                <div class="col-12 col-md-6 pl-0 <?php if($count>1) echo 'desktop-show-640'; ?>">
                                     <h3><?php echo get_sub_field('detail_headline'); ?></h3>
                                 </div>
                                 <div class="col-12 col-md-6 pl-0 pl-md-4 detail-content-copy">

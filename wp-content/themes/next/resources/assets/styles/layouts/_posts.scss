@@ -71,6 +71,11 @@
       margin-bottom: 20px;
     }
   }
+  @include breakpoint(small380-down) {
+    margin-left: 30px;
+    margin-right: 30px;
+    width: calc(100% - 60px);
+  }
 }
 
 .round-svg {
@@ -97,24 +102,13 @@
   padding-bottom: 0;
   @include breakpoint(medium768-down) {
     .icon-line-mobile::before {
-      content: '';
+      content: url('../images/point-post.svg');
       width: 0;
-      left: 38px;
-      top: 54%;
+      left: 19px;
+      top: 50%;
       height: 46%;
       z-index: 5;
       position: absolute;
-      border: 1px solid black;
-    }
-    .icon-line-mobile::after {
-      content: url('../images/pointwithpath.svg');
-      width: 11px;
-      height: 11px;
-      left: 37px;
-      bottom: 109%;
-      z-index: 6;
-      position: absolute;
-      font-size: 120px;
     }
   }
   @include breakpoint(medium768-down) {
@@ -159,16 +153,21 @@
   }
   @include breakpoint(medium767-down) {
     padding-top: 1rem;
+    padding-left: 30px;
+    padding-right: 30px;
   }
   @include breakpoint(small640-down) {
-    padding-bottom: 60px;
+    padding-bottom: 100px;
   }
 }
 
 .single-case_studies .section-details {
-  padding: 0;
   .tab-pane {
     margin-bottom: 30px;
+    margin-top: 0;
+    @include breakpoint(small640-down) {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -207,7 +206,8 @@
     }
   }
   @include breakpoint(medium767-down) {
-    padding: 50px 15px;
+    padding: 50px 30px;
+    margin-bottom: 60px;
     .case-study-type {
       margin-top: 20px;
     }
@@ -228,7 +228,7 @@
       max-width: 100%;
     }
     .green-rectangle {
-      width: 80%;
+      width: 64%;
     }
     .case-study-img {
       flex: 0 0 100%;
@@ -238,6 +238,9 @@
         top: -40%;
         left: 36%;
       }
+    }
+    .button {
+      display: block !important;
     }
   }
 }

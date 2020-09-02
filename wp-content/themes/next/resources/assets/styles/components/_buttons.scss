@@ -25,15 +25,25 @@
     border-color: $default-font-color;
   }
   &::after {
-    content: url(./images/btn_arrow_white.svg);
+    //content: url(./images/next_arrow_nocolor.svg);
+    content:'';
+    mask: url(./images/next_arrow_nocolor.svg) no-repeat 50% 50%;
+    mask-size: cover;
     height: 20px;
     padding-left: 15px;
-    fill: #fff;
+    background-color: #fff;
     vertical-align: middle;
+    margin-left: 15px;
     @include breakpoint(medium768-down) {
       margin-top: -1px;
       right: 15px;
       position: absolute;
+      height: 16px;
+    }
+  }
+  &:hover {
+    &::after {
+      background-color: $default-font-color;
     }
   }
   &.cta-btn {
@@ -48,13 +58,18 @@
     @include font-size-sass(16px);
     padding-top: 25px;
     &::after {
-      content: url(./images/btn_arrow_black.svg);
-      fill: #333;
+      mask: url(./images/next_arrow_nocolor.svg) no-repeat 50% 50%;
+      mask-size: cover;
+      background-color: #333;
       @include breakpoint(medium767-down) {
-        padding-right: 35px !important;
         margin-top: 0;
         right: unset;
         position: static;
+      }
+    }
+    &:hover {
+      &::after {
+        background-color: $default-font-color;
       }
     }
     &:hover {
@@ -71,11 +86,14 @@
     border: 2px solid #00629b;
     color: #00629b;
     &::after {
-      fill: #00629b;
+      background-color: #00629b;
     }
     &:hover {
       color: #fff;
       background-color: #00629b;
+      &::after {
+        background-color: #fff;
+      }
     }
   }
   @include breakpoint(medium767-down) {

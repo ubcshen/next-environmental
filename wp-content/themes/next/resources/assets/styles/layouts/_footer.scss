@@ -14,8 +14,8 @@
     margin-top: -60vw;
   }
   @include breakpoint(small640-down) {
-    padding: 110vw 0 100px;
-    margin-top: -100vw;
+    padding: 455px 0 100px;
+    margin-top: -415px;
   }
   .white-font {
     svg {
@@ -34,9 +34,14 @@
     }
     a {
       font-weight: 400;
+      @include breakpoint(medium767-down) {
+        vertical-align: text-top;
+        vertical-align: top;
+      }
     }
     span {
       vertical-align: text-top;
+      vertical-align: top;
       svg {
         @include media-breakpoint-down(md) {
           width: 15px;
@@ -60,6 +65,7 @@
     margin-top: 10px;
     @include breakpoint(medium767-down) {
       margin-top: 0;
+      margin-bottom: 0;
     }
   }
   .f16.bold {
@@ -119,6 +125,9 @@
       margin-top: 25px;
       .social-icon {
         max-width: 50px;
+        &:first-child {
+          padding-left: 0;
+        }
         svg {
           width: 22px;
           height: auto;
@@ -133,4 +142,14 @@
 .error404 .content-info {
   padding-top: 100px;
   margin-top: 0;
+  @include breakpoint(medium767-down) {
+    padding-top: 40px;
+  }
 }
+
+
+
+
+
+
+

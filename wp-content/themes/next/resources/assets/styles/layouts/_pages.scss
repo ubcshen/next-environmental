@@ -235,6 +235,12 @@
       margin-top: 50px;
       @include breakpoint(medium767-down) {
         margin-top: 24px;
+        padding-left: 10px;
+      }
+    }
+    .item-1, .item-3, .item-5 {
+      @include breakpoint(medium767-down) {
+        padding-right: 10px;
       }
     }
   }
@@ -468,15 +474,16 @@
       }
       .cols-section {
         .col-btn-bottom {
-          margin-left: 15px !important;
           width: 100%;
-          margin-right: 15px !important;
           margin-top: 20px !important;
           .button {
             width: 100%;
           }
         }
       }
+    }
+    @include breakpoint(small380-down) {
+      padding-bottom: 50vw;
     }
     hr {
       border-top: 2px solid rgba(0, 147, 178, 0.2);
@@ -616,7 +623,7 @@
         position: relative;
         width: 92%;
         margin: 0 auto;
-        padding: 30px 10px;
+        padding: 30px 20px;
         margin-top: -20%;
         z-index: 20;
       }
@@ -650,6 +657,9 @@
     @include breakpoint(small640-down) {
       margin-top: -450vw;
       padding-top: 440vw;
+    }
+    @include breakpoint(small380-down) {
+      padding-top: 410vw;
     }
   }
   h2 {
@@ -691,13 +701,18 @@
       height: auto;
       fill: rgba(18,18,18,0.05);
       position: absolute;
+      display: inline-block;
       @include breakpoint(small640-down) {
-        content: url(./images/quote.svg);
-        width: 66px;
+        transform: scale(.7);
+        top: 20px;
+        left: 5px;
       }
     }
     .carousel {
       margin-top: 20px;
+      @include breakpoint(small380-down) {
+        margin-top: 60px;
+      }
     }
     .f32 {
       font-weight: 700;
@@ -770,6 +785,9 @@
       @include breakpoint(medium767-down) {
         margin-bottom: 10px;
       }
+    }
+    @include breakpoint(medium767-down) {
+      margin-bottom: 0;
     }
   }
   .blue-rectangle {
@@ -903,6 +921,15 @@
     }
     @include breakpoint(medium767-down) {
       margin-top: -150px;
+      .white-font {
+        max-width: 540px;
+        padding-right: 60px;
+      }
+    }
+    @include breakpoint(small480-down) {
+      .white-font {
+        padding-right: 30px;
+      }
     }
   }
   @include breakpoint(medium767-down) {
@@ -926,7 +953,7 @@
     }
     .carousel .carousel-control-next {
       right: unset;
-      left: 18%;
+      left: 21%;
     }
   }
 }
@@ -939,6 +966,9 @@
     @include breakpoint(medium767-down) {
       padding-top: 16px;
       padding-bottom: 16px;
+    }
+    @include breakpoint(small640-down) {
+      margin-top: 30px;
     }
   }
 }
@@ -964,12 +994,6 @@
       }
     }
   }
-  .cs-container {
-    @include breakpoint(medium767-down) {
-      padding-left: 15px !important;
-      padding-right: 15px !important;
-    }
-  }
   @include breakpoint(medium767-down) {
     .col-10 {
       margin-left: auto;
@@ -977,6 +1001,13 @@
     }
     .normal-item {
       padding: 20px 0 0;
+      img {
+        align-self: center;
+        flex: 0 0 auto;
+      }
+      &:last-child {
+        margin-bottom: 50px;
+      }
     }
   }
 }
@@ -1161,6 +1192,12 @@
       border-bottom: none;
     }
   }
+  .mobile-show-640 {
+    @include media-breakpoint-down(md) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
   .risk-container {
     .nav-tabs {
       position: initial;
@@ -1183,27 +1220,34 @@
         fill: #fff;
         position: absolute;
         top: 34%;
-        left: 10%;
-        width: 54%;
+        left: 14%;
+        width: 50%;
         transition: 1s ease-in-out;
       }
       &#risk1 {
         svg {
           transform: rotate(-70deg);
-          top: 3%;
-          left: 8%;
+          top: 0%;
+          left: 13%;
           @include breakpoint(large1800-up) {
-            top: 9%;
-            width: 56%;
+            top: 7%;
+            width: 53%;
           }
           @include breakpoint(large2200-up) {
-            top: 14%;
-            width: 95%;
-            left: -10%;
-            transform: rotate(-70deg);
+            top: 13%;
+            width: 100%;
+            left: -13%;
+          }
+          @include breakpoint(medium1350-down) {
+            top: -1%;
+            transform: rotate(-69deg);
           }
           @include breakpoint(medium1250-down) {
             top: -4%;
+          }
+          @include breakpoint(medium1200-down) {
+            top: -5%;
+            left: 13%;
           }
           @include media-breakpoint-down(md) {
             top: -14%;
@@ -1213,21 +1257,32 @@
       }
       &#risk2 {
         svg {
-          transform: rotate(-55deg);
-          top: 11%;
-          left: 12%;
+          transform: rotate(-52deg);
+          top: 10%;
+          left: 16%;
           @include breakpoint(large1800-up) {
             top: 16%;
-            left: 12%;
+            left: 16%;
             width: 58%;
+            transform: rotate(-54deg);
           }
           @include breakpoint(large2200-up) {
             top: 21%;
             width: 102%;
             left: -10%;
           }
+          @include breakpoint(medium1410-down) {
+            top: 8%;
+          }
+          @include breakpoint(medium1350-down) {
+            top: 6%;
+            transform: rotate(-56deg);
+          }
           @include breakpoint(medium1250-down) {
-            top: 4%;
+            top: 3%;
+          }
+          @include breakpoint(medium1200-down) {
+            top: 1%;
           }
           @include media-breakpoint-down(md) {
             top: -8%;
@@ -1238,7 +1293,7 @@
         svg {
           transform: rotate(-40deg);
           top: 18%;
-          left: 14%;
+          left: 17%;
           @include breakpoint(large1800-up) {
             top: 24%;
             width: 58%;
@@ -1247,6 +1302,12 @@
             top: 28%;
             width: 100%;
             left: -9%;
+          }
+          @include breakpoint(medium1410-down) {
+            top: 16%;
+          }
+          @include breakpoint(medium1350-down) {
+            top: 14%;
           }
           @include breakpoint(medium1250-down) {
             transform: rotate(-40deg);
@@ -1260,19 +1321,26 @@
       &#risk4 {
         svg {
           transform: rotate(-25deg);
-          top: 26%;
-          left: 13%;
+          top: 25%;
+          left: 16%;
           @include breakpoint(large1800-up) {
             top: 32%;
-            width: 58%;
+            width: 56%;
           }
           @include breakpoint(large2200-up) {
             top: 35%;
             width: 100%;
             left: -9%;
           }
+          @include breakpoint(medium1350-down) {
+            top: 20%;
+          }
           @include breakpoint(medium1250-down) {
             top: 19%;
+          }
+          @include breakpoint(medium1200-down) {
+            top: 17%;
+            transform: rotate(-24deg);
           }
           @include media-breakpoint-down(md) {
             top: 7%;
@@ -1284,16 +1352,22 @@
         svg {
           transform: rotate(-8deg);
           @include breakpoint(large1800-up) {
-            top: 40%;
-            width: 56%;
+            top: 42%;
+            width: 54%;
           }
           @include breakpoint(large2200-up) {
             top: 45%;
             width: 100%;
             left: -11%;
           }
+          @include breakpoint(medium1350-down) {
+            top: 30%;
+          }
           @include breakpoint(medium1250-down) {
             top: 28%;
+          }
+          @include breakpoint(medium1200-down) {
+            top: 26%;
           }
           @include media-breakpoint-down(md) {
             top: 14%;
@@ -1384,6 +1458,8 @@
     }
     .risk-content-container {
       padding-bottom: 30px;
+      padding-left: 30px;
+      padding-right: 30px;
     }
     .risk-container {
       overflow: hidden;
@@ -1430,29 +1506,29 @@
           width: 40%;
         }
         &#risk5 svg {
-          transform: rotate(90deg);
+          transform: rotate(87deg);
           top: -31%;
         }
         &#risk1 svg {
-          transform: rotate(9deg);
-          top: -31%;
-          left: 47%;
+          transform: rotate(14deg);
+          top: -32%;
+          left: 46%;
           width: 40%;
         }
         &#risk2 svg {
-          transform: rotate(28deg);
-          top: -27%;
-          left: 39%;
-          width: 40%;
+          transform: rotate(33deg);
+          top: -24%;
+          left: 36%;
+          width: 46%;
         }
         &#risk3 svg {
-          transform: rotate(50deg);
+          transform: rotate(51deg);
           top: -19%;
-          left: 24%;
+          left: 23%;
           width: 55%;
         }
         &#risk4 svg {
-          transform: rotate(73deg);
+          transform: rotate(70deg);
           top: -25%;
           left: 17%;
           width: 48%;
@@ -1524,7 +1600,7 @@
   }
   .social-icon {
     svg {
-      max-width: 24px;
+      max-width: 20px;
     }
   }
   .social-icon .sm-icon:hover {
@@ -1540,7 +1616,15 @@
   }
 }
 
-
+.careers {
+  @include breakpoint(medium767-down) {
+    .section-cols .col-head-section {
+      .m-bottom {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
 
 
 

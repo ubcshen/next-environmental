@@ -5,10 +5,18 @@
       $logo = get_field('logo', 'option');  
     } else {
       $logo = get_field('home_logo', 'option'); 
+      $logofixed = get_field('logo', 'option');  
     }
     ?>
     <div class="row justify-content-end">
+      <?php 
+      if(!is_page("home")) {
+      ?>
       <a class="brand col" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
+      <?php } else { ?>
+      <a class="brand col home-head-logo" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
+      <a class="brand col home-head-logo-fixed" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logofixed); ?></a>
+      <?php } ?>
       <nav class="nav-primary col-auto">
         @if (has_nav_menu('topmenu2'))
           {!! wp_nav_menu(['theme_location' => 'topmenu2', 'menu_class' => 'nav nav-small ml-auto']) !!}
@@ -63,9 +71,23 @@
 </header>
 <header class="banner header-banner mobile-show">
   <div class="container">
-    <?php $logo = get_field('logo', 'option');  ?>
+    <?php 
+    if(!is_page("home")) {
+      $logo = get_field('logo', 'option');  
+    } else {
+      $logo = get_field('home_logo', 'option'); 
+      $logofixed = get_field('logo', 'option');  
+    }
+    ?>
     <div class="row justify-content-end">
+      <?php 
+      if(!is_page("home")) {
+      ?>
       <a class="brand col" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
+      <?php } else { ?>
+      <a class="brand col home-head-logo" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logo); ?></a>
+      <a class="brand col home-head-logo-fixed" href="{{ home_url('/') }}"><?php echo output_inline_svg_file($logofixed); ?></a>
+      <?php } ?>
       <div class="col-auto d-flex align-items-start justify-content-center mobile-nav-768">
         <div class="hamburger" data-toggle="collapse" data-target="#navbarAdditionalContent"><span></span><span></span><span></span></div>
       </div>

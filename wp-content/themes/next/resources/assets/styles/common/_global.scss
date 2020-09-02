@@ -297,7 +297,7 @@
       @content;
     }
   } @else if $point == small380-down {
-    @media (max-width: 380px) {
+    @media (max-width: 480px) {
       @content;
     }
   } @else if $point == small374-down {
@@ -520,6 +520,7 @@ img {
   max-width: 100%;
   height: auto;
   border: 0;
+  width: 100%;
 }
 
 h1,
@@ -827,8 +828,8 @@ section {
       }
     }
     @include breakpoint(medium767-down) {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: 30px;
+      margin-right: 30px;
     }
   }
   &.section-story-gallery {
@@ -853,6 +854,9 @@ section {
   }
   &.section-custom-post-type {
     padding-top: 0;
+    @include breakpoint(medium767-down) {
+      padding-bottom: 60px;
+    }
   }
   &.section-financial {
     padding-bottom: 0;
@@ -875,9 +879,10 @@ section {
     }
   }
   @include breakpoint(medium767-down) {
-    padding: 0;
+    padding:0;
     &.section-404 {
       padding-bottom: 80px;
+      padding-top: 40px;
     }
     &.section-cta {
       padding: 50px 0 !important;
@@ -888,6 +893,13 @@ section {
   }
 }
 
+.contact {
+  section {
+    @include breakpoint(medium767-down) {
+      padding-bottom: 60px;
+    }
+  }
+}
 .white-bg {
   background-color: #fff;
 }
@@ -1008,7 +1020,7 @@ section {
 
 .svg-arrow-chat {
   position: absolute;
-  left: 32%;
+  left: 40%;
   height: 100%;
   overflow: hidden;
 }
@@ -1142,6 +1154,9 @@ section {
 
 .modal-body {
   padding: 0;
+  @include breakpoint(small640-down) {
+    padding-bottom: 30px;
+  }
   .fullWidth {
     h2 {
       margin-top: 0;
@@ -1179,6 +1194,14 @@ section {
       .modal-copy-container {
         padding-left: 30px !important;
         padding-right: 30px;
+      }
+    }
+    @include breakpoint(small640-down) {
+      .modal-copy {
+        padding-right: 0 !important;
+      }
+      button.close {
+        padding-right: 0;
       }
     }
   }
@@ -1372,10 +1395,51 @@ hr.hide-scroll {
   }
 }
 
+.container {
+  @include breakpoint(medium767-down) {
+    padding-left: 30px;
+    padding-right: 30px;
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+      padding-left:0;
+      padding-right: 0;
+    }
+  }
+}
 /* .frm_style_formidable-style.with_frm_style .frm_error {
   background-color: #f9e9e9;
   padding: 5px 8px;
 } */
+
+section.section-testimonials {
+  @include breakpoint(medium767-down) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.fit-container {
+  @include breakpoint(medium767-down) {
+    align-self: center;
+    flex: 0 0 auto;
+  }
+}
+
+.contact {
+  .with_frm_style input[type=text], .with_frm_style input[type=password], .with_frm_style input[type=email], .with_frm_style input[type=number], .with_frm_style input[type=url], .with_frm_style input[type=tel], .with_frm_style input[type=search], .with_frm_style select, .with_frm_style textarea, .with_frm_style .frm-card-element.StripeElement, .with_frm_style .chosen-container {
+    font-family: $default-font;
+  }
+}
+
+
+
+
+
+
+
 
 
 

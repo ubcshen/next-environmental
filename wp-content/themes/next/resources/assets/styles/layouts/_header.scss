@@ -26,10 +26,6 @@
     border-top: 4px solid #0093b2;
     width: 0;
     bottom: 0;
-    @include media-breakpoint-down(md) {
-      width: 10px;
-      left: 0;
-    }
     @include breakpoint(medium767-down) {
       left: unset;
       bottom: unset;
@@ -40,6 +36,10 @@
     width: 15px;
     animation-duration: 0.2s;
     animation-name: slideinTen;
+    @include media-breakpoint-down(md) {
+      width: 10px;
+      left: 0;
+    }
   }
   @include breakpoint(medium767-down) {
     padding: 0.5rem 0;
@@ -109,10 +109,10 @@
     transform: rotate(0deg);
     transition: .5s ease-in-out;
     cursor: pointer;
-    @include breakpoint(medium767-down) {
+    /*@include breakpoint(medium767-down) {
       width: 24px;
       height: 22px;
-    }
+    }*/
     span {
       display: block;
       position: absolute;
@@ -144,9 +144,9 @@
         transform: rotate(45deg);
         top: 0px;
         left: 8px;
-        @include breakpoint(medium767-down) {
+        /*@include breakpoint(medium767-down) {
           left: 5px;
-        }
+        }*/
       }
       &:nth-child(2) {
         width: 0%;
@@ -157,10 +157,10 @@
         top: 21px;
         width: 100%;
         left: 8px;
-        @include breakpoint(medium767-down) {
+        /*@include breakpoint(medium767-down) {
           left: 5px;
           top: 17px;
-        }
+        }*/
       }
     }
   }
@@ -402,10 +402,23 @@
   }
 }
 
+.banner #navbarAdditionalContent .nav a {
+  @include breakpoint(medium767-down) {
+    @include font-size-sass(15px);
+  }
+}
+
+
 #navbarAdditionalContent {
   li {
     display: block;
     width: 100%;
+  }
+  @include breakpoint(medium767-down) {
+    .nav-primary {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 }
 
@@ -415,11 +428,21 @@
   }
 }
 
-.mobile-nav-768.align-items-start {
-  align-items: center !important;
+.home-head-logo-fixed {
+  display: none;
 }
 
-
+.home {
+  .banner.fixed-top.is-visible,
+  .banner.open {
+    .home-head-logo-fixed {
+      display: block;
+    }
+    .home-head-logo {
+      display: none;
+    }
+  }
+}
 
 
 
