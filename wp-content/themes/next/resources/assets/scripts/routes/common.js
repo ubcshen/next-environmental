@@ -129,7 +129,9 @@ export default {
     $('.mobile-dropdown').on('select2:select', function (e) {
       var data = e.params.data;
       $('.tab-pane').removeClass('show active');
+      $('.title-detail').removeClass('show active');
       $(data['id']).addClass('show active');
+      $('#title-'+data['id'].split('#')[1]).addClass('show active');
     });
 
     $('.mobile-dropdown-risk').on('select2:select', function (e) {

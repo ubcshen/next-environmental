@@ -942,7 +942,7 @@ function build_sections()
                                   while(has_sub_field('story_gallery_list')):
                                     $image = get_sub_field('icon_svg');
                                 ?>
-                                <div class="col-12 col-md-6 gallery-point">
+                                <div class="col-12 col-md-6 gallery-point container">
                                     <div class="row">
                                         <div class="story-icon col-2 col-md-12"><?php echo output_inline_svg_file($image); ?></div>
                                         <div class="story-content col-10 col-md-12"><?php echo get_sub_field("list_content"); ?></div>
@@ -1015,7 +1015,7 @@ function build_sections()
                                         endif
                                   ?>
                                     <div class="col-12 col-md-6 col-lg-4 item normal-item">
-                                        <a class="button pl-0 link no-arrow" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>"><?php if($bgimage) { ?><?php echo output_acf_img($bgimage, "lazyImg"); ?><?php } ?></a>
+                                        <a class="button pl-0 link no-arrow image-btn" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>"><?php if($bgimage) { ?><?php echo output_acf_img($bgimage, "lazyImg"); ?><?php } ?></a>
                                         <a class="button pl-0 link no-arrow" data-toggle="modal" data-target="#<?php echo 'team'.get_row_index().'Modal'; ?>"><h5><?php echo $name; ?></h5></a>
                                         <small class="d-block"><?php echo $title; ?></small>
                                         <?php echo $bio; ?>
@@ -1413,10 +1413,10 @@ function build_post_sections()
                         </div>
                     <?php endif; ?>
                     <div class="row mobile-show">
-                        <div class="col-3 icon-line icon-line-mobile">
+                        <div class="col-2 col-md-3 icon-line icon-line-mobile">
                             <div class="round-svg align-items-center d-flex justify-content-center"><?php output_inline_svg_file($icon); ?></div>
                         </div>
-                        <div class="tab-content col-9 pl-0 mobile-tab-title align-items-center d-flex justify-content-center">
+                        <div class="tab-content col-8 col-md-9 pl-0 mobile-tab-title align-items-center d-flex justify-content-center">
                             <?php
                               $i = 0;
                               while(has_sub_field('mobile_details_dropdown')):
@@ -1493,7 +1493,7 @@ function build_post_sections()
                                 $tab = preg_replace('/\s+/', '_', $tab);
                             ?>
                             <div class="tab-pane fade <?php if($i==0) echo 'show active'; ?> row" id="nav-<?php echo $tab; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $tab; ?>-tab">
-                                <div class="col-12 col-md-6 pl-0 <?php if($count>1) echo 'desktop-show-640'; ?>">
+                                <div class="col-12 col-md-6 pl-0 desktop-show-640">
                                     <h3><?php echo get_sub_field('detail_headline'); ?></h3>
                                 </div>
                                 <div class="col-12 col-md-6 pl-0 pl-md-4 detail-content-copy">

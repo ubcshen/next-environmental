@@ -178,8 +178,9 @@
         position: relative;
         bottom: unset;
         left: unset;
-        padding-right: 30px;
-        padding-left: 30px;
+        padding-right: 24px;
+        width: calc(100% - 24px);
+        flex: inherit;
       }
     }
   }
@@ -216,6 +217,9 @@
     .gallery-point:nth-child(3),
     .gallery-point:nth-child(4) {
       margin-top: 1.725rem;
+    }
+    .story-icon svg {
+      width: 36px;
     }
   }
 }
@@ -1194,8 +1198,8 @@
   }
   .mobile-show-640 {
     @include media-breakpoint-down(md) {
-      padding-left: 30px;
-      padding-right: 30px;
+      padding-left: 24px;
+      padding-right: 24px;
     }
   }
   .risk-container {
@@ -1458,8 +1462,8 @@
     }
     .risk-content-container {
       padding-bottom: 30px;
-      padding-left: 30px;
-      padding-right: 30px;
+      padding-left: 24px;
+      padding-right: 24px;
     }
     .risk-container {
       overflow: hidden;

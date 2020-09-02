@@ -16,9 +16,15 @@
   }
   @include breakpoint(medium768-down) {
     padding-right: 35px;
+    &.image-btn {
+      padding-right: 0;
+    }
   }
   @include breakpoint(medium767-down) {
     padding-right: 35px !important;
+    &.image-btn {
+      padding-right: 0 !important;
+    }
   }
   &:hover {
     color: $default-font-color;
